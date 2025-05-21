@@ -1,0 +1,211 @@
+---
+import Socials from "../components/socials.astro";
+---
+
+<footer class="footer">
+  <div class="grid1-1">
+    <div class="footer-container">
+      <h5>Butik</h5>
+      <p><a href="/shopcoffee">Køb Kaffe</a></p>
+      <p>Køb Udstyr</p>
+      <p><a href="/wholesale">Engros</a></p>
+      <p><a href="/aboutos">Hyr Os</a></p>
+    </div>
+    <div class="footer-container">
+      <h5>Info</h5>
+      <p>Privathed</p>
+      <p>Kontakt os</p>
+      <p>Terms and Conditions</p>
+      <p>Cookie Policy</p>
+    </div>
+  </div>
+  <div class="signup-container">
+    <h5>Skriv dig op til vores nyhedsbrev</h5>
+    <div class="line"></div>
+    <form class="form">
+      <input type="email" placeholder="Indtast email" required />
+      <button type="submit">TILMELD</button>
+    </form>
+  </div>
+  <div class="contact">
+    <h5>Kontakt os</h5>
+    <p>
+      Yellow Bird Coffee<br />
+      Amager Strandvej 108<br />
+      2300 Copenhagen S, Denmark
+    </p>
+    <p>E-mail: info@yellowbirdcoffee.dk</p>
+    <p>
+      Juridisk Navn:<br />
+      exs nordic<br />
+      Gammel Kongevej 84<br />
+      1850 frederiksberg C<br />
+      CVR 28900732
+    </p>
+  </div>
+
+  <div class="socials">
+    <Socials
+      href="https://www.instagram.com/yellowbirdcoffeecph/"
+      alt="Instagram"
+      src="/img/icons/instagram.webp"
+    />
+    <Socials
+      href="https://www.linkedin.com/company/yellow-bird-coffee"
+      alt="LinkedIn"
+      src="/img/icons/linkedin.webp"
+    />
+    <Socials
+      href="https://www.facebook.com/yellowbirdcoffeecph/"
+      alt="Facebook"
+      src="/img/icons/facebook.webp"
+    />
+  </div>
+</footer>
+
+<style>
+  h5 {
+    font-size: 14px;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 12px;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--background-color);
+  }
+
+  a:hover {
+    color: var(--yellow-color);
+  }
+
+  .footer {
+    background: var(--green-color);
+    color: var(--background-color);
+    padding-top: 3vw;
+    padding-bottom: 4vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 4vw;
+  }
+
+  .footer-container {
+    margin-bottom: 0.5rem;
+  }
+
+  .signup-container h5 {
+    margin-bottom: 0.7rem;
+  }
+  .line {
+    width: 6rem;
+    height: 0.1rem;
+    background: #ffd966;
+    margin-bottom: 2rem;
+  }
+  .form {
+    display: flex;
+    margin-bottom: 0.5rem;
+    border: 1px solid #fff;
+    width: 80%;
+    max-width: 400px;
+  }
+
+  /* Styler form gennemsigtig, fjerner border mm., da form har default setting hvor den ser ud på en hvis måde */
+
+  .form input {
+    flex: 1;
+    padding: 0.3rem;
+    border: none;
+    background: transparent;
+    color: var(--background-color);
+    outline: none;
+  }
+  .form button {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    background: transparent;
+    border: none;
+    color: var(--background-color);
+    border-left: 1px solid var(--background-color);
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .form button:hover {
+    background: var(--yellow-color);
+    color: var(--green-color);
+  }
+
+  .contact p {
+    margin-bottom: 2rem;
+  }
+
+  .socials {
+    display: flex;
+    gap: 1rem;
+  }
+
+  /* Sætter i 1-1 grid */
+  .grid1-1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2vw;
+    margin-bottom: 2vw;
+  }
+
+  @media (min-width: 768px) {
+    h5 {
+      font-size: 16px;
+    }
+    p {
+      font-size: 14px;
+    }
+
+    /* Grid der ændre placeringen af de forskellige containere, således de ligger i rigtige positioner når vi kommer over i web */
+    .footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      justify-items: center;
+    }
+
+    .signup-container {
+      grid-column: 1;
+      grid-row: 1;
+      justify-self: start;
+      margin-left: 3rem;
+    }
+
+    .socials {
+      grid-column: 1;
+      grid-row: 2;
+      align-self: end;
+      justify-self: start;
+      margin-left: 3rem;
+    }
+
+    /* Overruler 1-1 grid og sætter over hinanden i stedet*/
+    .grid1-1 {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+      grid-column: 2;
+      grid-row: 1 / span 2;
+    }
+
+    .contact {
+      grid-column: 3;
+      grid-row: 1 / span 2;
+    }
+
+    /* Tilpasser form til web */
+    .form {
+      width: 100%;
+    }
+  }
+</style>
