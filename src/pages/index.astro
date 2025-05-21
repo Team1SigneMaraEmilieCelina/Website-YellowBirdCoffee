@@ -6,7 +6,23 @@ import Menu from "../components/menu.astro";
 <Layout>
   <header>
     <Menu />
+    <img class="heroimg" src="/img/heroimg.png" alt="Hero Image" />
   </header>
   <main></main>
   <footer></footer>
 </Layout>
+
+<style>
+  .heroimg {
+    width: 100%;
+    object-fit: cover;
+    height: 300px;
+    position: absolute;
+  }
+
+  @media (min-width: 768px) {
+    .heroimg {
+      height: auto;
+    }
+  }
+</style>
