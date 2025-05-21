@@ -1,0 +1,365 @@
+<nav class="menu">
+  <div class="logo">
+    <a href="/">
+      <img src="/src/assets/img/logo.webp" alt="Yellow Bird Coffee Logo" />
+    </a>
+  </div>
+
+  <!-- Class der er gemt i mobil men kommer frem i desktop, da layoutet på de to er forskellige. -->
+  <!-- Alle links er inde i en h3'er for at holde os til design system. -->
+  <ul class="desktop-menu-items">
+    <li><a href="/shopcoffee">Køb kaffe</a></li>
+    <li><a href="/subscription">Kaffe abonnementer</a></li>
+    <li><a href="/wholesale">Erhverv</a></li>
+    <li><a href="/courses">Kurser</a></li>
+    <li><a href="/aboutus">Om os</a></li>
+  </ul>
+  <div class="shopping-bag">
+    <img src="/src/assets/img/shoppingbagbeige.webp" alt="Shopping Bag" />
+  </div>
+  <button class="burger-menu" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="menu-items">
+    <li><h3><a href="/shopcoffee">Køb kaffe</a></h3></li>
+    <li><h3><a href="/subscription">Kaffe abonnementer</a></h3></li>
+    <li><h3><a href="/wholesale">Erhverv</a></h3></li>
+    <li><h3><a href="/courses">Kurser</a></h3></li>
+    <li><h3><a href="/aboutus">Om os</a></h3></li>
+    <div class="menu-logo">
+      <a href="/">
+        <img src="/src/assets/img/logo.webp" alt="Yellow Bird Coffee Logo" />
+      </a>
+    </div>
+  </ul>
+</nav>
+
+<style>
+  .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+    padding: 20px 20px 10px 10px;
+    box-sizing: border-box;
+  }
+
+  .menu a {
+    color: var(--white-color);
+    transition: color 0.3s ease;
+  }
+
+  .menu.scrolled {
+    background-color: var(--background-color);
+  }
+
+  .menu.scrolled a {
+    color: var(--black-color);
+  }
+
+  /* Burgermenu bliver sort når der scrolles */
+  .menu.scrolled .burger-menu span {
+    background-color: var(--black-color);
+  }
+
+  /* Rykker kurveikonet til højre med margin fra logoet */
+  .logo {
+    margin-right: auto;
+  }
+
+  .logo img {
+    height: 40px;
+  }
+
+  .shopping-bag,
+  .burger-menu {
+    margin-left: 1rem;
+    display: flex;
+  }
+
+  .shopping-bag img {
+    height: 25px;
+    transition: opacity 0.3s ease;
+  }
+
+  .burger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1008;
+  }
+
+  /* Styling af de tre streger i burger-menuen */
+  .burger-menu span {
+    height: 2px; /* Hver streg er 2 pixels høj */
+    background-color: var(--white-color); /* De er hvide til at starte med */
+    transition: background-color 0.3s ease; /* Baggrundsfarven skifter blødt hvis vi ændrer den */
+  }
+
+  /* Når menuen er åben, roterer første streg og flyttes lidt */
+  .burger-menu.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  /* Når menuen er åben, forsvinder den midterste streg */
+  .burger-menu.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  /* Når menuen er åben, roterer tredje streg og flyttes i modsat retning */
+  .burger-menu.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  /* Transitions (blød animation) for første og tredje streg – både åben og lukket tilstand */
+  .burger-menu.open span:nth-child(1),
+  .burger-menu.open span:nth-child(3),
+  .burger-menu span:nth-child(1),
+  .burger-menu span:nth-child(3) {
+    transition: transform 0.8s ease;
+  }
+
+  /* Transition for midterste streg – gælder både når den vises og skjules */
+  .burger-menu.open span:nth-child(2),
+  .burger-menu span:nth-child(2) {
+    transition: opacity 0.8s ease;
+  }
+
+  .menu-items {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--beige-color);
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+    align-items: center;
+    transition: transform 0.3s ease;
+    z-index: 999;
+
+    /* Starter ude til højre */
+    transform: translateX(100%);
+  }
+
+  /* Slider ind fra højre side */
+  .menu-items.visible {
+    transform: translateX(0);
+  }
+
+  .menu-items li {
+    margin: 0.5rem 0;
+    list-style: none;
+  }
+
+  .menu-items a {
+    text-decoration: none;
+    color: var(--black-color);
+  }
+
+  .menu-logo {
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .menu-logo img {
+    max-width: 100px;
+  }
+
+  .desktop-menu-items {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    /* DESKTOP VERSION */
+
+    .burger-menu {
+      display: none;
+    }
+
+    .menu-items {
+      display: none;
+    }
+
+    .desktop-menu-items {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .desktop-menu-items li {
+      margin: 0;
+    }
+
+    .desktop-menu-items a {
+      color: var(--white-color) !important;
+      transition: color 0.3s ease;
+    }
+
+    .menu.scrolled .desktop-menu-items a {
+      color: var(--black-color) !important;
+    }
+
+    .desktop-menu-items a:hover {
+      color: inherit;
+    }
+
+    .shopping-bag img {
+      margin-right: 0;
+    }
+
+    .desktop-menu {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--background-color);
+    }
+
+    .desktop-logo img {
+      height: 50px;
+    }
+
+    .desktop-menu-items {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .desktop-menu-items li {
+      margin: 0;
+    }
+
+    .desktop-menu-items a {
+      text-decoration: none;
+      color: var(--black-color);
+    }
+
+    .desktop-shopping-bag img {
+      height: 30px;
+    }
+
+    .logo {
+      margin-right: 0px;
+    }
+
+    .logo img {
+      height: 80px;
+    }
+
+    .shopping-bag {
+      margin-left: 0px;
+    }
+
+    .shopping-bag img {
+      height: 35px;
+    }
+
+    .menu {
+      padding: 15px 20px 5px 20px;
+    }
+  }
+</style>
+
+<script>
+  // MENU SCROLL JAVASCRIPT
+
+  // Når brugeren scroller, ændrer jeg udseendet på toppen af siden.
+  // Menuen bliver hvid og ikonet for shoppingkurven bliver mørkere – så det stadig er tydeligt mod den lyse baggrund.
+  // Når brugeren scroller tilbage til toppen, bliver menuen transparent igen og ikonet skifter til en lys version.
+  // Det gør jeg for at sikre god kontrast og læsbarhed uanset scroll-position – noget som forbedrer brugeroplevelsen.
+
+  let lastScrollY = 0;
+  // Denne variabel bliver ikke brugt aktivt her, men den kunne bruges hvis jeg ville vide om brugeren scroller op eller ned.
+  // Det kan være relevant til mere avancerede effekter, som fx at skjule headeren når man scroller ned.
+
+  window.addEventListener("scroll", () => {
+    // Her lytter jeg efter om brugeren scroller.
+    // Scroll-eventet gør at vi kan reagere dynamisk på hvordan brugeren bevæger sig på siden.
+
+    const menu = document.querySelector(".menu");
+    const shoppingBag = document.querySelector(".shopping-bag img");
+    // Jeg finder de to elementer jeg vil ændre:
+    // menu = selve headeren øverst på siden
+    // shoppingBag = billedet med kurveikonet
+
+    console.log("Menu element:", menu);
+    console.log("Shopping Bag element:", shoppingBag);
+    // Her tjekker jeg om de blev fundet – det er god praksis for debugging.
+
+    if (menu && shoppingBag instanceof HTMLImageElement) {
+      // Jeg tjekker at begge elementer findes og at shoppingBag faktisk er et billede.
+      // Det hjælper med at undgå fejl hvis HTML ændres.
+
+      if (window.scrollY > 0) {
+        // Hvis brugeren har scrollet nedad...
+        menu.classList.add("scrolled");
+        shoppingBag.src = "/src/assets/img/shoppingbag.webp";
+      } else {
+        // Hvis brugeren er helt i toppen...
+        menu.classList.remove("scrolled");
+        shoppingBag.src = "/src/assets/img/shoppingbagbeige.webp";
+      }
+    }
+  });
+
+  // BURGER MENU JAVASCRIPT
+
+  // Denne del af koden viser og skjuler vores mobilmenu.
+  // Når brugeren klikker på hamburgerikonet, folder menuen sig ud og ikonet ændrer sig til et X.
+  // Ved klik igen skjules menuen og ikonet skifter tilbage.
+  // Vi bruger classList.toggle for at skifte frem og tilbage mellem to tilstande – det er en simpel og effektiv løsning.
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Jeg venter med at køre koden til hele DOM’en er indlæst – så jeg er sikker på at HTML-elementerne findes.
+    // Det forhindrer fejl, hvor JavaScript prøver at finde elementer som ikke er klar endnu.
+
+    const burgerMenu = document.querySelector(".burger-menu");
+    const menuItems = document.querySelector(".menu-items");
+    // Jeg vælger de elementer jeg skal bruge:
+    // burgerMenu = knappen (☰)
+    // menuItems = selve menuen med links
+
+    console.log("Burger Menu element:", burgerMenu);
+    console.log("Menu Items element:", menuItems);
+    // Debug: Jeg tjekker at jeg har fat i de rigtige elementer i konsollen.
+
+    if (burgerMenu && menuItems) {
+      // Jeg tjekker at begge elementer findes før jeg går videre – god fejlsikring.
+
+      burgerMenu.addEventListener("click", () => {
+        // Når jeg klikker på burger-menuen...
+
+        menuItems.classList.toggle("visible");
+        // Jeg viser/skjuler menuen ved at toggle en CSS-klasse.
+        // Det er en meget fleksibel måde at styre animation og layout på.
+
+        burgerMenu.classList.toggle("open");
+        // Her gør jeg det samme med selve ikonet – så det skifter mellem ☰ og ✖ med CSS.
+        // Det er både intuitivt for brugeren og nemt at kontrollere.
+      });
+    }
+  });
+</script>
