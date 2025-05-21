@@ -201,9 +201,12 @@
         const target = button.getAttribute("data-target");
         //   Jeg henter det knappen “peger på” via data-target, fx "espresso-coffee".
 
-        document
-          .querySelector(`.${target} .swiper-container`)
-          .classList.add("active");
+        const targetContainer = document.querySelector(
+          `.${target} .swiper-container`
+        );
+        if (targetContainer) {
+          targetContainer.classList.add("active");
+        }
         // Jeg finder den rigtige swiper-container og tilføjer "active" så den vises
       });
     });
