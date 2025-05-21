@@ -1,0 +1,41 @@
+---
+const { labelp, labelh3, placeholder, options } = Astro.props;
+
+// Astro kan ikke finde ud af at options er en array, så vi er nødt til at lave den om til en string array,
+// da der skal bruges et sting arrey i en select menu
+const stringOptions = options as string[];
+---
+
+<!-- Der er lavet både en h3 og en p således den kan bruges flere steder, med enten den ene eller anden skrift så det passer til vores design -->
+<h3 class="dropdown-label">{labelh3}</h3>
+<p class="dropdown-label">{labelp}</p>
+
+<!-- Placeholder uden value er den tekst der vises i select menuen før man har valgt en option-->
+
+<select class="dropdown">
+  <option value="" disabled selected hidden>{placeholder} </option>
+
+  <!-- Her er der lavet en map over de options der er givet i props, og så bliver de lavet til option tags som kan vælges 
+   value={option} sætter den værdi, som bliver sendt, hvis brugeren vælger den mulighed.-->
+  {stringOptions.map((option) => <option value={option}>{option}</option>)}
+</select>
+
+<style>
+  .dropdown-label {
+    margin-bottom: 0.5rem;
+  }
+
+  .dropdown {
+    width: 100%;
+    max-width: 250px;
+    font-size: 15px;
+    border-radius: 0;
+    border: 2px solid var(--black-color);
+    color: rgba(18, 18, 18, 0.6);
+    font-family: "MontserratMedium", Arial, sans-serif;
+    margin-bottom: 2rem;
+    appearance: none; /* fjerner den default pil der kommer når man arbejder med <select> */
+    background: url("/img/icons/downarrow.webp") no-repeat right 1rem
+      center/20px 10px; /* indsætter vores pil og ligger den i højre side af select menuen */
+  }
+</style>

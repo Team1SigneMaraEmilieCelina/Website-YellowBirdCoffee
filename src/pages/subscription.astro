@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Menu from "../components/menu.astro";
+import SelectMenu from "../components/selectmenu.astro";
 import Footer from "../components/footer.astro";
 ---
 
@@ -8,8 +9,46 @@ import Footer from "../components/footer.astro";
   <header>
     <Menu />
   </header>
-  <main></main>
+  <main>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum facere
+      quisquam molestiae cum eius! Debitis minima ipsam nulla earum a?
+      Distinctio nisi eos corporis, consequuntur porro ad necessitatibus animi
+      similique?
+    </p>
+
+    <div class="selectmenumobile">
+      <SelectMenu
+        labelh3="Vælg dit abonnement"
+        placeholder="Vælg dit abonnement"
+        options={[
+          "Lysristede bønner",
+          "Mellemristede bønner",
+          "Mørkristede bønner",
+          "Blandede bønner",
+        ]}
+      />
+    </div>
+
+    <SelectMenu
+      labelp="Hvor ofte vil du have leveret"
+      placeholder="Vælg en mulighed"
+      options={["Hver 2. uge", "Hver måned", "Hver 2. måned"]}
+    />
+  </main>
   <footer>
     <Footer />
   </footer>
 </Layout>
+
+<style>
+  .selectmenumobile {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .selectmenumobile {
+      display: block;
+    }
+  }
+</style>
