@@ -2,64 +2,83 @@
 import Socials from "../components/socials.astro";
 ---
 
-<footer class="footer">
-  <div class="grid1-1">
-    <div class="footer-container">
-      <h5>Butik</h5>
-      <p><a href="/shopcoffee">Køb Kaffe</a></p>
-      <p>Køb Udstyr</p>
-      <p><a href="/wholesale">Engros</a></p>
-      <p><a href="/aboutos">Hyr Os</a></p>
+<footer>
+  <div class="footer-top">
+    <div class="grid1-1">
+      <div class="footer-container">
+        <h5>Butik</h5>
+        <p><a href="/shopcoffee">Køb Kaffe</a></p>
+        <p>Køb Udstyr</p>
+        <p><a href="/wholesale">Engros</a></p>
+        <p><a href="/aboutos">Hyr Os</a></p>
+      </div>
+      <div class="footer-container">
+        <h5>Info</h5>
+        <p>Privathed</p>
+        <p>Kontakt os</p>
+        <p>Terms and Conditions</p>
+        <p>Cookie Policy</p>
+      </div>
     </div>
-    <div class="footer-container">
-      <h5>Info</h5>
-      <p>Privathed</p>
-      <p>Kontakt os</p>
-      <p>Terms and Conditions</p>
-      <p>Cookie Policy</p>
+    <div class="signup-container">
+      <h5>Skriv dig op til vores nyhedsbrev</h5>
+      <div class="line"></div>
+      <form class="form">
+        <input type="email" placeholder="Indtast email" required />
+        <button type="submit">TILMELD</button>
+      </form>
     </div>
-  </div>
-  <div class="signup-container">
-    <h5>Skriv dig op til vores nyhedsbrev</h5>
-    <div class="line"></div>
-    <form class="form">
-      <input type="email" placeholder="Indtast email" required />
-      <button type="submit">TILMELD</button>
-    </form>
-  </div>
-  <div class="contact">
-    <h5>Kontakt os</h5>
-    <p>
-      Yellow Bird Coffee<br />
-      Amager Strandvej 108<br />
-      2300 Copenhagen S, Denmark
-    </p>
-    <p>E-mail: info@yellowbirdcoffee.dk</p>
-    <p>
-      Juridisk Navn:<br />
-      exs nordic<br />
-      Gammel Kongevej 84<br />
-      1850 frederiksberg C<br />
-      CVR 28900732
-    </p>
-  </div>
+    <div class="contact">
+      <h5>Kontakt os</h5>
+      <p>
+        Yellow Bird Coffee<br />
+        Amager Strandvej 108<br />
+        2300 Copenhagen S, Denmark
+      </p>
+      <p>E-mail: info@yellowbirdcoffee.dk</p>
+      <p>
+        Juridisk Navn:<br />
+        exs nordic<br />
+        Gammel Kongevej 84<br />
+        1850 frederiksberg C<br />
+        CVR 28900732
+      </p>
+    </div>
 
-  <div class="socials">
-    <Socials
-      href="https://www.instagram.com/yellowbirdcoffeecph/"
-      alt="Instagram"
-      src="/img/icons/instagram.webp"
-    />
-    <Socials
-      href="https://www.linkedin.com/company/yellow-bird-coffee"
-      alt="LinkedIn"
-      src="/img/icons/linkedin.webp"
-    />
-    <Socials
-      href="https://www.facebook.com/yellowbirdcoffeecph/"
-      alt="Facebook"
-      src="/img/icons/facebook.webp"
-    />
+    <div class="socials">
+      <Socials
+        href="https://www.instagram.com/yellowbirdcoffeecph/"
+        alt="Instagram"
+        src="/img/icons/instagram.webp"
+      />
+      <Socials
+        href="https://www.linkedin.com/company/yellow-bird-coffee"
+        alt="LinkedIn"
+        src="/img/icons/linkedin.webp"
+      />
+      <Socials
+        href="https://www.facebook.com/yellowbirdcoffeecph/"
+        alt="Facebook"
+        src="/img/icons/facebook.webp"
+      />
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <img src="/img/icons/payment.webp" alt="Betalingsmetoder" height="40px" />
+    <div class="footer-bottom-container">
+      <div class="copywrite">
+        <p>Yellow Bird Coffee. &copy; 2020. All rights Reserved</p>
+      </div>
+      <div class="SmileyRapportGrid">
+        <p><strong>Smiley Rapport</strong></p>
+        <img
+          src="/img/icons/smiley.webp"
+          alt="RapportSmileyGlad"
+          width="30px"
+          height="30px"
+        />
+      </div>
+    </div>
   </div>
 </footer>
 
@@ -82,7 +101,7 @@ import Socials from "../components/socials.astro";
     color: var(--yellow-color);
   }
 
-  .footer {
+  .footer-top {
     background: var(--green-color);
     color: var(--background-color);
     padding-top: 3vw;
@@ -94,7 +113,7 @@ import Socials from "../components/socials.astro";
     gap: 4vw;
   }
 
-  .footer-container {
+  .footer-top-container {
     margin-bottom: 0.5rem;
   }
 
@@ -158,6 +177,38 @@ import Socials from "../components/socials.astro";
     margin-bottom: 2vw;
   }
 
+  .footer-bottom {
+    background-color: #bbbeb7;
+  }
+
+  .footer-bottom img {
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: -1rem;
+  }
+
+  .footer-bottom-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .copywrite p {
+    color: var(--black-color);
+    opacity: 0.3;
+  }
+
+  .SmileyRapportGrid {
+    display: flex;
+    align-items: center;
+  }
+
+  .SmileyRapportGrid img {
+    margin: 0.5rem;
+  }
+
   @media (min-width: 768px) {
     h5 {
       font-size: 16px;
@@ -167,7 +218,7 @@ import Socials from "../components/socials.astro";
     }
 
     /* Grid der ændre placeringen af de forskellige containere, således de ligger i rigtige positioner når vi kommer over i web */
-    .footer {
+    .footer-top {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       grid-template-rows: 1fr 1fr;
