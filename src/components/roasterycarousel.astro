@@ -1,0 +1,78 @@
+---
+const images = [
+  "/img/coffeeweight.webp",
+  "/img/coffeesack.webp",
+  "/img/coffeeroast.webp",
+  "/img/coffeebags.webp",
+];
+---
+
+<div class="carousel">
+  <div class="track">
+    <!-- Sætter et array af billeder ind,
+     .map() går igennem hvert billede i array'et
+     for hvert img bliver der oprettet et img element med src og alt attributter samt pålagt klassen slide 
+        -->
+    {images.map((src) => <img src={src} alt="Billede" class="slide" />)}
+
+    <!--Vi gentager billederne i track'en, så der er 8 billeder i alt
+    derved køre den uendeligt fordi at når sidste billede vises, er det første billede allerede klar til at glide ind igen-->
+    {images.map((src) => <img src={src} alt="Billede" class="slide" />)}
+  </div>
+</div>
+
+<style>
+  /* Styler selve containeren omkring billederne, som hviser et billede af gangen*/
+  .carousel {
+    width: 400px;
+    height: 600px;
+    overflow: hidden;
+  }
+
+  /* Sætter billederne i en flexbox, så de står ved siden af hinanden, med en infinte scroll 
+    Scroll animation varer 28 sekunder, 7 sekunder pr. billede */
+  .track {
+    display: flex;
+    gap: 50px;
+    animation: scroll 28s linear infinite;
+  }
+
+  /* Styler selve de enkelte billeder - object fit sørger for at billedet fylder hele containeren*/
+  .slide {
+    width: 400px;
+    height: 600px;
+    object-fit: cover;
+  }
+
+  /* Sætter animationen til at køre fra 0% til 100%, og sætter den til at køre i loop */
+  @keyframes scroll {
+    /* Første billede - Startposition - første billede vises */
+    0%,
+    20% {
+      transform: translateX(0);
+    }
+
+    /* Andet billede - Flyttet 450px til venstre (400px + 50px gap)*/
+    25%,
+    45% {
+      transform: translateX(-450px);
+    }
+
+    /* Tredje billede - Flyttet 900px til venstre (2 × (400px + 50px gap)) */
+    50%,
+    70% {
+      transform: translateX(-900px);
+    }
+
+    /* Fjerde billede - Flyttet 1350px til venstre (3 × (400px + 50px gap))*/
+    75%,
+    95% {
+      transform: translateX(-1350px);
+    }
+
+    /* Tilbage til start - Fuld længde (4 × (400px + 50px gap))*/
+    100% {
+      transform: translateX(-1800px);
+    }
+  }
+</style>
