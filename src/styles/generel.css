@@ -43,6 +43,7 @@
   /* COLORS */
   --green-color: #424c37;
   --yellow-color: #fdcc40;
+  --yellow-light-color: rgb(253, 204, 64, 0.7);
   --background-color: #fffcf5;
   --black-color: #121212;
   --white-color: #fdfcfe;
@@ -81,6 +82,11 @@ p {
 .icontext {
   font-family: "Montserrat";
   font-size: 10px;
+}
+
+/* GENERAL RULES */
+html {
+  background-color: var(--background-color);
 }
 
 @media (min-width: 768px) {

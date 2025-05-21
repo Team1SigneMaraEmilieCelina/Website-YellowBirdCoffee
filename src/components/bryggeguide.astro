@@ -1,0 +1,211 @@
+---
+
+---
+
+<section>
+  <h2>Bryggeguide til din kaffe</h2>
+  <!-- Toggle buttons er de to knapper som skifter mellem bryggeguids -->
+  <div class="toggle-buttons">
+    <button class="active" data-target="espresso-coffee">Espresso</button>
+    <button data-target="filter-coffee">Filterkaffe</button>
+  </div>
+  <!-- Espresso Article -->
+  <article class="espresso-coffee">
+    <h3>Espresso</h3>
+    <div class="swiper-container active">
+      <div class="swiper-slide">
+        <img src="/img/step1.webp" alt="Step 1" />
+        <h5>Kværn kaffen fint</h5>
+        <p>
+          Brug friskristede bønner og kværn dem lige før brygning. En fin, jævn
+          kværning – som bordsalt – sikrer korrekt ekstraktion.
+        </p>
+      </div>
+      <div class="swiper-slide">
+        <img src="/img/step2.webp" alt="Step 2" />
+        <h5>Brug vand ved 90–94 °C</h5>
+        <p>
+          Brug frisk, filtreret vand ved korrekt temperatur for balanceret
+          ekstraktion. Dosér 18–20 g kaffe og bryg 36–40 g espresso på 25–30
+          sekunder.
+        </p>
+      </div>
+      <div class="swiper-slide">
+        <img src="/img/step3.webp" alt="Step 3" />
+        <h5>Smag kaffen sort først</h5>
+        <p>
+          Smag espressoen sort først for at vurdere aroma, sødme og syre. Tilsæt
+          derefter mælk efter behov – eller nyd den ren.
+        </p>
+      </div>
+    </div>
+  </article>
+  <!-- Filter Coffee Article -->
+  <article class="filter-coffee">
+    <h3>Filterkaffe</h3>
+    <div class="swiper-container">
+      <div class="swiper-slide">
+        <img src="/img/step4.webp" alt="Step 4" />
+        <h5>Vælg den rette kværning</h5>
+        <p>
+          Indstil din kværn til medium – som groft sand. Friskkværnede bønner
+          giver den bedste smag og aroma.
+        </p>
+      </div>
+      <div class="swiper-slide">
+        <img src="/img/step5.webp" alt="Step 5" />
+        <h5>Brug rent vand, 92–96°C</h5>
+        <p>
+          Brug friskt filtreret vand og en temperatur mellem 92–96°C. Mål gerne
+          60 g kaffe pr. liter vand for en balanceret kop.
+        </p>
+      </div>
+      <div class="swiper-slide">
+        <img src="/img/step6.webp" alt="Step 6" />
+        <h5>Nyd og smag bevidst</h5>
+        <p>
+          Lad kaffen køle let og bemærk de aromaer og smagsnuancer – måske
+          finder du noter af bær, nødder eller chokolade.
+        </p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<style>
+  .swiper-container {
+    /* SLIDE FUNKTIONEN PÅ MOBIL I BRYGGEGUIDEV */
+    display: flex;
+    overflow-x: auto;
+    /* Her slides der vandret  */
+
+    scroll-snap-type: x mandatory;
+    /* scroll-snap-type: x mandatory gør, at hvert slide “snapper” ind til midten, 
+    så det føles som et step-by-step-galleri*/
+  }
+
+  .swiper-slide {
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+    width: 70%;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .swiper-slide {
+    padding: 15px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  h3,
+  h2 {
+    padding-left: 20px;
+    padding-top: 20px;
+  }
+
+  h3 {
+    background-color: var(--yellow-light-color);
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  .toggle-buttons {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    h3 {
+      display: none;
+    }
+
+    .toggle-buttons {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 0px;
+    }
+
+    .toggle-buttons button {
+      cursor: pointer;
+      padding: 20px 40px;
+      background-color: transparent;
+      border: none;
+      text-align: center;
+      font-size: 25px;
+    }
+
+    .toggle-buttons button.active {
+      background-color: var(--yellow-light-color);
+    }
+
+    .swiper-container {
+      display: none;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0px;
+    }
+
+    .swiper-container.active {
+      display: grid;
+    }
+
+    .swiper-slide {
+      flex: none;
+      scroll-snap-align: unset;
+      margin: 0;
+      width: 100%;
+      padding: 0px;
+    }
+
+    .toggle-buttons {
+      display: flex;
+    }
+
+    p,
+    h5 {
+      padding-inline: 25px;
+    }
+  }
+</style>
+
+<script>
+  // BRYGGEGUIDE DESKTOP VERSION
+  // Jeg har lavet en komponent med to bryggeguides: Espresso og Filterkaffe.
+  // På mobil vises alt indhold efter hinanden, men på desktop kan man skifte mellem dem med to knapper.
+  // Jeg bruger classList.add/remove i JavaScript til at styre, hvilken container der er synlig –
+  // og jeg bruger data-target til at vide hvilken container hver knap skal vise.
+
+  const buttons = document.querySelectorAll(".toggle-buttons button");
+  const containers = document.querySelectorAll(".swiper-container");
+  //Her henter jeg alle knapper og alle .swiper-container-elementer
+  // Jeg skal bruge dem til at kunne skifte hvilket indhold der er synligt,
+  // alt efter hvilken knap brugeren klikker på.
+
+  if (buttons.length > 0 && containers.length > 0) {
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        //“Hver gang der klikkes på en knap, så skal vi gøre noget”
+
+        buttons.forEach((btn) => btn.classList.remove("active"));
+        button.classList.add("active");
+        // Først fjerner jeg klassen active fra alle knapper (så ingen ser ud som valgt).
+        // Så tilføjer jeg active til den knap jeg lige har klikket på.
+        // Det styrer både styling (baggrundsfarve) og funktionalitet
+
+        containers.forEach((container) => {
+          container.classList.remove("active");
+        });
+        //   Jeg skjuler alle swiper-containere – så ingen slides er synlige endnu.
+
+        const target = button.getAttribute("data-target");
+        //   Jeg henter det knappen “peger på” via data-target, fx "espresso-coffee".
+
+        document
+          .querySelector(`.${target} .swiper-container`)
+          .classList.add("active");
+        // Jeg finder den rigtige swiper-container og tilføjer "active" så den vises
+      });
+    });
+  }
+</script>
