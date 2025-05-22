@@ -4,6 +4,7 @@ import Menu from "../../components/menu.astro";
 import Footer from "../../components/footer.astro";
 import Bryggeguide from "../../components/bryggeguide.astro";
 import Amount from "../../components/amount.astro";
+import SquareCTA from "../../components/SquareCTA.astro";
 
 // Vi henter alle ID’er til de produkter, vi gerne vil lave individuelle sider for:
 export async function getStaticPaths() {
@@ -72,7 +73,7 @@ const product = data[0];
 // Eksempel: Bruges til at lave sider som /produkt/1, /produkt/2 osv.
 ---
 
-<!-- 3. Vis produktet -->{
+<!-- 3. Vis produktet{
   product ? (
     <article>
       <h1>{product.display_name}</h1>
@@ -91,16 +92,50 @@ const product = data[0];
     // Hvis produktet ikke findes, vis en fejlbesked
     <p>Produktet blev ikke fundet.</p>
   )
-}
-
+} -->
 <Layout>
   <header>
     <Menu />
   </header>
   <main>
+    <div class="back-button">
+      <SquareCTA ctaText="Tilbage" ctaLink="../shopcoffee" class="back-btn" />
+    </div>
+    {
+      product ? (
+        <article>
+          <h1>{product.display_name}</h1>
+          <img src={product.img1} alt={product.display_name} />
+          <p>Bønne: {product.bean}</p>
+          <p>Pris: {product.price_250} kr. / 250g</p>
+          <p>{product.description}</p>
+          <div class="icons">
+            <img src={product.icon1} alt={product.icon1_text} />
+            <img src={product.icon2} alt={product.icon2_text} />
+            <img src={product.icon3} alt={product.icon3_text} />
+          </div>
+          <Amount />
+        </article>
+      ) : (
+        // Hvis produktet ikke findes, vis en fejlbesked
+        <p>Produktet blev ikke fundet.</p>
+      )
+    }
     <Bryggeguide />
-    <footer>
-      <Footer />
-    </footer>
   </main>
+  <footer>
+    <Footer />
+  </footer>
 </Layout>
+
+<style>
+  .back-button {
+    margin-top: 150px;
+  }
+
+  :global(.back-btn) {
+    background-color: var(--green-color) !important;
+    color: var(--white-color) !important;
+    border-color: var(--green-color) !important;
+  }
+</style>

@@ -1,8 +1,8 @@
 ---
-const { ctaText } = Astro.props;
+const { ctaText, ctaLink, class: className } = Astro.props;
 ---
 
-<a href="#" class="square-cta">
+<a href={ctaLink} class={`square-cta ${className || ""}`}>
   {ctaText}
 </a>
 
