@@ -1,8 +1,6 @@
 ---
-const apikey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
-const curl =
-  "https://xjioilnvmmakyocqauwh.supabase.co/rest/v1/Products?select=*";
+const apikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
+const curl = "https://xjioilnvmmakyocqauwh.supabase.co/rest/v1/Products?select=*";
 const options = {
   headers: { apikey: apikey },
 };
@@ -35,10 +33,12 @@ const { Products } = Astro.props;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--beige-color);
+
     transition:
       transform 0.2s ease,
       box-shadow 0.2s ease;
+    padding: 10px;
+    gap: 2px; /* Reduces space between elements */
   }
 
   .product-link article:hover {
@@ -46,12 +46,48 @@ const { Products } = Astro.props;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
+  article {
+    height: 220px;
+    width: 158px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--beige-color); /* This helps distribute space evenly */
+  }
+
+  article h5,
+  article p {
+    margin: 0; /* Remove default margins */
+  }
+
   article img {
-    max-width: 400px;
+    max-width: 90px; /* Slightly smaller main image */
     width: 100%;
   }
 
+  .grid_1-1-1 {
+    display: flex;
+    gap: 5px;
+    margin-top: 5px; /* Replace margin-top: auto with a fixed value */
+    align-self: center; /* Center the icons container */
+  }
+
   .grid_1-1-1 img {
-    max-width: 60px;
+    max-width: 18px; /* Slightly smaller icons */
+  }
+
+  @media (min-width: 768px) {
+    article {
+      height: 450px;
+      width: 349px;
+    }
+
+    article img {
+      max-width: 200px;
+    }
+
+    .grid_1-1-1 img {
+      max-width: 35px; /* Adjust icon size for larger screens */
+    }
   }
 </style>
