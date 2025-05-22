@@ -1,0 +1,53 @@
+---
+import RoundCTA from "./roundCTA.astro";
+---
+
+<section class="grid_1-1">
+  <div class="abonnementtext1">
+    <h3>Kaffe leveret direkte til døren</h3>
+    <p>Med vores nye abonnementsløsning får du kaffe bragt direkte til døren. Vælg selv hvor ofte du vil have kaffe leveret, så det passer til din hverdag.</p>
+    <RoundCTA ctaLink="/subscription" ctaText="Læs mere" />
+  </div>
+  <div>
+    <img src="../../public/img/coffeebox.webp" alt="Picture of a coffee box" />
+  </div>
+</section>
+
+<style>
+  section {
+    background-color: var(--yellow-color);
+    padding: 4vh;
+    margin: 7vh 0;
+  }
+
+  img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    padding-top: 5vh;
+  }
+
+  h3 {
+    margin-top: 0;
+  }
+
+  @media (min-width: 768px) {
+    section {
+      padding: 0;
+    }
+    .grid_1-1 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin: 7vh 0;
+    }
+
+    .abonnementtext1 {
+      padding: 4vh;
+    }
+
+    img {
+      padding-top: 0;
+    }
+  }
+</style>

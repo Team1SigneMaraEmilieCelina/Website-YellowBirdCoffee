@@ -1,0 +1,194 @@
+---
+import RoundCTA from "./roundCTA.astro";
+---
+
+<section class="kontaktformular">
+  <section class="kontaktform">
+    <div>
+      <h1>Kontakt os</h1>
+      <p>Vi vil meget gerne samarbejde direkte med dig og din virksomhed. Udfyld formularen nedenfor og fortæl os lidt mere om dig og din forretning – eller kontakt os på:</p>
+      <p>Telefon: +45 31 33 84 33</p>
+      <p>Mail: info@yellowbirdcoffee.dk</p>
+
+      <form action="/send" method="POST">
+        <!-- action og method er atributter til <form>-elementet, der definere hvor formularens data skal sendes hen -->
+        <fieldset>
+          <h3><legend>Dine informationer</legend></h3>
+          <!-- man briger <legend> i stedet for fx. h3, da det er semantisk korrekt når det er i forbindelse med <fieldset> -->
+          <div class="form-group">
+            <div class="grid_1-1">
+              <p><input type="text" name="fornavn" placeholder="Fornavn" required /></p>
+              <p><input type="text" name="efternavn" placeholder="Efternavn" required /></p>
+            </div>
+            <p class="emailfield"><input type="email" name="email" placeholder="Mail" required /></p>
+            <div class="grid_1-1">
+              <p><input type="text" name="firma" placeholder="Firma" /></p>
+              <p><input type="tel" name="telefon" placeholder="Telefon" /></p>
+            </div>
+            <textarea name="besked" placeholder="Din besked" rows="5" required></textarea>
+            <!-- textarea er en felt hvor brugeren kan skrive flere linjer -->
+          </div>
+          <RoundCTA ctaText="Send besked" ctaLink="#" class="formularCTA_send" />
+          <!-- Kan man slette linket i <RoundCTA> og så selv sætte det ind hvis man skal linke?-->
+        </fieldset>
+      </form>
+    </div>
+    <div>
+      <img src="../../public/img/logo.webp" alt="Billede af Logo" />
+    </div>
+  </section>
+
+  <section class="kontaktform2">
+    <div>
+      <h1>Tak for at kontakte os!</h1>
+      <p>Husk du altid kan kontakte os på:</p>
+      <p>Telefon: +45 31 33 84 33</p>
+      <p>Mail: info@yellowbirdcoffee.dk</p>
+      <RoundCTA ctaText="Tilbage" ctaLink="/" class="formularCTA_tilbage" />
+    </div>
+    <div>
+      <img src="../../public/img/logo.webp" alt="Billede af Logo" />
+    </div>
+  </section>
+</section>
+
+<style>
+  h1 {
+    margin-top: 0;
+  }
+
+  div p {
+    margin: 7px 0;
+  }
+
+  textarea {
+    margin: 7px 0 15px 0;
+  }
+  .kontaktform,
+  .kontaktform2 {
+    padding: 2rem;
+    border: 2px solid var(--green-color);
+    border-radius: 15px;
+    margin: 7vh 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .kontaktform2 {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    margin: 0;
+  }
+
+  .kontaktformular {
+    position: relative;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .kontaktform div:last-child {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+
+  fieldset {
+    border: none;
+    padding: 0;
+  }
+
+  .form-group {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+  }
+
+  input,
+  textarea {
+    border: 1px solid var(--black-color);
+    padding: 1vh;
+    width: 100%;
+  }
+
+  .formularCTA_send,
+  .formularCTA_tilbage {
+    margin-top: 7px;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  @media (min-width: 550px) {
+    img {
+      width: 60%;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .grid_1-1 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 60px;
+    }
+
+    .emailfield {
+      width: 100%;
+    }
+
+    input,
+    textarea {
+      padding: 2vh;
+    }
+
+    textarea {
+      width: 60%;
+    }
+  }
+</style>
+
+<script>
+  window.addEventListener("load", start);
+
+  function start() {
+    // Flyt querySelector her, så det sker efter DOM'en er indlæst
+    const knap_tilbage = document.querySelector(".formularCTA_tilbage");
+    const knap_sendbesked = document.querySelector(".formularCTA_send");
+    const kontaktform2 = document.querySelector(".kontaktform2");
+    const kontaktform = document.querySelector(".kontaktform");
+
+    // Skjul alle sektioner som standard
+    hideAllScreens();
+    kontaktform?.classList.remove("hide");
+
+    console.log("DOM er indlæst");
+
+    // Tilføj event listeners
+    knap_sendbesked?.addEventListener("click", () => {
+      takkeside(kontaktform, kontaktform2);
+    });
+
+    knap_tilbage?.addEventListener("click", () => {
+      start();
+    });
+  }
+
+  function hideAllScreens() {
+    const kontaktform = document.querySelector(".kontaktform");
+    const kontaktform2 = document.querySelector(".kontaktform2");
+
+    kontaktform?.classList.add("hide");
+    kontaktform2?.classList.add("hide");
+  }
+
+  function takkeside(kontaktform, kontaktform2) {
+    console.log("Viser takkeside");
+    hideAllScreens();
+    kontaktform2?.classList.remove("hide");
+  }
+</script>
