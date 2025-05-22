@@ -15,8 +15,7 @@
 
 @font-face {
   font-family: "Montserrat";
-  src: url("/fonts/Montserrat/Montserrat-Regular.woff2")
-      format("woff2"),
+  src: url("/fonts/Montserrat/Montserrat-Regular.woff2") format("woff2"),
     url("/fonts/Montserrat/Montserrat-Regular.woff") format("woff"),
     url("/fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
   font-display: swap;
@@ -32,8 +31,7 @@
 
 @font-face {
   font-family: "MontserratSemiBold";
-  src: url("/fonts/Montserrat/Montserrat-SemiBold.woff2")
-      format("woff2"),
+  src: url("/fonts/Montserrat/Montserrat-SemiBold.woff2") format("woff2"),
     url("/fonts/Montserrat/Montserrat-SemiBold.woff") format("woff"),
     url("/fonts/Montserrat/Montserrat-SemiBold.ttf") format("truetype");
   font-display: swap;
@@ -51,8 +49,13 @@
 }
 
 main {
-   margin: 0 10vw;
-  }
+  margin: 0 10vw;
+}
+
+/* Overrule margin  */
+.abonnementsection {
+  margin: 0;
+}
 
 /* FONTS MOBILE */
 h1 {
@@ -93,17 +96,15 @@ html {
   background-color: var(--background-color);
 }
 
-
 @media (min-width: 768px) {
-
   /* FONTS DESKTOP */
   h1 {
     font-family: "LatoBold";
-    font-size: 100px;
+    font-size: 70px;
   }
   h2 {
     font-family: "LatoBold";
-    font-size: 60px;
+    font-size: 40px;
   }
   h3 {
     font-family: "LatoBold";
@@ -117,7 +118,7 @@ html {
 
   h5 {
     font-family: "MontserratMedium";
-    font-size: 28px;
+    font-size: 23px;
   }
 
   h6 {
@@ -127,7 +128,8 @@ html {
 
   p {
     font-family: "Montserrat";
-    font-size: 24px;
+    font-size: 18px;
+    line-height: 35px;
   }
 
   .priser {
