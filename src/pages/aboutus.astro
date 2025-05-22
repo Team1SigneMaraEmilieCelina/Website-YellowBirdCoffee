@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Menu from "../components/menu.astro";
 import Footer from "../components/footer.astro";
 import Carousel from "../components/roasterycarousel.astro";
+import SubpageHero from "../components/subpagehero.astro";
 ---
 
 <Layout>
@@ -10,6 +11,11 @@ import Carousel from "../components/roasterycarousel.astro";
     <Menu />
   </header>
   <main>
+    <SubpageHero
+      src="/img/omoshero.webp"
+      alt="Om os hero sektion"
+      header="Om os"
+    />
     <Carousel />
   </main>
   <footer>
