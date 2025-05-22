@@ -1,41 +1,41 @@
 @font-face {
   font-family: "Lato";
-  src: url("../assets/fonts/Lato/Lato-Regular.woff2") format("woff2"),
-    url("../assets/fonts/Lato/Lato-Regular.woff") format("woff"),
-    url("../assets/fonts/Lato/Lato-Regular.ttf") format("truetype");
+  src: url("/fonts/Lato/Lato-Regular.woff2") format("woff2"),
+    url("/fonts/Lato/Lato-Regular.woff") format("woff"),
+    url("/fonts/Lato/Lato-Regular.ttf") format("truetype");
   font-display: swap;
 }
 @font-face {
   font-family: "LatoBold";
-  src: url("../assets/fonts/Lato/Lato-Bold.woff2") format("woff2"),
-    url("../assets/fonts/Lato/Lato-Bold.woff") format("woff"),
-    url("../assets/fonts/Lato/Lato-Bold.ttf") format("truetype");
+  src: url("/fonts/Lato/Lato-Bold.woff2") format("woff2"),
+    url("/fonts/Lato/Lato-Bold.woff") format("woff"),
+    url("/fonts/Lato/Lato-Bold.ttf") format("truetype");
   font-display: swap;
 }
 
 @font-face {
   font-family: "Montserrat";
-  src: url("../assets/fonts/Montserrat/Montserrat-Regular.woff2")
+  src: url("/fonts/Montserrat/Montserrat-Regular.woff2")
       format("woff2"),
-    url("../assets/fonts/Montserrat/Montserrat-Regular.woff") format("woff"),
-    url("../assets/fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
+    url("/fonts/Montserrat/Montserrat-Regular.woff") format("woff"),
+    url("/fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
   font-display: swap;
 }
 
 @font-face {
   font-family: "MontserratMedium";
-  src: url("../assets/fonts/Montserrat/Montserrat-Medium.woff2") format("woff2"),
-    url("../assets/fonts/Montserrat/Montserrat-Medium.woff") format("woff"),
-    url("../assets/fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
+  src: url("/fonts/Montserrat/Montserrat-Medium.woff2") format("woff2"),
+    url("/fonts/Montserrat/Montserrat-Medium.woff") format("woff"),
+    url("/fonts/Montserrat/Montserrat-Medium.ttf") format("truetype");
   font-display: swap;
 }
 
 @font-face {
   font-family: "MontserratSemiBold";
-  src: url("../assets/fonts/Montserrat/Montserrat-SemiBold.woff2")
+  src: url("/fonts/Montserrat/Montserrat-SemiBold.woff2")
       format("woff2"),
-    url("../assets/fonts/Montserrat/Montserrat-SemiBold.woff") format("woff"),
-    url("../assets/fonts/Montserrat/Montserrat-SemiBold.ttf") format("truetype");
+    url("/fonts/Montserrat/Montserrat-SemiBold.woff") format("woff"),
+    url("/fonts/Montserrat/Montserrat-SemiBold.ttf") format("truetype");
   font-display: swap;
 }
 
@@ -49,6 +49,10 @@
   --white-color: #fdfcfe;
   --beige-color: #f4f0e7;
 }
+
+main {
+   margin: 0 10vw;
+  }
 
 /* FONTS MOBILE */
 h1 {
@@ -89,7 +93,9 @@ html {
   background-color: var(--background-color);
 }
 
+
 @media (min-width: 768px) {
+
   /* FONTS DESKTOP */
   h1 {
     font-family: "LatoBold";
