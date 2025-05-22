@@ -9,29 +9,44 @@ console.log(data);
 const { Products } = Astro.props;
 ---
 
-<article>
-  <h5>{Products.display_name}</h5>
-  <p>Fra {Products.price_250}Kr.</p>
-  <img src={Products.img1} alt={Products.display_name} />
-  <p>{Products.bean}</p>
-  <div class="grid_1-1-1">
-    <img src={Products.icon1} alt={Products.icon1_text} />
-    <img src={Products.icon2} alt={Products.icon2_text} />
-    <img src={Products.icon3} alt={Products.icon3_text} />
-  </div>
-</article>
+<a href={`/singleproduct/${Products.id}`} class="product-link">
+  <article>
+    <h5>{Products.display_name}</h5>
+    <p>Fra {Products.price_250}Kr.</p>
+    <img src={Products.img1} alt={Products.display_name} />
+    <p>{Products.bean}</p>
+    <div class="grid_1-1-1">
+      <img src={Products.icon1} alt={Products.icon1_text} />
+      <img src={Products.icon2} alt={Products.icon2_text} />
+      <img src={Products.icon3} alt={Products.icon3_text} />
+    </div>
+  </article>
+</a>
 
 <style>
-  article img {
-    max-width: 400px;
-    width: 100%;
+  .product-link {
+    text-decoration: none;
+    color: inherit;
   }
 
-  article {
+  .product-link article {
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: var(--beige-color);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .product-link article:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  article img {
+    max-width: 400px;
+    width: 100%;
   }
 
   .grid_1-1-1 img {
