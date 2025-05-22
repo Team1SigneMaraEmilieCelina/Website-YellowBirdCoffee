@@ -1,0 +1,40 @@
+---
+const apikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
+const curl = "https://xjioilnvmmakyocqauwh.supabase.co/rest/v1/Products?select=*";
+const options = {
+  headers: { apikey: apikey },
+};
+const data = await fetch(curl, options).then((res) => res.json());
+console.log(data);
+const { Products } = Astro.props;
+---
+
+<article>
+  <h5>{Products.display_name}</h5>
+  <p>Fra {Products.price_250}Kr.</p>
+  <img src={Products.img1} alt={Products.display_name} />
+  <p>{Products.bean}</p>
+  <div class="grid_1-1-1">
+    <img src={Products.icon1} alt={Products.icon1_text} />
+    <img src={Products.icon2} alt={Products.icon2_text} />
+    <img src={Products.icon3} alt={Products.icon3_text} />
+  </div>
+</article>
+
+<style>
+  article img {
+    max-width: 400px;
+    width: 100%;
+  }
+
+  article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--beige-color);
+  }
+
+  .grid_1-1-1 img {
+    max-width: 60px;
+  }
+</style>

@@ -1,0 +1,35 @@
+---
+import Productcard from "./productcard.astro";
+const { category } = Astro.props;
+
+const supabaseUrl = "https://xjioilnvmmakyocqauwh.supabase.co/rest/v1";
+const apikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
+
+const response = await fetch(`${supabaseUrl}/Products?category=eq.${category}&select=*`, {
+  headers: {
+    apikey: apikey,
+    Authorization: `Bearer ${apikey}`,
+  },
+});
+
+const products = await response.json();
+---
+
+<article>
+  <h2>{category}</h2>
+  <div class="products-grid">
+    {products.map((Products) => <Productcard {Products} />)}
+  </div>
+</article>
+
+<style>
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px; /* Juster afstanden mellem elementerne */
+  }
+
+  article {
+    margin-bottom: 40px; /* Giver lidt afstand mellem kategorier */
+  }
+</style>
