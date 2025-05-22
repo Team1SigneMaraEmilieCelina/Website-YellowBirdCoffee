@@ -3,14 +3,13 @@ import Layout from "../../layouts/Layout.astro";
 import Menu from "../../components/menu.astro";
 import Footer from "../../components/footer.astro";
 import Bryggeguide from "../../components/bryggeguide.astro";
+import Amount from "../../components/amount.astro";
 
 // Vi henter alle ID’er til de produkter, vi gerne vil lave individuelle sider for:
 export async function getStaticPaths() {
   // Det her er nøglen til vores Supabase-database – den giver adgang til at hente data
-  const apikey =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
-  const url =
-    "https://xjioilnvmmakyocqauwh.supabase.co/rest/v1/Products?select=id";
+  const apikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
+  const url = "https://xjioilnvmmakyocqauwh.supabase.co/rest/v1/Products?select=id";
   // Her henter vi kun ID’erne fra databasen
 
   // fetch = "gå ud på nettet og hent noget"
@@ -34,8 +33,7 @@ export async function getStaticPaths() {
 // 2. Hent produktdata baseret på ID:
 const { id } = Astro.params; // Her får vi id’et fra URL’en – fx “3” hvis vi er på /produkt/3
 
-const apikey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
+const apikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
 const url = `https://xjioilnvmmakyocqauwh.supabase.co/rest/v1/Products?id=eq.${id}&select=*`;
 
 const options = {
@@ -87,6 +85,7 @@ const product = data[0];
         <img src={product.icon2} alt={product.icon2_text} />
         <img src={product.icon3} alt={product.icon3_text} />
       </div>
+      <Amount />
     </article>
   ) : (
     // Hvis produktet ikke findes, vis en fejlbesked
