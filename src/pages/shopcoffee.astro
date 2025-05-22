@@ -13,6 +13,16 @@ import Category from "../components/category.astro";
   </header>
 
   <main>
+    <div class="grid_1-1">
+      <div class="levering">
+        <img src="../../public/img/icons/leveringstid.webp" alt="Fragtbil" />
+        <p>Leveringstid indenfor 3 hverdage</p>
+      </div>
+      <div class="fragt">
+        <img src="../../public/img/icons/Fragt.webp" alt="Fragtkasse" />
+        <p>Gratis levering ved køb for over 500kr</p>
+      </div>
+    </div>
     <Category category="Lysristet" />
     <p>Vores lysristede bønner er opdelt i 3 forskellige farver, den grønne varierer i smag og navn, alt efter hvilke bønner vi får sendt fra farmene. kaffen er velegent til pourover eller filterkaffe.</p>
     <Category category="Mellemristet" />
@@ -24,3 +34,41 @@ import Category from "../components/category.astro";
     <Footer />
   </footer>
 </Layout>
+
+<style>
+  .grid_1-1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 auto;
+    gap: 100px;
+    justify-content: center;
+  }
+
+  .grid_1-1 div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .levering img {
+    width: 50px;
+    height: auto;
+  }
+
+  .fragt img {
+    width: 30px;
+  }
+  @media (min-width: 768px) {
+    .grid_1-1 {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .levering img {
+      width: 70px;
+    }
+
+    .fragt img {
+      width: 50px;
+    }
+  }
+</style>
