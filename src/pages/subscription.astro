@@ -1,13 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Menu from "../components/menu.astro";
 import SelectMenu from "../components/selectmenu.astro";
 import Footer from "../components/footer.astro";
+import Menublack from "../components/menublack.astro";
 ---
 
 <Layout>
   <header>
-    <Menu />
+    <Menublack />
   </header>
   <main>
     <p>
@@ -46,9 +46,15 @@ import Footer from "../components/footer.astro";
     display: none;
   }
 
+  main {
+    padding-top: 120px;
+  }
+
   @media (max-width: 768px) {
     .selectmenumobile {
       display: block;
     }
+    main
+    {padding-top: 70px}
   }
 </style>
