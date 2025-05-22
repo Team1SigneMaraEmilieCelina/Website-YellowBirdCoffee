@@ -53,7 +53,8 @@ main {
 }
 
 /* Overrule margin  */
-.abonnementsection {
+.abonnementsection,
+.green {
   margin: 0;
 }
 
@@ -68,7 +69,7 @@ h2 {
 }
 h3 {
   font-family: "LatoBold";
-  font-size: 18px;
+  font-size: 19px;
 }
 
 h4 {
@@ -83,7 +84,8 @@ h5 {
 
 p {
   font-family: "Montserrat";
-  font-size: 15px;
+  font-size: 13px;
+  line-height: 20px;
 }
 
 .icontext {
