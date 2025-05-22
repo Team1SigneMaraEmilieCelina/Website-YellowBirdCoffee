@@ -24,9 +24,13 @@ const images = [
 <style>
   /* Styler selve containeren omkring billederne, som hviser et billede af gangen*/
   .carousel {
-    width: 400px;
-    height: 600px;
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 2/3; /* Holder forholdet mellem bredde og højde */
+    height: auto;
     overflow: hidden;
+    margin: 0 auto;
+    margin-top: 2rem;
   }
 
   /* Sætter billederne i en flexbox, så de står ved siden af hinanden, med en infinte scroll 
@@ -39,9 +43,16 @@ const images = [
 
   /* Styler selve de enkelte billeder - object fit sørger for at billedet fylder hele containeren*/
   .slide {
-    width: 400px;
-    height: 600px;
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 2/3;
+    height: auto;
     object-fit: cover;
+
+    /* Sørger for at billederne ikke skalerer ned når de kommer ind i containeren */
+    flex-shrink: 0;
+    /* Sørger for at billederne ikke skalerer op når de kommer ind i containeren */
+    display: block;
   }
 
   /* Sætter animationen til at køre fra 0% til 100%, og sætter den til at køre i loop */
@@ -52,27 +63,24 @@ const images = [
       transform: translateX(0);
     }
 
-    /* Andet billede - Flyttet 450px til venstre (400px + 50px gap)*/
+    /* andet billede kommer ind ved at flytte det hele 100% mod højre, da der er 50px gab mellem billederne skal dette regnes med så den ender på den rigtige position */
     25%,
     45% {
-      transform: translateX(-450px);
+      transform: translateX(calc(-100% - 50px));
     }
 
-    /* Tredje billede - Flyttet 900px til venstre (2 × (400px + 50px gap)) */
     50%,
     70% {
-      transform: translateX(-900px);
+      transform: translateX(calc(-200% - 100px));
     }
 
-    /* Fjerde billede - Flyttet 1350px til venstre (3 × (400px + 50px gap))*/
     75%,
     95% {
-      transform: translateX(-1350px);
+      transform: translateX(calc(-300% - 150px));
     }
 
-    /* Tilbage til start - Fuld længde (4 × (400px + 50px gap))*/
     100% {
-      transform: translateX(-1800px);
+      transform: translateX(calc(-400% - 200px));
     }
   }
 </style>
