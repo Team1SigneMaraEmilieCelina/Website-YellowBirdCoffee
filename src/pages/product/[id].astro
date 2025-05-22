@@ -5,18 +5,18 @@ import Footer from "../../components/footer.astro";
 import Bryggeguide from "../../components/bryggeguide.astro";
 import Singlecard from "../../components/singlecard.astro";
 
-export async function getStaticPaths() 
+// export async function getStaticPaths()
 
-  const res = await fetch("https://xjioilnvmmakyocqauwh.supabase.co/rest/v1/Products?select=id");
-  const data = await res.json();
+//   const res = await fetch("https://xjioilnvmmakyocqauwh.supabase.co/rest/v1/Products?select=id");
+//   const data = await res.json();
 
-  return data.map((product) => {
-    return {
-      params: { id: product.id },
-      props: { product },
-    };
-  });
-}
+//   return data.map((product) => {
+//     return {
+//       params: { id: product.id },
+//       props: { product },
+//     };
+//   });
+// }
 
 const apikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
 const { id } = Astro.params;
