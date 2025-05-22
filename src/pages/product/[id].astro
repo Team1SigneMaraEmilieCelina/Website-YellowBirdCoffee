@@ -98,9 +98,8 @@ const product = data[0];
     <Menu />
   </header>
   <main>
-    <div class="back-button">
-      <SquareCTA ctaText="Tilbage" ctaLink="../shopcoffee" class="back-btn" />
-    </div>
+    <a href="/shopcoffee">Tilbage</a>
+
     {
       product ? (
         <article>
@@ -129,13 +128,22 @@ const product = data[0];
 </Layout>
 
 <style>
-  .back-button {
-    margin-top: 150px;
-  }
+  a {
+    text-decoration: none;
+    color: var(--background-color);
+    background-color: var(--green-color);
+    padding: 5px 7px;
+    top: 150px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    position: relative;
 
-  :global(.back-btn) {
-    background-color: var(--green-color) !important;
-    color: var(--white-color) !important;
-    border-color: var(--green-color) !important;
+    left: 0;
+  }
+  @media (min-width: 768px) {
+    a {
+      font-size: 18px;
+      padding: 10px 10px;
+    }
   }
 </style>
