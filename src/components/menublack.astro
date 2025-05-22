@@ -1,0 +1,293 @@
+<nav class="menu">
+  <div class="logo">
+    <a href="/">
+      <img src="/public/img/logo.webp" alt="Yellow Bird Coffee Logo" />
+    </a>
+  </div>
+
+  <!-- Class der er gemt i mobil men kommer frem i desktop, da layoutet på de to er forskellige. -->
+  <!-- Alle links er inde i en h3'er for at holde os til design system. -->
+  <ul class="desktop-menu-items">
+    <li><a href="/shopcoffee">Køb kaffe</a></li>
+    <li><a href="/subscription">Kaffe abonnementer</a></li>
+    <li><a href="/wholesale">Erhverv</a></li>
+    <li><a href="/courses">Kurser</a></li>
+    <li><a href="/aboutus">Om os</a></li>
+  </ul>
+  <div class="shopping-bag">
+    <img src="/public/img/icons/shoppingbag.webp" alt="Shopping Bag" />
+  </div>
+  <button class="burger-menu" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="menu-items">
+    <li><h3><a href="/shopcoffee">Køb kaffe</a></h3></li>
+    <li><h3><a href="/subscription">Kaffe abonnementer</a></h3></li>
+    <li><h3><a href="/wholesale">Erhverv</a></h3></li>
+    <li><h3><a href="/courses">Kurser</a></h3></li>
+    <li><h3><a href="/aboutus">Om os</a></h3></li>
+    <div class="menu-logo">
+      <a href="/">
+        <img src="/public/img/logo.webp" alt="Yellow Bird Coffee Logo" />
+      </a>
+    </div>
+  </ul>
+</nav>
+
+<style>
+  .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    padding: 20px 20px 10px 10px;
+    box-sizing: border-box;
+  }
+
+  .menu.scrolled {
+    background-color: var(--background-color);
+  }
+
+  /* Burgermenu bliver sort når der scrolles */
+  .burger-menu span {
+    background-color: var(--black-color);
+  }
+
+  /* Rykker kurveikonet til højre med margin fra logoet */
+  .logo {
+    margin-right: auto;
+  }
+
+  .logo img {
+    height: 40px;
+  }
+
+  .shopping-bag,
+  .burger-menu {
+    margin-left: 1rem;
+    display: flex;
+  }
+
+  .shopping-bag img {
+    height: 25px;
+  }
+
+  .burger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1008;
+  }
+
+  /* Styling af de tre streger i burger-menuen */
+  .burger-menu span {
+    height: 2px; /* Hver streg er 2 pixels høj */
+    background-color: var(--black-color); /* De er sorte */
+    transition: background-color 0.3s ease; /* Baggrundsfarven skifter blødt hvis vi ændrer den */
+  }
+
+  /* Når menuen er åben, roterer første streg og flyttes lidt */
+  .burger-menu.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  /* Når menuen er åben, forsvinder den midterste streg */
+  .burger-menu.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  /* Når menuen er åben, roterer tredje streg og flyttes i modsat retning */
+  .burger-menu.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  /* Transitions (blød animation) for første og tredje streg – både åben og lukket tilstand */
+  .burger-menu.open span:nth-child(1),
+  .burger-menu.open span:nth-child(3),
+  .burger-menu span:nth-child(1),
+  .burger-menu span:nth-child(3) {
+    transition: transform 0.8s ease;
+  }
+
+  /* Transition for midterste streg – gælder både når den vises og skjules */
+  .burger-menu.open span:nth-child(2),
+  .burger-menu span:nth-child(2) {
+    transition: opacity 0.8s ease;
+  }
+
+  .menu-items {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--beige-color);
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+    align-items: center;
+    transition: transform 0.3s ease;
+    z-index: 999;
+
+    /* Starter ude til højre */
+    transform: translateX(100%);
+  }
+
+  /* Slider ind fra højre side */
+  .menu-items.visible {
+    transform: translateX(0);
+  }
+
+  .menu-items li {
+    margin: 0.5rem 0;
+    list-style: none;
+  }
+
+  .menu-items a {
+    text-decoration: none;
+    color: var(--black-color);
+  }
+
+  .menu-logo {
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .menu-logo img {
+    max-width: 100px;
+  }
+
+  .desktop-menu-items {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    /* DESKTOP VERSION */
+
+    .burger-menu {
+      display: none;
+    }
+
+    .menu-items {
+      display: none;
+    }
+
+    .desktop-menu-items {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .shopping-bag img {
+      margin-right: 0;
+    }
+
+    .desktop-menu {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--background-color);
+    }
+
+    .desktop-logo img {
+      height: 50px;
+    }
+
+    .desktop-menu-items {
+      display: flex;
+      gap: 100px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .desktop-menu-items li {
+      margin: 0;
+    }
+
+    .desktop-menu-items a {
+      text-decoration: none;
+      color: var(--black-color);
+    }
+
+    .desktop-shopping-bag img {
+      height: 30px;
+    }
+
+    .logo {
+      margin-right: 0px;
+    }
+
+    .logo img {
+      height: 100px;
+    }
+
+    .shopping-bag {
+      margin-left: 0px;
+    }
+
+    .shopping-bag img {
+      height: 35px;
+    }
+
+    .menu {
+      padding: 15px 50px 5px 50px;
+    }
+
+    .desktop-menu-items a {
+      font-family: "MontserratSemiBold", sans-serif;
+      font-size: 15px;
+    }
+  }
+</style>
+
+<script>
+  // MENU SCROLL JAVASCRIPT
+
+  window.addEventListener("scroll", () => {
+    const menu = document.querySelector(".menu");
+    if (menu) {
+      if (window.scrollY > 0) {
+        menu.classList.add("scrolled");
+      } else {
+        menu.classList.remove("scrolled");
+      }
+    }
+  });
+
+  // BURGER MENU JAVASCRIPT
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const burgerMenu = document.querySelector(".burger-menu");
+    const menuItems = document.querySelector(".menu-items");
+
+    console.log("Burger Menu element:", burgerMenu);
+    console.log("Menu Items element:", menuItems);
+
+    if (burgerMenu && menuItems) {
+      burgerMenu.addEventListener("click", () => {
+        menuItems.classList.toggle("visible");
+
+        burgerMenu.classList.toggle("open");
+      });
+    }
+  });
+</script>
