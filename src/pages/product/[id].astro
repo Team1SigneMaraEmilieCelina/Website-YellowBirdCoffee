@@ -3,40 +3,103 @@ import Layout from "../../layouts/Layout.astro";
 import Menu from "../../components/menu.astro";
 import Footer from "../../components/footer.astro";
 import Bryggeguide from "../../components/bryggeguide.astro";
-import Singlecard from "../../components/singlecard.astro";
 
-// export async function getStaticPaths()
+// Vi henter alle ID’er til de produkter, vi gerne vil lave individuelle sider for:
+export async function getStaticPaths() {
+  // Det her er nøglen til vores Supabase-database – den giver adgang til at hente data
+  const apikey =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
+  const url =
+    "https://xjioilnvmmakyocqauwh.supabase.co/rest/v1/Products?select=id";
+  // Her henter vi kun ID’erne fra databasen
 
-//   const res = await fetch("https://xjioilnvmmakyocqauwh.supabase.co/rest/v1/Products?select=id");
-//   const data = await res.json();
+  // fetch = "gå ud på nettet og hent noget"
+  // await = "vent på svaret, før vi går videre"
+  const res = await fetch(url, {
+    headers: {
+      apikey: apikey, // vi sender nøglen med som adgang
+    },
+  });
 
-//   return data.map((product) => {
-//     return {
-//       params: { id: product.id },
-//       props: { product },
-//     };
-//   });
-// }
+  const data = await res.json(); // Vi laver svaret om til et JavaScript-array
 
-const apikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
-const { id } = Astro.params;
-// const { product } = Astro.props;
+  // Her laver vi en liste over ID’er, som Astro bruger til at bygge en side til hvert produkt
+  //  map = "for hver ting i arrayet, gør dette"
+  // params = bruges af Astro til at lave sider med fx /produkt/1 og /produkt/2
+  return data.map((product) => ({
+    params: { id: product.id.toString() }, // id skal være tekst (string)
+  }));
+}
+
+// 2. Hent produktdata baseret på ID:
+const { id } = Astro.params; // Her får vi id’et fra URL’en – fx “3” hvis vi er på /produkt/3
+
+const apikey =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
+const url = `https://xjioilnvmmakyocqauwh.supabase.co/rest/v1/Products?id=eq.${id}&select=*`;
+
 const options = {
-  headers: { apikey: apikey },
+  headers: {
+    apikey: apikey,
+  },
 };
-const curl = `https://xjioilnvmmakyocqauwh.supabase.co/rest/v1/Products?id=eq.${id}&select=*`;
-const data = await fetch(curl, options).then((res) => res.json());
-const Products = data[0];
+// Nu henter vi det ene produkt med det ID vi fik fra URL’en
+const data = await fetch(url, options).then((res) => res.json());
+// Vi får et array, men der er kun ét produkt i – så vi tager det første (og eneste)
+const product = data[0];
+
+// apikey:
+// Forklaring: En slags adgangskode, der giver os lov til at hente data fra databasen.
+// Eksempel: Skal med i vores fetch-kald, ellers får vi ikke adgang.
+
+// array
+// En liste med flere ting i – fx en liste med produkter.
+// Eksempel: data = [produkt1, produkt2, produkt3].
+
+// async
+// Betyder at funktionen kan arbejde “asynkront” – altså vente på data uden at fryse alt andet.
+// Eksempel: Bruges sammen med await.
+
+// async
+// Betyder at funktionen kan arbejde “asynkront” – altså vente på data uden at fryse alt andet.
+// Eksempel: Bruges sammen med await.
+
+// Astro.params
+// Giver adgang til den værdi, der står i URL’en – fx produktets ID.
+// Eksempel: På /produkt/3 er Astro.params.id = 3.
+// Params Betyder “parametre” – altså værdier fra URL’en.
+
+// getStaticPaths()
+// En Astro-funktion, der bygger statiske sider for hver produkt-id.
+// Eksempel: Bruges til at lave sider som /produkt/1, /produkt/2 osv.
 ---
+
+<!-- 3. Vis produktet -->{
+  product ? (
+    <article>
+      <h1>{product.display_name}</h1>
+      <img src={product.img1} alt={product.display_name} />
+      <p>Bønne: {product.bean}</p>
+      <p>Pris: {product.price_250} kr. / 250g</p>
+      <p>{product.description}</p>
+      <div class="icons">
+        <img src={product.icon1} alt={product.icon1_text} />
+        <img src={product.icon2} alt={product.icon2_text} />
+        <img src={product.icon3} alt={product.icon3_text} />
+      </div>
+    </article>
+  ) : (
+    // Hvis produktet ikke findes, vis en fejlbesked
+    <p>Produktet blev ikke fundet.</p>
+  )
+}
 
 <Layout>
   <header>
     <Menu />
   </header>
   <main>
-    <Singlecard product={Products} />
     <Bryggeguide />
-
     <footer>
       <Footer />
     </footer>
