@@ -1,0 +1,118 @@
+---
+import SquareCTA from "./SquareCTA.astro";
+import RoundCTA from "./roundCTA.astro";
+
+const apikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
+const response = await fetch("https://xjioilnvmmakyocqauwh.supabase.co/rest/v1/Products?select=price_250,price_1000", {
+  headers: {
+    apikey: apikey,
+    Authorization: `Bearer ${apikey}`,
+  },
+});
+const products = await response.json();
+const product = products[0];
+---
+
+<article>
+  <div class="type-selector">
+    <button class="type-btn selected" data-type="amount">Mængde</button>
+    <button class="type-btn" data-type="subscribe">Abonner</button>
+  </div>
+
+  <div id="amount-section">
+    <div class="amount-selector">
+      <SquareCTA ctaText="250g" />
+      <SquareCTA ctaText="1000g" />
+    </div>
+    <p class="price-display">{product.price_250} kr</p>
+  </div>
+
+  <div id="subscribe-section" style="display: none;">
+    <RoundCTA ctaText="Opret abonnement" ctaLink="/subscription" />
+  </div>
+</article>
+
+<style>
+  .type-selector {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .type-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+
+  .type-btn.selected::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--green-color);
+  }
+
+  .amount-selector,
+  #subscribe-section {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  #subscribe-section {
+    min-height: 60px; /* Add approximate height of SquareCTAs + price */
+    align-items: flex-start; /* Align to top like SquareCTAs */
+  }
+
+  p {
+    text-align: center;
+    margin-top: 1rem;
+  }
+</style>
+
+<script define:vars={{ product }}>
+  const buttons = document.querySelectorAll(".square-cta");
+  const priceDisplay = document.querySelector(".price-display");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      buttons.forEach((b) => b.classList.remove("selected"));
+      btn.classList.add("selected");
+
+      // Update price based on selected amount
+      if (btn.textContent.trim() === "250g") {
+        priceDisplay.textContent = `${product.price_250} kr`;
+      } else {
+        priceDisplay.textContent = `${product.price_1000} kr`;
+      }
+    });
+  });
+
+  const typeButtons = document.querySelectorAll(".type-btn");
+  const amountSection = document.getElementById("amount-section");
+  const subscribeSection = document.getElementById("subscribe-section");
+
+  typeButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      typeButtons.forEach((b) => b.classList.remove("selected"));
+      btn.classList.add("selected");
+
+      if (btn.dataset.type === "amount") {
+        amountSection.style.display = "block";
+        subscribeSection.style.display = "none";
+      } else {
+        amountSection.style.display = "none";
+        subscribeSection.style.display = "block";
+      }
+    });
+  });
+</script>

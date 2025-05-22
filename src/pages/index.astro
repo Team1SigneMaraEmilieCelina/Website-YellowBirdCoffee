@@ -3,6 +3,8 @@ import Layout from "../layouts/Layout.astro";
 import Menu from "../components/menu.astro";
 import Footer from "../components/footer.astro";
 import RoundCTA from "../components/roundCTA.astro";
+import SquareCTA from "../components/SquareCTA.astro";
+import Amount from "../components/amount.astro";
 ---
 
 <Layout>
@@ -11,23 +13,24 @@ import RoundCTA from "../components/roundCTA.astro";
     <img class="heroimg" src="/img/heroimg.png" alt="Hero Image" />
     <a href="/singleproduct" class="quick-link">Go to Single Product</a>
     <RoundCTA ctaText="Læs mere" ctaLink="/shopcoffee" />
-  </header>
-  <main></main>
-  <footer>
-    <Footer />
-  </footer>
-</Layout>
 
-<style>
-  .heroimg {
-    width: 100%;
-    object-fit: cover;
-    height: 300px;
-  }
+    <main></main>
+    <footer>
+      <Footer />
+    </footer>
 
-  @media (min-width: 768px) {
-    .heroimg {
-      height: auto;
-    }
-  }
-</style>
+    <style>
+      .heroimg {
+        width: 100%;
+        object-fit: cover;
+        height: 300px;
+      }
+
+      @media (min-width: 768px) {
+        .heroimg {
+          height: auto;
+        }
+      }
+    </style>
+  </header></Layout
+>
