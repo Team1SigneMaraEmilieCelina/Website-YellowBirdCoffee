@@ -2,13 +2,20 @@
 import Layout from "../layouts/Layout.astro";
 import Menu from "../components/menu.astro";
 import Footer from "../components/footer.astro";
+import SubpageHero from "../components/subpagehero.astro";
 ---
 
 <Layout>
   <header>
     <Menu />
   </header>
-  <main></main>
+  <main>
+    <SubpageHero
+      src="/img/courseshero.webp"
+      alt="Kurser hero sektion"
+      header="Kurser"
+    />
+  </main>
   <footer>
     <Footer />
   </footer>
