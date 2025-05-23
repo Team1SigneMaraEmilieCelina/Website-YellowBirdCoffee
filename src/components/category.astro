@@ -26,15 +26,14 @@ const products = await response.json();
 <style>
   .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(70px, 150px));
-    gap: 26px;
-    justify-content: start;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 35vw));
+    gap: 50px 20px; /* First value is row gap, second is column gap */
+    justify-content: left;
   }
 
   article {
     margin-bottom: 40px;
     max-width: 1200px;
-    margin-inline: 50px;
   }
 
   @media (min-width: 768px) {
@@ -43,8 +42,8 @@ const products = await response.json();
     }
     .products-grid {
       grid-template-columns: repeat(auto-fill, minmax(250px, 350px));
-      gap: 50px;
-      justify-items: start; /* Aligns items inside grid cells to the start */
+      gap: 80px 50px; /* Increased row gap for desktop */
+      justify-items: start;
     }
   }
 </style>
