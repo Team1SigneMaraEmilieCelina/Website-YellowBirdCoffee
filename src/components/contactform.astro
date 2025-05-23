@@ -28,7 +28,7 @@ import RoundCTA from "./roundCTA.astro";
             <textarea name="besked" placeholder="Din besked" rows="5" required></textarea>
             <!-- textarea er en felt hvor brugeren kan skrive flere linjer -->
           </div>
-          <RoundCTA ctaText="Send besked" ctaLink="#" class="formularCTA_send" />
+          <p class="knap_send">Send besked</p>
           <!-- Kan man slette linket i <RoundCTA> og så selv sætte det ind hvis man skal linke?-->
         </fieldset>
       </form>
@@ -44,7 +44,7 @@ import RoundCTA from "./roundCTA.astro";
       <p>Husk du altid kan kontakte os på:</p>
       <p>Telefon: +45 31 33 84 33</p>
       <p>Mail: info@yellowbirdcoffee.dk</p>
-      <RoundCTA ctaText="Tilbage" ctaLink="/" class="formularCTA_tilbage" />
+      <p class="knap_tilbage">Tilbage</p>
     </div>
     <div>
       <img src="../../public/img/logo.webp" alt="Billede af Logo" />
@@ -75,7 +75,7 @@ import RoundCTA from "./roundCTA.astro";
   }
 
   .kontaktform2 {
-    position: absolute;
+    position: relative;
     z-index: 1;
     top: 0;
     margin: 0;
@@ -115,9 +115,22 @@ import RoundCTA from "./roundCTA.astro";
     width: 100%;
   }
 
-  .formularCTA_send,
-  .formularCTA_tilbage {
+  .knap_send,
+  .knap_tilbage {
     margin-top: 7px;
+    display: inline-block;
+    padding: 6px 13px;
+    border-radius: 30px;
+    background-color: var(--green-color);
+    color: var(--white-color);
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .knap_send:hover,
+  .knap_tilbage:hover {
+    background-color: Var(--yellow-color);
   }
 
   .hide {
@@ -157,8 +170,8 @@ import RoundCTA from "./roundCTA.astro";
 
   function start() {
     // Flyt querySelector her, så det sker efter DOM'en er indlæst
-    const knap_tilbage = document.querySelector(".formularCTA_tilbage");
-    const knap_sendbesked = document.querySelector(".formularCTA_send");
+    const knap_tilbage = document.querySelector(".knap_tilbage");
+    const knap_sendbesked = document.querySelector(".knap_send");
     const kontaktform2 = document.querySelector(".kontaktform2");
     const kontaktform = document.querySelector(".kontaktform");
 
