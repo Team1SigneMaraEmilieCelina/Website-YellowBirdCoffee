@@ -3,6 +3,8 @@ import Layout from "../layouts/Layout.astro";
 import SelectMenu from "../components/selectmenu.astro";
 import Footer from "../components/footer.astro";
 import Menublack from "../components/menublack.astro";
+import Deliverydiscount from "../components/deliverydiscount.astro";
+import Productslider from "../components/productslider.astro";
 ---
 
 <Layout>
@@ -10,31 +12,18 @@ import Menublack from "../components/menublack.astro";
     <Menublack />
   </header>
   <main>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum facere
-      quisquam molestiae cum eius! Debitis minima ipsam nulla earum a?
-      Distinctio nisi eos corporis, consequuntur porro ad necessitatibus animi
-      similique?
-    </p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum facere quisquam molestiae cum eius! Debitis minima ipsam nulla earum a? Distinctio nisi eos corporis, consequuntur porro ad necessitatibus animi similique?</p>
+
+    <Deliverydiscount />
 
     <div class="selectmenumobile">
-      <SelectMenu
-        labelh3="Vælg dit abonnement"
-        placeholder="Vælg dit abonnement"
-        options={[
-          "Lysristede bønner",
-          "Mellemristede bønner",
-          "Mørkristede bønner",
-          "Blandede bønner",
-        ]}
-      />
+      <SelectMenu labelh3="Vælg dit abonnement" placeholder="Vælg dit abonnement" options={["Lysristede bønner", "Mellemristede bønner", "Mørkristede bønner", "Blandede bønner"]} />
     </div>
 
-    <SelectMenu
-      labelp="Hvor ofte vil du have leveret"
-      placeholder="Vælg en mulighed"
-      options={["Hver 2. uge", "Hver måned", "Hver 2. måned"]}
-    />
+    <SelectMenu labelp="Hvor ofte vil du have leveret" placeholder="Vælg en mulighed" options={["Hver 2. uge", "Hver måned", "Hver 2. måned"]} />
+    <h2>Vores bønner</h2>
+    <p>Oplev vores udvalg af selvristede kaffebønner med forskellige smagsnuancer og ristegrader – tilpasset enhver kaffesmag.</p>
+    <Productslider />
   </main>
   <footer>
     <Footer />
@@ -54,7 +43,11 @@ import Menublack from "../components/menublack.astro";
     .selectmenumobile {
       display: block;
     }
-    main
-    {padding-top: 70px}
+    main {
+      padding-top: 70px;
+    }
+    p {
+      width: 60%;
+    }
   }
 </style>

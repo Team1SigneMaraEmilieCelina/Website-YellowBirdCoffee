@@ -77,26 +77,7 @@ const product = data[0];
 // Eksempel: Bruges til at lave sider som /produkt/1, /produkt/2 osv.
 ---
 
-<!-- 3. Vis produktet{
-  product ? (
-    <article>
-      <h1>{product.display_name}</h1>
-      <img src={product.img1} alt={product.display_name} />
-      <p>Bønne: {product.bean}</p>
-      <p>Pris: {product.price_250} kr. / 250g</p>
-      <p>{product.description}</p>
-      <div class="icons">
-        <img src={product.icon1} alt={product.icon1_text} />
-        <img src={product.icon2} alt={product.icon2_text} />
-        <img src={product.icon3} alt={product.icon3_text} />
-      </div>
-      <Amount />
-    </article>
-  ) : (
-    // Hvis produktet ikke findes, vis en fejlbesked
-    <p>Produktet blev ikke fundet.</p>
-  )
-} -->
+
 <Layout>
   <header>
     <Menublack />
@@ -171,7 +152,7 @@ const product = data[0];
   }
 
   main {
-    margin-top: 80px;
+    margin-top: 150px;
     max-width: 100%;
   }
 
