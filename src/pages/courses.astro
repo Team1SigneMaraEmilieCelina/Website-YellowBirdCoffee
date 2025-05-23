@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Menu from "../components/menu.astro";
 import Footer from "../components/footer.astro";
 import SubpageHero from "../components/subpagehero.astro";
+import Coursescard from "../components/coursescard.astro";
 ---
 
 <Layout>
@@ -14,8 +15,55 @@ import SubpageHero from "../components/subpagehero.astro";
       header="Kurser"
     />
   </header>
-  <main></main>
+  <main>
+    <section class="courses-intro">
+      <h3>Løft din kaffe til næste niveau</h3>
+      <p>
+        Vores kurser er en fantastisk mulighed for dig, der gerne vil udforske
+        kaffens verden. Uanset om du vil lære at lave en ensartet espresso,
+        dampe mælk korrekt eller blive fortrolig med udstyret, har vi et kursus,
+        der passer til dig.
+      </p>
+    </section>
+    <section class="courses-list">
+      <Coursescard
+        displayname="Hjemme Barista Intro"
+        price="795,00"
+        src="/img/homebaristacourse.webp"
+      />
+
+      <Coursescard
+        displayname="Latte art"
+        price="750,00"
+        src="/img/latteartcourse.webp"
+      />
+    </section>
+    <p class="courses-note">
+      *Bemærk venligst, at alle vores kurser afholdes i Spinchy på Gammel
+      Kongevej 84, 1850 Frederiksberg.
+    </p>
+  </main>
   <footer>
     <Footer />
   </footer>
 </Layout>
+
+<style>
+  .courses-intro {
+    margin-top: 70px;
+    width: 60%;
+  }
+  .courses-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+    gap: 50px;
+    margin-top: 70px;
+  }
+
+  .courses-note {
+    margin-top: 40px;
+    color: var(--black-color);
+    opacity: 0.6;
+    margin-bottom: 150px;
+  }
+</style>
