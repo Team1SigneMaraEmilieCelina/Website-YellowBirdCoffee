@@ -48,8 +48,8 @@
     align-items: center;
     background-color: transparent;
     transition: background-color 0.3s ease;
-    padding: 20px 20px 10px 10px;
     box-sizing: border-box;
+    padding: 15px;
   }
 
   .menu.scrolled {
@@ -64,6 +64,7 @@
   /* Rykker kurveikonet til højre med margin fra logoet */
   .logo {
     margin-right: auto;
+    padding-left: 20px;
   }
 
   .logo img {
@@ -78,6 +79,10 @@
 
   .shopping-bag img {
     height: 25px;
+  }
+
+  .shopping-bag {
+    padding-right: 20px;
   }
 
   .burger-menu {
@@ -190,10 +195,10 @@
 
     .desktop-menu-items {
       display: flex;
-      gap: 2rem;
       list-style: none;
       margin: 0;
       padding: 0;
+      gap: 7vw;
     }
 
     .shopping-bag img {
@@ -211,14 +216,6 @@
       height: 50px;
     }
 
-    .desktop-menu-items {
-      display: flex;
-      gap: 100px;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
     .desktop-menu-items li {
       margin: 0;
     }
@@ -226,6 +223,8 @@
     .desktop-menu-items a {
       text-decoration: none;
       color: var(--black-color);
+      font-family: "MontserratSemiBold", sans-serif;
+      font-size: 14.5px;
     }
 
     .desktop-shopping-bag img {
@@ -246,15 +245,6 @@
 
     .shopping-bag img {
       height: 35px;
-    }
-
-    .menu {
-      padding: 15px 50px 5px 50px;
-    }
-
-    .desktop-menu-items a {
-      font-family: "MontserratSemiBold", sans-serif;
-      font-size: 15px;
     }
   }
 </style>
