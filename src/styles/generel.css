@@ -42,12 +42,6 @@ main {
   margin: 0 10vw;
 }
 
-/* Overrule margin  */
-.abonnementsection,
-.green {
-  margin: 0;
-}
-
 /* FONTS MOBILE */
 h1 {
   font-family: "LatoBold";
