@@ -1,0 +1,28 @@
+---
+const { displayname, price, src } = Astro.props;
+---
+
+<article class="course-card">
+  <h6>{displayname}</h6>
+  <img src={src} alt={displayname} />
+  <p class="price">{price} kr.</p>
+</article>
+
+<style>
+  .course-card {
+    background: var(--beige-color);
+    text-align: center;
+    max-width: 350px;
+    padding: 20px;
+  }
+
+  .course-card img {
+    max-width: 275px;
+    aspect-ratio: 1/1;
+  }
+
+  article:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+</style>
