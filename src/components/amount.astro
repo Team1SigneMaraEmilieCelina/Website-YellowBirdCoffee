@@ -24,7 +24,6 @@ const product = products[0];
       <SquareCTA ctaText="250g" />
       <SquareCTA ctaText="1000g" />
     </div>
-    <p class="price-display">{product.price_250} kr</p>
   </div>
 
   <div id="subscribe-section" style="display: none;">
@@ -37,7 +36,6 @@ const product = products[0];
     display: flex;
     gap: 2rem;
     justify-content: center;
-    margin-bottom: 2rem;
   }
 
   .type-btn {
@@ -59,41 +57,54 @@ const product = products[0];
     background-color: var(--green-color);
   }
 
-  .amount-selector,
+  #amount-section,
   #subscribe-section {
+    width: 100%;
+    min-height: 60px;
     display: flex;
-    gap: 10px;
     justify-content: center;
-    margin-top: 20px;
+    align-items: center;
   }
 
   #subscribe-section {
-    min-height: 60px; /* Add approximate height of SquareCTAs + price */
-    align-items: flex-start; /* Align to top like SquareCTAs */
+    display: none; /* Initial state */
+  }
+
+  .amount-selector {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+
+    width: 100%;
+  }
+
+  #subscribe-section :global(.round-cta) {
+    margin: 0 auto;
+    text-align: center;
+    width: fit-content;
   }
 
   p {
     text-align: center;
     margin-top: 1rem;
   }
+  article {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    gap: 10px;
+  }
 </style>
 
 <script define:vars={{ product }}>
   const buttons = document.querySelectorAll(".square-cta");
-  const priceDisplay = document.querySelector(".price-display");
 
   buttons.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();
       buttons.forEach((b) => b.classList.remove("selected"));
       btn.classList.add("selected");
-
-      // Update price based on selected amount
-      if (btn.textContent.trim() === "250g") {
-        priceDisplay.textContent = `${product.price_250} kr`;
-      } else {
-        priceDisplay.textContent = `${product.price_1000} kr`;
-      }
     });
   });
 
@@ -107,11 +118,11 @@ const product = products[0];
       btn.classList.add("selected");
 
       if (btn.dataset.type === "amount") {
-        amountSection.style.display = "block";
+        amountSection.style.display = "flex";
         subscribeSection.style.display = "none";
       } else {
         amountSection.style.display = "none";
-        subscribeSection.style.display = "block";
+        subscribeSection.style.display = "flex";
       }
     });
   });
