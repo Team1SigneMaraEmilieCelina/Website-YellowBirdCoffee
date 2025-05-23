@@ -1,6 +1,6 @@
 ---
 import Productcard from "./productcard.astro";
-const { category } = Astro.props;
+const { category, description } = Astro.props;
 
 const supabaseUrl = "https://xjioilnvmmakyocqauwh.supabase.co/rest/v1";
 const apikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
@@ -17,6 +17,7 @@ const products = await response.json();
 
 <article>
   <h2>{category}</h2>
+  <p>{description}</p>
   <div class="products-grid">
     {products.map((Products) => <Productcard {Products} />)}
   </div>
@@ -25,11 +26,25 @@ const products = await response.json();
 <style>
   .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px; /* Juster afstanden mellem elementerne */
+    grid-template-columns: repeat(auto-fill, minmax(70px, 150px));
+    gap: 26px;
+    justify-content: start;
   }
 
   article {
-    margin-bottom: 40px; /* Giver lidt afstand mellem kategorier */
+    margin-bottom: 40px;
+    max-width: 1200px;
+    margin-inline: 50px;
+  }
+
+  @media (min-width: 768px) {
+    p {
+      width: 58%;
+    }
+    .products-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 350px));
+      gap: 50px;
+      justify-items: start; /* Aligns items inside grid cells to the start */
+    }
   }
 </style>

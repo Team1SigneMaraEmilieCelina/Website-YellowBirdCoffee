@@ -4,6 +4,7 @@ import Menu from "../components/menu.astro";
 import Footer from "../components/footer.astro";
 import SubpageHero from "../components/subpagehero.astro";
 import Category from "../components/category.astro";
+import Abonnementsection from "../components/abonnementsection.astro";
 ---
 
 <Layout>
@@ -23,12 +24,13 @@ import Category from "../components/category.astro";
         <p>Gratis levering ved køb for over 500kr</p>
       </div>
     </div>
-    <Category category="Lysristet" />
-    <p>Vores lysristede bønner er opdelt i 3 forskellige farver, den grønne varierer i smag og navn, alt efter hvilke bønner vi får sendt fra farmene. kaffen er velegent til pourover eller filterkaffe.</p>
-    <Category category="Mellemristet" />
-    <p>Vores mellemristede bønner er kendetegnet ved den røde farve og er velegnet til filterkaffe.</p>
-    <Category category="Mørkristet" />
-    <p>Vores mørkristede bønner har en dyb og rund smag, og er den bønne vi rister i længst tid. kaffen er velegnet til espresso.</p>
+    <Category category="Lysristet" description="Vores lysristede bønner er opdelt i 3 forskellige farver, den grønne varierer i smag og navn, alt efter hvilke bønner vi får sendt fra farmene. kaffen er velegent til pourover eller filterkaffe." />
+
+    <Category category="Mellemristet" description="Vores mellemristede bønner er kendetegnet ved den røde farve og er velegnet til filterkaffe." />
+
+    <Category category="Mørkristet" description="Vores mørkristede bønner har en dyb og rund smag, og er den bønne vi rister i længst tid. kaffen er velegnet til espresso." />
+
+    <Abonnementsection />
   </main>
   <footer>
     <Footer />
