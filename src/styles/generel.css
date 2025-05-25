@@ -80,6 +80,8 @@ p {
   font-family: "Montserrat";
   font-size: 13px;
   line-height: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .icontext {

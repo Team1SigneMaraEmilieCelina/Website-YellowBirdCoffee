@@ -14,18 +14,25 @@ const data = await fetch(curl, options).then((res) => res.json());
 ---
 
 <Layout>
-  <div class="slider">
-    {data.map((product) => <Productcard Products={product} />)}
-  </div>
+  <section class="slider_container">
+    <div class="slider margin">
+      {data.map((product) => <Productcard Products={product} />)}
+    </div>
+  </section>
 </Layout>
 
 <style>
   .slider {
     display: flex;
     overflow-x: auto;
+    overflow-y: hidden; /* Undgår vertical scrolling */
     scroll-snap-type: x mandatory;
     gap: 20px;
+    padding-bottom: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
+
   .slider::-webkit-scrollbar {
     display: none;
   }
