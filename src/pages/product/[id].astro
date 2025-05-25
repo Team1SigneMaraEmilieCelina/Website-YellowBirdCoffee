@@ -82,12 +82,14 @@ const product = data[0];
   <header>
     <Menublack />
   </header>
-  <main>
-    <a href="/shopcoffee">Tilbage</a>
+  <main >
+    <a href="/shopcoffee" class="margin" >Tilbage</a>
 
     {
       product ? (
-        <article>
+        
+        <article class="margin">
+
           <h1>{product.display_name}</h1>
           <section class="productpictures">
               <img class="img1" src={product.img1} alt={product.display_name} />
@@ -130,9 +132,13 @@ const product = data[0];
       )
     }
     <Brewguide />
-    <h2>Se vores unikke kaffeudvalg</h2>
-    <p>Oplev vores udvalg af selvristede kaffebønner med forskellige smagsnuancer og ristegrader – tilpasset enhver kaffesmag.</p>
-    <Productslider />
+    <section class="margin">
+   <h2>Se vores unikke kaffeudvalg</h2>
+      <p>
+        Oplev vores udvalg af selvristede kaffebønner med forskellige
+        smagsnuancer og ristegrader – tilpasset enhver kaffesmag.
+      </p>
+    </section>    <Productslider />
   </main>
   <footer>
     <Footer />

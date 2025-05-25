@@ -12,17 +12,38 @@ import Productslider from "../components/productslider.astro";
     <Menublack />
   </header>
   <main>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum facere quisquam molestiae cum eius! Debitis minima ipsam nulla earum a? Distinctio nisi eos corporis, consequuntur porro ad necessitatibus animi similique?</p>
+    <p class="margin">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum facere
+      quisquam molestiae cum eius! Debitis minima ipsam nulla earum a?
+      Distinctio nisi eos corporis, consequuntur porro ad necessitatibus animi
+      similique?
+    </p>
 
     <Deliverydiscount />
 
     <div class="selectmenumobile">
-      <SelectMenu labelh3="Vælg dit abonnement" placeholder="Vælg dit abonnement" options={["Lysristede bønner", "Mellemristede bønner", "Mørkristede bønner", "Blandede bønner"]} />
+      <SelectMenu
+        labelh3="Vælg dit abonnement"
+        placeholder="Vælg dit abonnement"
+        options={[
+          "Lysristede bønner",
+          "Mellemristede bønner",
+          "Mørkristede bønner",
+          "Blandede bønner",
+        ]}
+      />
     </div>
 
-    <SelectMenu labelp="Hvor ofte vil du have leveret" placeholder="Vælg en mulighed" options={["Hver 2. uge", "Hver måned", "Hver 2. måned"]} />
-    <h2>Vores bønner</h2>
-    <p>Oplev vores udvalg af selvristede kaffebønner med forskellige smagsnuancer og ristegrader – tilpasset enhver kaffesmag.</p>
+    <SelectMenu
+      labelp="Hvor ofte vil du have leveret"
+      placeholder="Vælg en mulighed"
+      options={["Hver 2. uge", "Hver måned", "Hver 2. måned"]}
+    />
+    <h2 class="margin">Vores bønner</h2>
+    <p class="margin">
+      Oplev vores udvalg af selvristede kaffebønner med forskellige smagsnuancer
+      og ristegrader – tilpasset enhver kaffesmag.
+    </p>
     <Productslider />
   </main>
   <footer>

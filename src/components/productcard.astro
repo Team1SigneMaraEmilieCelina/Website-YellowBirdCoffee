@@ -1,6 +1,8 @@
 ---
-const apikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
-const curl = "https://xjioilnvmmakyocqauwh.supabase.co/rest/v1/Products?select=*";
+const apikey =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
+const curl =
+  "https://xjioilnvmmakyocqauwh.supabase.co/rest/v1/Products?select=*";
 const options = {
   headers: { apikey: apikey },
 };
@@ -44,6 +46,12 @@ const { Products } = Astro.props;
   .product-link article:hover {
     transform: scale(1.02);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  p {
+    line-height: 0;
+    margin: 0;
+    padding: 10px;
   }
 
   article {

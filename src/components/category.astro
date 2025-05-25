@@ -3,19 +3,23 @@ import Productcard from "./productcard.astro";
 const { category, description } = Astro.props;
 
 const supabaseUrl = "https://xjioilnvmmakyocqauwh.supabase.co/rest/v1";
-const apikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
+const apikey =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
 
-const response = await fetch(`${supabaseUrl}/Products?category=eq.${category}&select=*`, {
-  headers: {
-    apikey: apikey,
-    Authorization: `Bearer ${apikey}`,
-  },
-});
+const response = await fetch(
+  `${supabaseUrl}/Products?category=eq.${category}&select=*`,
+  {
+    headers: {
+      apikey: apikey,
+      Authorization: `Bearer ${apikey}`,
+    },
+  }
+);
 
 const products = await response.json();
 ---
 
-<article>
+<article class="margin">
   <h2>{category}</h2>
   <p>{description}</p>
   <div class="products-grid">
