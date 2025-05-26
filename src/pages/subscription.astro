@@ -14,22 +14,56 @@ import SquareCTA from "../components/SquareCTA.astro";
   </header>
   <main>
     <div class="flex">
-      <SquareCTA ctaText="Lysristet kaffe" />
-      <SquareCTA ctaText="Mellemristet kaffe" />
-      <SquareCTA ctaText="Mørkristet kaffe" />
-      <SquareCTA ctaText="Bland selv kaffe" />
+      <SquareCTA ctaText="Lysristet kaffe" id="light-cta" />
+      <SquareCTA ctaText="Mellemristet kaffe" id="medium-cta" />
+      <SquareCTA ctaText="Mørkristet kaffe" id="dark-cta" />
+      <SquareCTA ctaText="Bland selv kaffe" id="mixed-cta" />
     </div>
-    <Subscriptioncard navn="Lysristet kaffe" beskrivelse="Til dig, der sætter pris på komplekse, frugtige kopprofiler og variation i terroir og forarbejdningsmetode." />
-    <Subscriptioncard navn="Mellemristet kaffe" beskrivelse="Til dig, der foretrækker en fyldig og balanceret kop kaffe med sødme, lav syrlighed og varme smagsnoter – perfekt til både filter og espresso." />
-    <Subscriptioncard navn="Mørkristet kaffe" beskrivelse="Til dig, der foretrækker en mørkere og mere intens kop kaffe med markante smagsnoter, lav syrlighed og lang eftersmag. Perfekt til espresso eller en kraftigere filterbryg." />
-    <Subscriptioncard navn="Bland selv kaffe" beskrivelse="Til dig, der elsker god kaffe og gerne vil overraskes med skiftende udtryk og smagsoplevelser – uden at skulle vælge selv." />
-    <div class="selectmenumobile">
-      <SelectMenu labelh3="Vælg dit abonnement" placeholder="Vælg dit abonnement" options={["Lysristede bønner", "Mellemristede bønner", "Mørkristede bønner", "Blandede bønner"]} />
-    </div>
+    <article>
+      <div id="light">
+        <Subscriptioncard
+          img1="/img/pink.webp"
+          img2="/img/grey.webp"
+          img3="/img/green.webp"
+          img4="/img/closeupgrey.webp"
+          navn="Lysristet kaffe"
+          beskrivelse="Til dig, der sætter pris på komplekse, frugtige kopprofiler og variation i terroir og forarbejdningsmetode."
+        />
+      </div>
+      <div id="medium">
+        <Subscriptioncard
+          img1="/img/red.webp"
+          img2="/img/closeupyrp.webp"
+          navn="Mellemristet kaffe"
+          beskrivelse="Til dig, der foretrækker en fyldig og balanceret kop kaffe med sødme, lav syrlighed og varme smagsnoter – perfekt til både filter og espresso."
+        />
+      </div>
+      <div id="dark">
+        <Subscriptioncard
+          img1="/img/yellow.webp"
+          img2="/img/blue.webp"
+          img3="/img/closeupyrp.webp"
+          navn="Mørkristet kaffe"
+          beskrivelse="Til dig, der foretrækker en mørkere og mere intens kop kaffe med markante smagsnoter, lav syrlighed og lang eftersmag. Perfekt til espresso eller en kraftigere filterbryg."
+        />
+      </div>
+      <div id="mixed">
+        <Subscriptioncard
+          img1="/img/yellow.webp"
+          img2="/img/blue.webp"
+          img3="/img/pink.webp"
+          img4="/img/closeupyrp.webp"
+          navn="Bland selv kaffe"
+          beskrivelse="Til dig, der elsker god kaffe og gerne vil overraskes med skiftende udtryk og smagsoplevelser – uden at skulle vælge selv."
+        />
+      </div>
+    </article>
 
-    <h2 class="margin">Vores bønner</h2>
-    <p class="margin">Oplev vores udvalg af selvristede kaffebønner med forskellige smagsnuancer og ristegrader – tilpasset enhver kaffesmag.</p>
-    <Productslider />
+    <div>
+      <h2 class="margin">Vores bønner</h2>
+      <p class="margin">Oplev vores udvalg af selvristede kaffebønner med forskellige smagsnuancer og ristegrader – tilpasset enhver kaffesmag.</p>
+      <Productslider />
+    </div>
   </main>
   <footer>
     <Footer />
@@ -37,6 +71,29 @@ import SquareCTA from "../components/SquareCTA.astro";
 </Layout>
 
 <style>
+  .hide {
+    display: none;
+  }
+  .front {
+    z-index: 5;
+  }
+
+  #light,
+  #medium,
+  #dark,
+  #mixed {
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    padding-top: 1vw;
+    margin-right: 0;
+    width: 100%;
+    background-color: var(--background-color);
+  }
+  article {
+    position: relative;
+    margin-bottom: 50px;
+  }
+
   .selectmenumobile {
     display: none;
   }
@@ -45,30 +102,101 @@ import SquareCTA from "../components/SquareCTA.astro";
     padding-top: 120px;
   }
 
-  @media (max-width: 768px) {
-    .selectmenumobile {
-      display: block;
-    }
+  .flex {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
     main {
-      padding-top: 70px;
+      padding-top: 120px;
     }
     p {
       width: 60%;
     }
-  }
-  .flex {
-    display: flex;
-    flex-direction: row;
-    gap: 100px; /* Reduced from 10px */
-    padding: 5px; /* Reduced from 10px */
-    justify-content: center; /* Changed from space-evenly for tighter spacing */
-    align-items: center;
-  }
 
-  @media (max-width: 768px) {
     .flex {
-      gap: 3px; /* Even smaller gap for mobile */
-      padding: 3px;
+      display: flex;
+      flex-direction: row;
+      gap: 100px;
+      padding: 5px;
     }
   }
 </style>
+
+<script>
+  window.addEventListener("load", start);
+
+  function start() {
+    hideAllScreens();
+    document.querySelector("#light")?.classList.remove("hide");
+    document.querySelector("#light")?.classList.add("front");
+    initializeProductPictures("light");
+
+    document.querySelector("#medium-cta")?.addEventListener("click", () => switchScreen("medium"));
+    document.querySelector("#dark-cta")?.addEventListener("click", () => switchScreen("dark"));
+    document.querySelector("#mixed-cta")?.addEventListener("click", () => switchScreen("mixed"));
+    document.querySelector("#light-cta")?.addEventListener("click", () => switchScreen("light"));
+  }
+
+  function hideAllScreens() {
+    ["light", "medium", "dark", "mixed"].forEach((id) => {
+      document.querySelector(`#${id}`)?.classList.add("hide");
+      document.querySelector(`#${id}`)?.classList.remove("front");
+      document.querySelector(`#${id}-cta`)?.classList.remove("selected");
+    });
+  }
+
+  function switchScreen(id) {
+    hideAllScreens();
+    document.querySelector(`#${id}`)?.classList.remove("hide");
+    document.querySelector(`#${id}`)?.classList.add("front");
+    document.querySelector(`#${id}-cta`)?.classList.add("selected");
+    initializeProductPictures(id);
+  }
+
+  function initializeProductPictures(id) {
+    const currentSection = document.querySelector(`#${id}`);
+    if (!currentSection) return;
+
+    const image1 = currentSection.querySelector(".img1");
+    const image2 = currentSection.querySelector(".img2");
+    const image3 = currentSection.querySelector(".img3");
+    const image4 = currentSection.querySelector(".img4");
+
+    const gridimage1 = currentSection.querySelector(".gridimg1");
+    const gridimage2 = currentSection.querySelector(".gridimg2");
+    const gridimage3 = currentSection.querySelector(".gridimg3");
+    const gridimage4 = currentSection.querySelector(".gridimg4");
+
+    // Hide all images first
+    [image1, image2, image3, image4].forEach((img) => img?.classList.add("hide"));
+
+    // Show first image and add border to first thumbnail
+    image1?.classList.remove("hide");
+    gridimage1?.classList.add("addborder");
+
+    // Add click handlers for thumbnails
+    gridimage1?.addEventListener("click", () => switchImage(currentSection, 1));
+    gridimage2?.addEventListener("click", () => switchImage(currentSection, 2));
+    gridimage3?.addEventListener("click", () => switchImage(currentSection, 3));
+    gridimage4?.addEventListener("click", () => switchImage(currentSection, 4));
+  }
+
+  function switchImage(section, imageNum) {
+    const images = [section.querySelector(".img1"), section.querySelector(".img2"), section.querySelector(".img3"), section.querySelector(".img4")];
+    const thumbnails = [section.querySelector(".gridimg1"), section.querySelector(".gridimg2"), section.querySelector(".gridimg3"), section.querySelector(".gridimg4")];
+
+    // Hide all images and remove borders
+    images.forEach((img) => img?.classList.add("hide"));
+    thumbnails.forEach((thumb) => thumb?.classList.remove("addborder"));
+
+    // Show selected image and add border
+    images[imageNum - 1]?.classList.remove("hide");
+    thumbnails[imageNum - 1]?.classList.add("addborder");
+  }
+</script>

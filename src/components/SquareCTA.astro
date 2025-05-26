@@ -1,15 +1,15 @@
 ---
-const { ctaText, ctaLink, class: className } = Astro.props;
+const { ctaText, ctaLink, class: className, id } = Astro.props;
 ---
 
-<a href={ctaLink} class={`square-cta ${className || ""}`}>
+<a id={id} href={ctaLink} class="square-cta">
   {ctaText}
 </a>
 
 <style>
   .square-cta {
     display: inline-block;
-    padding: 1px 7px;
+    padding: 5px 7px;
     background-color: var(--white-color);
     color: var(--black-color);
     border: 1px solid var(--green-color);

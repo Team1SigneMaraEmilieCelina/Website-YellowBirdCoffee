@@ -23,11 +23,16 @@ const { navn, beskrivelse, img1, img2, img3, img4 } = Astro.props;
 </article>
 
 <style>
-  .grid_1-1 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    padding: 20px;
-    row-gap: 40px;
+  article {
+    margin: 20px 20px;
+  }
+  @media (min-width: 768px) {
+    .grid_1-1 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding: 20px;
+      row-gap: 40px;
+    }
   }
 </style>
