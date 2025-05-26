@@ -1,0 +1,33 @@
+---
+import Amount from "./amount.astro";
+import Deliverydiscount from "./deliverydiscount.astro";
+import RoundCTA from "./roundCTA.astro";
+import Selectmenu from "./selectmenu.astro";
+const { navn, beskrivelse } = Astro.props;
+---
+
+<article class="grid_1-1">
+  <!-- komponent med billeder -->
+  <img src="/img/coffeebags.webp" alt="" />
+  <div>
+    <h2>{navn}</h2>
+    <p>{beskrivelse}</p>
+    <Deliverydiscount />
+    <Amount />
+    <Selectmenu labelp="Hvor ofte vil du have leveret" placeholder="Vælg en mulighed" options={["Hver 2. uge", "Hver måned", "Hver 2. måned"]} />
+    <p>Antal poser pr. levering</p>
+    <div>
+      <RoundCTA ctaText="Læg i kurv" />
+    </div>
+  </div>
+</article>
+
+<style>
+  .grid_1-1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 20px;
+    row-gap: 40px;
+  }
+</style>

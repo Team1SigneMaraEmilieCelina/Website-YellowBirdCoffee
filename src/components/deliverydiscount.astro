@@ -24,9 +24,9 @@
   .grid_1-1-1 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 10px; /* Reduced from 20px */
     margin: 0;
-    padding: 20px 0;
+    padding: 5px 0; /* Reduced from 10px */
     border-bottom: 1px solid var(--green-color);
   }
 
@@ -34,10 +34,28 @@
     border-top: 1px solid var(--green-color);
   }
 
+  /* Add spacing for headers */
+  h6 {
+    margin: 0;
+    padding: 5px 0;
+    font-size: 0.9rem;
+  }
+
+  /* Add spacing for paragraph text */
+  p {
+    margin: 0;
+    padding: 3px 0;
+    font-size: 0.9rem;
+  }
+
   .column2 {
     grid-column: 2 / 3;
   }
   .column3 {
     grid-column: 3 / 4;
+  }
+  .section {
+    height: 80%;
+    width: 60%;
   }
 </style>
