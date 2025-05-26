@@ -12,16 +12,17 @@ import Productslider from "../components/productslider.astro";
 <Layout>
   <header>
     <Menu />
-    <img class="heroimg" src="/img/heroimg.png" alt="Hero Image" />
-    <RoundCTA ctaText="Læs mere" ctaLink="/shopcoffee" />
+    <div class="hero">
+      <h1 class="hero-title1">Yellow Bird Coffee</h1>
+      <h2 class="hero-title2">Kaffe og risteri</h2>
+      <p class="hero-text">Uanset om du er til filterkaffe, espresso eller latte, har vi den rette bønne til dig.</p>
+      <div class=""><RoundCTA ctaText="Læs mere" ctaLink="/shopcoffee" /></div>
+    </div>
   </header>
   <main>
     <section class="margin">
       <h2>Se vores unikke kaffeudvalg</h2>
-      <p>
-        Oplev vores udvalg af selvristede kaffebønner med forskellige
-        smagsnuancer og ristegrader – tilpasset enhver kaffesmag.
-      </p>
+      <p>Oplev vores udvalg af selvristede kaffebønner med forskellige smagsnuancer og ristegrader – tilpasset enhver kaffesmag.</p>
     </section>
     <Productslider />
     <Subscriptionsection class="subscriptionsection" />
@@ -34,23 +35,13 @@ import Productslider from "../components/productslider.astro";
         </div>
         <div class="grid_1-1">
           <img src="/img/icons/coffeebeans.png" alt="Ikon af kaffebønner" />
-          <p>
-            Vores bønner er altid friskristede, så vi kan tilbyde samme gode
-            kvalitet igen og igen.
-          </p>
+          <p>Vores bønner er altid friskristede, så vi kan tilbyde samme gode kvalitet igen og igen.</p>
         </div>
         <div class="grid_1-1">
           <img src="/img/icons/hands.png" alt="Ikon af hænder" />
-          <p>
-            Vi arbejder tæt sammen med vores partnere på kaffefarmene, for at
-            sikre de bedste vilkår for dem og jer.
-          </p>
+          <p>Vi arbejder tæt sammen med vores partnere på kaffefarmene, for at sikre de bedste vilkår for dem og jer.</p>
         </div>
-        <RoundCTA
-          ctaText="Læs mere om os"
-          ctaLink="/aboutus"
-          class="CTAcenter"
-        />
+        <RoundCTA ctaText="Læs mere om os" ctaLink="/aboutus" class="CTAcenter" />
       </div>
       <div class="grid_1-1-1">
         <img src="/img/rawcoffeebeans.webp" alt="Billede af rå kaffebønner" />
@@ -64,10 +55,32 @@ import Productslider from "../components/productslider.astro";
 </Layout>
 
 <style>
-  .heroimg {
+  .hero {
     width: 100%;
-    object-fit: cover;
-    height: 300px;
+    height: auto;
+    overflow: hidden;
+    background-image: url("/img/coffeebeans.webp");
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    padding-top: 250px;
+    padding-bottom: 50px;
+  }
+
+  .hero-title1,
+  .hero-title2,
+  .hero-text {
+    text-align: center;
+    color: var(--white-color);
+    top: 50%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hero-text {
+    padding: 0 20px 20px 20px;
   }
 
   .subscriptionsection {
@@ -111,6 +124,10 @@ import Productslider from "../components/productslider.astro";
   @media (min-width: 768px) {
     .heroimg {
       height: auto;
+    }
+
+    .hero {
+      padding-top: 375px;
     }
 
     .grid_1-2 {
