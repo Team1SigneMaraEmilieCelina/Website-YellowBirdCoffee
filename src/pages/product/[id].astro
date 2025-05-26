@@ -29,7 +29,7 @@ export async function getStaticPaths() {
 
   // Her laver vi en liste over ID’er, som Astro bruger til at bygge en side til hvert produkt
   //  map = "for hver ting i arrayet, gør dette"
-  // params = bruges af Astro til at lave sider med fx /produkt/1 og /produkt/2
+  // params = bruges af Astro til at lave sider med fx /produkt/1 and /produkt/2
   return data.map((product) => ({
     params: { id: product.id.toString() }, // id skal være tekst (string)
   }));
@@ -144,10 +144,8 @@ const product = data[0];
     color: var(--background-color);
     background-color: var(--green-color);
     padding: 5px 7px;
-    top: 150px;
     margin-bottom: 20px;
     font-size: 16px;
-    left: 0;
   }
 
   main {
@@ -157,31 +155,6 @@ const product = data[0];
 
   article {
     overflow: hidden;
-  }
-
-  img {
-    width: 100%;
-    aspect-ratio: 1 / 1.5;
-    /* Bruger aspect-ratio for at få alle billeder i samme højde */
-    /* 1 = bredden af elementet */
-    /* 1.5 = højden af billedet ift. bredden. Dvs. højden skal vær 150% større end bredden */
-    object-fit: cover;
-  }
-
-  .grid_1-1-1-1 {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-top: 20px;
-  }
-
-  .grid_1-1-1-1 img {
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-  }
-
-  .addborder {
-    border: solid 1px var(--black-color);
   }
 
   .hide {
@@ -218,21 +191,6 @@ const product = data[0];
     a {
       font-size: 18px;
       padding: 10px 10px;
-    }
-
-    .productpictures {
-      display: grid;
-      grid-template-columns: 5fr 1fr;
-      gap: 20px;
-      width: 70%;
-      /* margin: 0 auto; */
-    }
-
-    .grid_1-1-1-1 {
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: repeat(6, 1fr);
-      gap: 10px;
     }
 
     article {
