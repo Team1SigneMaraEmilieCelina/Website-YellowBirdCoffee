@@ -1,7 +1,7 @@
 <nav class="menu">
   <div class="logo">
     <a href="/">
-      <img src="/public/img/logo.webp" alt="Yellow Bird Coffee Logo" />
+      <img src="/img/logo.webp" alt="Yellow Bird Coffee Logo" />
     </a>
   </div>
 
@@ -15,7 +15,7 @@
     <li><a href="/aboutus">Om os</a></li>
   </ul>
   <div class="shopping-bag">
-    <img src="/public/img/icons/shoppingbagbeige.webp" alt="Shopping Bag" />
+    <img src="/img/icons/shoppingbagbeige.webp" alt="Shopping Bag" />
   </div>
   <button class="burger-menu" aria-label="Toggle menu">
     <span></span>
@@ -30,7 +30,7 @@
     <li><h3><a href="/aboutus">Om os</a></h3></li>
     <div class="menu-logo">
       <a href="/">
-        <img src="/public/img/logo.webp" alt="Yellow Bird Coffee Logo" />
+        <img src="/img/logo.webp" alt="Yellow Bird Coffee Logo" />
       </a>
     </div>
   </ul>
@@ -228,9 +228,12 @@
     .menu.scrolled .desktop-menu-items a {
       color: var(--black-color);
     }
+    .menu.scrolled .desktop-menu-items a:hover {
+      color: var(--yellow-color);
+    }
 
     .desktop-menu-items a:hover {
-      color: inherit;
+      color: var(--yellow-color);
     }
 
     .shopping-bag img {
@@ -310,11 +313,11 @@
       if (window.scrollY > 0) {
         // Hvis brugeren har scrollet nedad...
         menu.classList.add("scrolled");
-        shoppingBag.src = "/public/img/icons/shoppingbag.webp";
+        shoppingBag.src = "/img/icons/shoppingbag.webp";
       } else {
         // Hvis brugeren er helt i toppen...
         menu.classList.remove("scrolled");
-        shoppingBag.src = "/public/img/icons/shoppingbagbeige.webp";
+        shoppingBag.src = "/img/icons/shoppingbagbeige.webp";
       }
     }
   });
