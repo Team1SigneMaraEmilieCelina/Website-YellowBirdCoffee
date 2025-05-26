@@ -1,0 +1,85 @@
+<article>
+  <button
+    type="button"
+    class="roundcta-amount"
+    id="amount-btn"
+    aria-label="Vælg antal poser"
+  >
+    <span id="amount-minus">-</span>
+    <span id="amount-value">1</span>
+    <span id="amount-plus">+</span>
+  </button>
+</article>
+
+<style>
+  .roundcta-amount {
+    display: flex;
+    gap: 15px;
+    border-radius: 30px;
+    border: none;
+    background: var(--green-color);
+    color: var(--white-color);
+    font-family: Montserrat;
+    font-size: 13px;
+    padding: 9px 15px;
+    cursor: pointer;
+    box-shadow: none;
+  }
+  @media (min-width: 768px) {
+    .roundcta-amount {
+      gap: 15px;
+
+      font-size: 18px;
+      padding: 7px 25px;
+    }
+  }
+</style>
+
+<script>
+  // Når siden er klar, find minus, plus og tallet
+  document.addEventListener("DOMContentLoaded", function () {
+    var minus = document.getElementById("amount-minus");
+    var plus = document.getElementById("amount-plus");
+    var value = document.getElementById("amount-value");
+    var amount = 1;
+    // Når man klikker minus, træk 1 fra (men ikke under 1)
+    if (minus) {
+      minus.onclick = function () {
+        if (amount > 1) {
+          amount = amount - 1;
+          if (value) value.textContent = amount + "";
+        }
+      };
+    }
+    // Når man klikker plus, læg 1 til
+    if (plus) {
+      plus.onclick = function () {
+        amount = amount + 1;
+        if (value) value.textContent = amount + "";
+      };
+    }
+  });
+
+  // GLOSER :
+  // document: Hele hjemmesiden (alt HTML’en)
+
+  // addEventListener: Lyt efter, at noget sker (fx at siden er klar)
+
+  // DOMContentLoaded: Når alt HTML er færdig med at loade
+
+  // var: Bruges til at lave en “kasse” (variabel) hvor vi kan gemme noget
+
+  // getElementById: Find et bestemt element i HTML’en ved at bruge dets id
+
+  // onclick: Det der sker, når man klikker på noget
+
+  // function: En opskrift, der kan udføre flere linjer kode
+
+  // if: Hvis noget er sandt, så gør det der står i {}
+
+  // amount: Det tal, vi viser og ændrer (hvor mange poser)
+
+  // textContent: Den tekst, der står inde i et HTML-element
+
+  // amount + "": Laver tallet om til tekst, så det kan vises i HTML
+</script>
