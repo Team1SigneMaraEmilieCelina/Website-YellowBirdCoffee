@@ -5,36 +5,22 @@ import RoundCTA from "./roundCTA.astro";
 <section class="kontaktformular margin">
   <section class="kontaktform">
     <div>
-      <h1>Kontakt os</h1>
-      <p>
-        Vi vil meget gerne samarbejde direkte med dig og din virksomhed. Udfyld
-        formularen nedenfor og fortæl os lidt mere om dig og din forretning –
-        eller kontakt os på:
-      </p>
+      <h2>Kontakt os</h2>
+      <p>Vi vil meget gerne samarbejde direkte med dig og din virksomhed. Udfyld formularen nedenfor og fortæl os lidt mere om dig og din forretning – eller kontakt os på:</p>
       <p>Telefon: +45 31 33 84 33</p>
 
       <form action="/send" method="POST">
         <!-- action og method er atributter til <form>-elementet, der definere hvor formularens data skal sendes hen -->
         <fieldset>
-          <h3><legend>Dine informationer</legend></h3>
+          <h5><legend>Dine informationer</legend></h5>
           <!-- man briger <legend> i stedet for fx. h3, da det er semantisk korrekt når det er i forbindelse med <fieldset> -->
           <div class="form-group">
             <div class="grid_1-1">
               <p>
-                <input
-                  type="text"
-                  name="fornavn"
-                  placeholder="Fornavn"
-                  required
-                />
+                <input type="text" name="fornavn" placeholder="Fornavn" required />
               </p>
               <p>
-                <input
-                  type="text"
-                  name="efternavn"
-                  placeholder="Efternavn"
-                  required
-                />
+                <input type="text" name="efternavn" placeholder="Efternavn" required />
               </p>
             </div>
             <p class="emailfield">
@@ -44,8 +30,7 @@ import RoundCTA from "./roundCTA.astro";
               <p><input type="text" name="firma" placeholder="Firma" /></p>
               <p><input type="tel" name="telefon" placeholder="Telefon" /></p>
             </div>
-            <textarea name="besked" placeholder="Din besked" rows="5" required
-            ></textarea>
+            <textarea name="besked" placeholder="Din besked" rows="5" required></textarea>
             <!-- textarea er en felt hvor brugeren kan skrive flere linjer -->
           </div>
           <p class="knap_send">Send besked</p>
@@ -54,7 +39,7 @@ import RoundCTA from "./roundCTA.astro";
       </form>
     </div>
     <div>
-      <img src="../../public/img/logo.webp" alt="Billede af Logo" />
+      <img src="/img/logo.webp" alt="Billede af Logo" />
     </div>
   </section>
 
@@ -85,12 +70,12 @@ import RoundCTA from "./roundCTA.astro";
   }
   .kontaktform,
   .kontaktform2 {
-    padding: 2rem;
+    padding: 1.2rem;
     border: 2px solid var(--green-color);
     border-radius: 15px;
-    margin: 7vh 0;
+    margin: 3vh 0;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 2fr 1fr; /* Changed from repeat(2, 1fr) to make first column wider */
   }
 
   .kontaktform2 {
@@ -130,8 +115,13 @@ import RoundCTA from "./roundCTA.astro";
   input,
   textarea {
     border: 1px solid var(--black-color);
-    padding: 1vh;
+    padding: 0.4vh;
     width: 100%;
+    font-size: 0.9rem;
+  }
+
+  textarea {
+    height: 100px; /* Reduced height */
   }
 
   .knap_send,
@@ -163,23 +153,33 @@ import RoundCTA from "./roundCTA.astro";
   }
 
   @media (min-width: 768px) {
+    .kontaktform,
+    .kontaktform2 {
+      max-width: 1000px;
+      margin: 4vh auto;
+      padding: 2rem;
+      grid-template-columns: 3fr 2fr; /* Adjusted ratio for desktop */
+    }
+
     .grid_1-1 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 60px;
-    }
-
-    .emailfield {
-      width: 100%;
+      gap: 30px; /* Reduced from 60px */
+      column-gap: 4vw;
     }
 
     input,
     textarea {
-      padding: 2vh;
+      padding: 2vh; /* Reduced from 2vh */
     }
 
     textarea {
-      width: 60%;
+      width: 80%;
+      height: 100px;
+    }
+
+    img {
+      width: 50%; /* Reduced from 60% */
     }
   }
 </style>
