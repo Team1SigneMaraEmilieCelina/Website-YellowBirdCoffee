@@ -51,7 +51,6 @@ import Coursescard from "../components/coursescard.astro";
 <style>
   .courses-intro {
     margin-top: 70px;
-    width: 60%;
   }
   .courses-list {
     display: grid;
@@ -65,5 +64,11 @@ import Coursescard from "../components/coursescard.astro";
     color: var(--black-color);
     opacity: 0.6;
     margin-bottom: 150px;
+  }
+
+  @media (min-width: 768px) {
+    .courses-intro {
+      width: 80%;
+    }
   }
 </style>
