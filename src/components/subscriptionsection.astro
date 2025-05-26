@@ -21,6 +21,7 @@ import RoundCTA from "./roundCTA.astro";
   section {
     background-color: var(--yellow-color);
     padding: 4vh;
+    margin-top: 60px;
   }
 
   img {
@@ -37,6 +38,7 @@ import RoundCTA from "./roundCTA.astro";
   @media (min-width: 768px) {
     section {
       padding: 0;
+      margin-top: 80px;
     }
     .grid_1-1 {
       display: grid;
@@ -44,10 +46,8 @@ import RoundCTA from "./roundCTA.astro";
     }
 
     .abonnementtext1 {
-      padding: 6vh;
-      padding-inline: 50px;
-      padding-top: 50px;
-      padding-bottom: 50px;
+      padding: 8vh;
+      margin-left: 10vh;
     }
 
     .grid_1-1 img {
@@ -62,13 +62,23 @@ import RoundCTA from "./roundCTA.astro";
     }
     p {
       padding-top: 0;
+      padding-right: 100px;
     }
   }
 
-  @media (min-width: 768px) and (max-width: 950px) {
+  @media (min-width: 668px) and (max-width: 1000px) {
     /* TABLET VERSION */
-    .desktop-menu-items a {
-      font-size: 12.5px;
+    .abonnementtext1 {
+      padding: 5vh;
+      margin-left: 0vh;
+    }
+
+    p {
+      font-size: 15px;
+      padding-right: 0px;
+    }
+    h3 {
+      font-size: 22px;
     }
   }
 </style>
