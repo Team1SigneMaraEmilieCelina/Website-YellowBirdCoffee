@@ -1,8 +1,6 @@
 ---
-const apikey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
-const curl =
-  "https://xjioilnvmmakyocqauwh.supabase.co/rest/v1/Products?select=*";
+const apikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
+const curl = "https://xjioilnvmmakyocqauwh.supabase.co/rest/v1/Products?select=*";
 const options = {
   headers: { apikey: apikey },
 };
@@ -49,9 +47,11 @@ const { Products } = Astro.props;
   }
 
   p {
-    line-height: 0;
+    line-height: inherit;
     margin: 0;
     padding: 10px;
+    word-wrap: break-word;
+    text-align: center;
   }
 
   article {
