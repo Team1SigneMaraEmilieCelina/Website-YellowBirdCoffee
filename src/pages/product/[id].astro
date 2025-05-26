@@ -3,17 +3,18 @@ import Layout from "../../layouts/Layout.astro";
 import Menublack from "../../components/menublack.astro";
 import Footer from "../../components/footer.astro";
 import Amount from "../../components/amount.astro";
-import SquareCTA from "../../components/SquareCTA.astro";
 import Brewguide from "../../components/brewguide.astro";
 import Menublack from "../../components/menublack.astro";
 import Productslider from "../../components/productslider.astro";
+import ProductPictures from "../../components/productpictures.astro";
 
 // Vi henter alle ID’er til de produkter, vi gerne vil lave individuelle sider for:
 export async function getStaticPaths() {
   // Det her er nøglen til vores Supabase-database – den giver adgang til at hente data
   const apikey =
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
-  const url = "https://xjioilnvmmakyocqauwh.supabase.co/rest/v1/Products?select=id";
+  const url =
+    "https://xjioilnvmmakyocqauwh.supabase.co/rest/v1/Products?select=id";
   // Her henter vi kun ID’erne fra databasen
 
   // fetch = "gå ud på nettet og hent noget"
@@ -77,33 +78,24 @@ const product = data[0];
 // Eksempel: Bruges til at lave sider som /produkt/1, /produkt/2 osv.
 ---
 
-
 <Layout>
   <header>
     <Menublack />
   </header>
-  <main >
-    <a href="/shopcoffee" class="margin" >Tilbage</a>
+  <main>
+    <a href="/shopcoffee" class="margin">Tilbage</a>
 
     {
       product ? (
-        
         <article class="margin">
-
           <h1>{product.display_name}</h1>
-          <section class="productpictures">
-              <img class="img1" src={product.img1} alt={product.display_name} />
-              <img class="img2" src={product.img2} alt={product.display_name} />
-              <img class="img3" src={product.img3} alt={product.display_name} />
-              <img class="img4" src={product.img4} alt={product.display_name} />
-            </div>
-            <div class="grid_1-1-1-1">
-              <img class="gridimg1" src={product.img1} alt={product.display_name} />
-              <img class="gridimg2" src={product.img2} alt={product.display_name} />
-              <img class="gridimg3" src={product.img3} alt={product.display_name} />
-              <img class="gridimg4" src={product.img4} alt={product.display_name} />
-            </div>
-          </section>
+          <ProductPictures
+            img1={product.img1}
+            img2={product.img2}
+            img3={product.img3}
+            img4={product.img4}
+            display_name={product.display_name}
+          />
           <p>
             <strong>Bønne: {product.bean}</strong>
           </p>
@@ -133,12 +125,13 @@ const product = data[0];
     }
     <Brewguide />
     <section class="margin">
-   <h2>Se vores unikke kaffeudvalg</h2>
+      <h2>Se vores unikke kaffeudvalg</h2>
       <p>
         Oplev vores udvalg af selvristede kaffebønner med forskellige
         smagsnuancer og ristegrader – tilpasset enhver kaffesmag.
       </p>
-    </section>    <Productslider />
+    </section>
+    <Productslider />
   </main>
   <footer>
     <Footer />
@@ -247,78 +240,3 @@ const product = data[0];
     }
   }
 </style>
-
-<script>
-  import { getConfiguredImageService } from "astro:assets";
-
-  // Definer variablerne globalt
-  let image1, image2, image3, image4;
-  let currentIndex = 0;
-
-  window.addEventListener("load", start);
-
-  function start() {
-    // Initialiser variablerne
-    image1 = document.querySelector(".img1");
-    image2 = document.querySelector(".img2");
-    image3 = document.querySelector(".img3");
-    image4 = document.querySelector(".img4");
-
-    const gridimage1 = document.querySelector(".gridimg1");
-    const gridimage2 = document.querySelector(".gridimg2");
-    const gridimage3 = document.querySelector(".gridimg3");
-    const gridimage4 = document.querySelector(".gridimg4");
-
-    // Skjul alle sektioner som standard
-    hideAllScreens();
-    image1?.classList.remove("hide");
-    gridimage1?.classList.add("addborder");
-
-    console.log("indlæst...");
-
-    // Tilføj event listeners
-    gridimage1?.addEventListener("click", () => {
-      hideAllScreens();
-      image1?.classList.remove("hide");
-      gridimage1?.classList.add("addborder");
-      [gridimage2, gridimage3, gridimage4].forEach((gridimage) => {
-        gridimage?.classList.remove("addborder");
-      });
-      // forEach er en metode i JavaScript, der bruges til at iterere over hvert element i et array. For hvert element i arrayet udfører den en funktion, som du definerer.
-    });
-
-    gridimage2?.addEventListener("click", () => {
-      hideAllScreens();
-      image2?.classList.remove("hide");
-      gridimage2?.classList.add("addborder");
-      [gridimage1, gridimage3, gridimage4].forEach((gridimage) => {
-        gridimage?.classList.remove("addborder");
-      });
-    });
-
-    gridimage3?.addEventListener("click", () => {
-      hideAllScreens();
-      image3?.classList.remove("hide");
-      gridimage3?.classList.add("addborder");
-      [gridimage1, gridimage2, gridimage4].forEach((gridimage) => {
-        gridimage?.classList.remove("addborder");
-      });
-    });
-
-    gridimage4?.addEventListener("click", () => {
-      hideAllScreens();
-      gridimage4?.classList.add("addborder");
-      image4?.classList.remove("hide");
-      [gridimage1, gridimage2, gridimage3].forEach((gridimage) => {
-        gridimage?.classList.remove("addborder");
-      });
-    });
-  }
-
-  function hideAllScreens() {
-    image1?.classList.add("hide");
-    image2?.classList.add("hide");
-    image3?.classList.add("hide");
-    image4?.classList.add("hide");
-  }
-</script>

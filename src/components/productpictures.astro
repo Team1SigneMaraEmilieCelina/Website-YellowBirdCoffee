@@ -1,0 +1,151 @@
+---
+const { img1, img2, img3, img4, display_name } = Astro.props;
+---
+
+<section class="productpictures">
+  <img class="img1" src={img1} alt={display_name} />
+  <img class="img2" src={img2} alt={display_name} />
+  <img class="img3" src={img3} alt={display_name} />
+  <img class="img4" src={img4} alt={display_name} />
+  <div class="grid_1-1-1-1">
+    <img class="gridimg1" src={img1} alt={display_name} />
+    <img class="gridimg2" src={img2} alt={display_name} />
+    <img class="gridimg3" src={img3} alt={display_name} />
+    <img class="gridimg4" src={img4} alt={display_name} />
+  </div>
+</section>
+
+<style>
+  .productpictures {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  img {
+    width: 100%;
+    aspect-ratio: 1 / 1.5;
+    object-fit: cover;
+  }
+
+  .grid_1-1-1-1 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .grid_1-1-1-1 img {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+  }
+
+  .addborder {
+    border: solid 1px var(--black-color);
+  }
+
+  .hide {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .productpictures {
+      display: grid;
+      grid-template-columns: 1fr 5fr;
+      gap: 20px;
+    }
+
+    .grid_1-1-1-1 {
+      grid-column: 1;
+      grid-row: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 0;
+      align-self: start;
+    }
+
+    .grid_1-1-1-1 img {
+      width: 124px;
+    }
+
+    .img1,
+    .img2,
+    .img3,
+    .img4 {
+      grid-column: 2;
+      grid-row: 1 / span 4;
+    }
+  }
+</style>
+
+<script>
+  // Definer variablerne globalt
+  let image1, image2, image3, image4;
+
+  window.addEventListener("load", start);
+
+  function start() {
+    // Initialiser variablerne
+    image1 = document.querySelector(".img1");
+    image2 = document.querySelector(".img2");
+    image3 = document.querySelector(".img3");
+    image4 = document.querySelector(".img4");
+
+    const gridimage1 = document.querySelector(".gridimg1");
+    const gridimage2 = document.querySelector(".gridimg2");
+    const gridimage3 = document.querySelector(".gridimg3");
+    const gridimage4 = document.querySelector(".gridimg4");
+
+    // Skjul alle sektioner som standard
+    hideAllScreens();
+    image1?.classList.remove("hide");
+    gridimage1?.classList.add("addborder");
+
+    // Tilføj event listeners
+    gridimage1?.addEventListener("click", () => {
+      hideAllScreens();
+      image1?.classList.remove("hide");
+      gridimage1?.classList.add("addborder");
+      [gridimage2, gridimage3, gridimage4].forEach((gridimage) => {
+        gridimage?.classList.remove("addborder");
+      });
+      // forEach er en metode i JavaScript, der bruges til at iterere over hvert element i et array. For hvert element i arrayet udfører den en funktion, som du definerer.
+    });
+
+    gridimage2?.addEventListener("click", () => {
+      hideAllScreens();
+      image2?.classList.remove("hide");
+      gridimage2?.classList.add("addborder");
+      [gridimage1, gridimage3, gridimage4].forEach((gridimage) => {
+        gridimage?.classList.remove("addborder");
+      });
+    });
+
+    gridimage3?.addEventListener("click", () => {
+      hideAllScreens();
+      image3?.classList.remove("hide");
+      gridimage3?.classList.add("addborder");
+      [gridimage1, gridimage2, gridimage4].forEach((gridimage) => {
+        gridimage?.classList.remove("addborder");
+      });
+    });
+
+    gridimage4?.addEventListener("click", () => {
+      hideAllScreens();
+      image4?.classList.remove("hide");
+      gridimage4?.classList.add("addborder");
+      [gridimage1, gridimage2, gridimage3].forEach((gridimage) => {
+        gridimage?.classList.remove("addborder");
+      });
+    });
+  }
+
+  function hideAllScreens() {
+    image1?.classList.add("hide");
+    image2?.classList.add("hide");
+    image3?.classList.add("hide");
+    image4?.classList.add("hide");
+  }
+</script>
