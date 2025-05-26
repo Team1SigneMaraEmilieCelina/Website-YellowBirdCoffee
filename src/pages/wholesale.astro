@@ -17,7 +17,7 @@ import Contactform from "../components/contactform.astro";
       <div>
         <h3>Skræddersyede løsninger</h3>
         <p>
-          Vi har solid erfaring med at samarbejde med både små og store virksomheder og tilbyder skræddersyede løsninger inden for træning, udstyr og naturligvis kvalitetskaffe. Ønsker din virksomhed at tilbyde kaffe i absolut topklasse, tager vi
+          Vi har solid erfaring med at samarbejde med både små og store virksomheder og tilbyder skræddersyede løsninger inden for træning, udstyr og naturligvis kvalitetskaffe. Ønsker din virksomhed at tilbyde kaffe i absolut topklasse, tager vi
           gerne en uforpligtende dialog om et muligt samarbejde.
         </p>
         <p>Kontakt os for at høre nærmere.</p>
@@ -60,13 +60,13 @@ import Contactform from "../components/contactform.astro";
 
 <style>
   img {
-    height: 100%;
-    margin-top: 20px;
-    justify-self: end;
-    padding: 0;
+    width: 100%;
+    height: auto;
+    max-height: 400px; /* Prevent excessive height */
     object-fit: cover;
-    max-width: 100%;
+    margin-top: 20px;
   }
+
   .green {
     background-color: var(--green-color);
     color: var(--white-color);
@@ -98,12 +98,13 @@ import Contactform from "../components/contactform.astro";
     margin-top: 20px;
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 250px;
+    margin-bottom: 150px; /* Reduced from 250px for mobile */
   }
 
   .base-image {
     width: 70%;
     height: auto;
+    max-height: 300px; /* Added max-height constraint */
     display: block;
     position: relative;
     margin-left: 50px;
@@ -112,13 +113,13 @@ import Contactform from "../components/contactform.astro";
   .overlap-image {
     position: absolute;
     width: 40%;
+    max-width: 200px; /* Added max-width constraint */
+    max-height: 200px; /* Added max-height constraint */
     left: 0;
     top: 150px;
     z-index: 3;
     border: solid 7px var(--background-color);
-  }
-  .billede {
-    aspect-ratio: 1.3 / 1;
+    object-fit: cover;
   }
 
   @media (min-width: 768px) {
@@ -137,9 +138,16 @@ import Contactform from "../components/contactform.astro";
       column-gap: 70px;
     }
     img {
-      max-widthth: 100%;
-      height: 100%;
-      object-fit: cover;
+      max-height: none; /* Remove max-height constraint for desktop */
+    }
+
+    .base-image {
+      max-height: none;
+    }
+
+    .overlap-image {
+      max-width: none;
+      max-height: none;
     }
     a {
       font-size: 20px;
