@@ -1,14 +1,14 @@
 ---
 import Amount from "./amount.astro";
 import Deliverydiscount from "./deliverydiscount.astro";
+import Productpictures from "./productpictures.astro";
 import RoundCTA from "./roundCTA.astro";
 import Selectmenu from "./selectmenu.astro";
-const { navn, beskrivelse } = Astro.props;
+const { navn, beskrivelse, img1, img2, img3, img4 } = Astro.props;
 ---
 
 <article class="grid_1-1">
-  <!-- komponent med billeder -->
-  <img src="/img/coffeebags.webp" alt="" />
+  <Productpictures img1={img1} img2={img2} img3={img3} img4={img4} />
   <div>
     <h2>{navn}</h2>
     <p>{beskrivelse}</p>
