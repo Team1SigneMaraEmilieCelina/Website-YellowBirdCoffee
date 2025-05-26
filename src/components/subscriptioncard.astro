@@ -4,19 +4,27 @@ import Deliverydiscount from "./deliverydiscount.astro";
 import Productpictures from "./productpictures.astro";
 import RoundCTA from "./roundCTA.astro";
 import Selectmenu from "./selectmenu.astro";
+import Amountcta from "./amountcta.astro";
+
 const { navn, beskrivelse, img1, img2, img3, img4 } = Astro.props;
 ---
 
 <article class="grid_1-1">
-  <Productpictures img1={img1} img2={img2} img3={img3} img4={img4} />
+  <Productpictures img1={img1} img2={img2} img3={img4} />
   <div>
     <h2>{navn}</h2>
     <p>{beskrivelse}</p>
     <Deliverydiscount />
     <Amount />
-    <Selectmenu labelp="Hvor ofte vil du have leveret" placeholder="Vælg en mulighed" options={["Hver 2. uge", "Hver måned", "Hver 2. måned"]} />
+    <Selectmenu
+      labelp="Hvor ofte vil du have leveret"
+      placeholder="Vælg en mulighed"
+      options={["Hver 2. uge", "Hver måned", "Hver 2. måned"]}
+    />
     <p>Antal poser pr. levering</p>
-    <div>
+    <div class="cta-row">
+      <Amountcta />
+
       <RoundCTA ctaText="Læg i kurv" />
     </div>
   </div>
@@ -25,6 +33,12 @@ const { navn, beskrivelse, img1, img2, img3, img4 } = Astro.props;
 <style>
   article {
     margin: 20px 20px;
+  }
+  .cta-row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 18px;
   }
   @media (min-width: 768px) {
     .grid_1-1 {

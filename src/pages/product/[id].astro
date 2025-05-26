@@ -4,9 +4,10 @@ import Menublack from "../../components/menublack.astro";
 import Footer from "../../components/footer.astro";
 import Amount from "../../components/amount.astro";
 import Brewguide from "../../components/brewguide.astro";
-import Menublack from "../../components/menublack.astro";
 import Productslider from "../../components/productslider.astro";
 import ProductPictures from "../../components/productpictures.astro";
+import AmountCTA from "../../components/amountcta.astro";
+import RoundCTA from "../../components/roundCTA.astro";
 
 // Vi henter alle ID’er til de produkter, vi gerne vil lave individuelle sider for:
 export async function getStaticPaths() {
@@ -116,12 +117,18 @@ const product = data[0];
             </div>
             <Amount />
           </div>
+          <div class="cta-row">
+            <AmountCTA />
+
+            <RoundCTA ctaText="Læg i kurv" />
+          </div>
         </article>
       ) : (
         // Hvis produktet ikke findes, vis en fejlbesked
         <p>Produktet blev ikke fundet.</p>
       )
     }
+
     <Brewguide />
     <section class="margin">
       <h2>Se vores unikke kaffeudvalg</h2>
@@ -176,6 +183,13 @@ const product = data[0];
   .icons p {
     display: flex;
     align-items: center;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 18px;
   }
 
   @media (min-width: 380px) {
