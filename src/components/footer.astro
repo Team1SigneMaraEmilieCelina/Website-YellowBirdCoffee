@@ -123,7 +123,8 @@ import Socials from "../components/socials.astro";
   }
 
   .footer-container p {
-    line-height: 5px;
+    white-space: nowrap;
+    line-height: 2px;
   }
 
   .line {
@@ -172,7 +173,7 @@ import Socials from "../components/socials.astro";
 
   .socials {
     display: flex;
-    gap: 1rem;
+    gap: 20px;
   }
 
   /* Sætter i 1-1 grid */
@@ -232,17 +233,18 @@ import Socials from "../components/socials.astro";
     }
 
     .signup-container {
-      grid-column: 1;
+      grid-column: 3;
       grid-row: 1;
       justify-self: start;
       margin-left: 3rem;
+      width: 90%;
     }
 
     .socials {
-      grid-column: 1;
+      grid-column: 3;
       grid-row: 2;
       align-self: end;
-      justify-self: start;
+      justify-self: end;
       margin-left: 3rem;
       margin-bottom: 2rem;
     }
@@ -257,13 +259,13 @@ import Socials from "../components/socials.astro";
     }
 
     .contact {
-      grid-column: 3;
+      grid-column: 1;
       grid-row: 1 / span 2;
     }
 
-    /* Tilpasser form til web */
     .form {
       width: 100%;
+      max-width: none;
     }
   }
 </style>
