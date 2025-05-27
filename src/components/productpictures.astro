@@ -98,71 +98,76 @@ const { img1, img2, img3, img4, display_name, alt1, alt2, alt3, alt4 } =
 </style>
 
 <script>
-  // Definer variablerne globalt
-  let image1, image2, image3, image4;
+  window.addEventListener("DOMContentLoaded", function () {
+    const img1 = document.querySelector(".img1");
+    const img2 = document.querySelector(".img2");
+    const img3 = document.querySelector(".img3");
+    const img4 = document.querySelector(".img4");
+    const thumb1 = document.querySelector(".gridimg1");
+    const thumb2 = document.querySelector(".gridimg2");
+    const thumb3 = document.querySelector(".gridimg3");
+    const thumb4 = document.querySelector(".gridimg4");
 
-  window.addEventListener("load", start);
+    // if bruges til at sikre, at billederne er tilgængelige, før vi tilføjer event listeners
 
-  function start() {
-    // Initialiser variablerne
-    image1 = document.querySelector(".img1");
-    image2 = document.querySelector(".img2");
-    image3 = document.querySelector(".img3");
-    image4 = document.querySelector(".img4");
+    if (img1 && img2 && img3 && img4 && thumb1 && thumb2 && thumb3 && thumb4) {
+      // Vis kun første billede og marker første thumb
+      img1.classList.remove("hide");
+      img2.classList.add("hide");
+      img3.classList.add("hide");
+      img4.classList.add("hide");
+      thumb1.classList.add("addborder");
+      thumb2.classList.remove("addborder");
+      thumb3.classList.remove("addborder");
+      thumb4.classList.remove("addborder");
 
-    const gridimage1 = document.querySelector(".gridimg1");
-    const gridimage2 = document.querySelector(".gridimg2");
-    const gridimage3 = document.querySelector(".gridimg3");
-    const gridimage4 = document.querySelector(".gridimg4");
-
-    // Skjul alle sektioner som standard
-    hideAllScreens();
-    image1?.classList.remove("hide");
-    gridimage1?.classList.add("addborder");
-
-    // Tilføj event listeners
-    gridimage1?.addEventListener("click", () => {
-      hideAllScreens();
-      image1?.classList.remove("hide");
-      gridimage1?.classList.add("addborder");
-      [gridimage2, gridimage3, gridimage4].forEach((gridimage) => {
-        gridimage?.classList.remove("addborder");
+      // Klik på thumb1
+      thumb1.addEventListener("click", function () {
+        img1.classList.remove("hide");
+        img2.classList.add("hide");
+        img3.classList.add("hide");
+        img4.classList.add("hide");
+        thumb1.classList.add("addborder");
+        thumb2.classList.remove("addborder");
+        thumb3.classList.remove("addborder");
+        thumb4.classList.remove("addborder");
       });
-      // forEach er en metode i JavaScript, der bruges til at iterere over hvert element i et array. For hvert element i arrayet udfører den en funktion, som du definerer.
-    });
 
-    gridimage2?.addEventListener("click", () => {
-      hideAllScreens();
-      image2?.classList.remove("hide");
-      gridimage2?.classList.add("addborder");
-      [gridimage1, gridimage3, gridimage4].forEach((gridimage) => {
-        gridimage?.classList.remove("addborder");
+      // Klik på thumb2
+      thumb2.addEventListener("click", function () {
+        img1.classList.add("hide");
+        img2.classList.remove("hide");
+        img3.classList.add("hide");
+        img4.classList.add("hide");
+        thumb1.classList.remove("addborder");
+        thumb2.classList.add("addborder");
+        thumb3.classList.remove("addborder");
+        thumb4.classList.remove("addborder");
       });
-    });
 
-    gridimage3?.addEventListener("click", () => {
-      hideAllScreens();
-      image3?.classList.remove("hide");
-      gridimage3?.classList.add("addborder");
-      [gridimage1, gridimage2, gridimage4].forEach((gridimage) => {
-        gridimage?.classList.remove("addborder");
+      // Klik på thumb3
+      thumb3.addEventListener("click", function () {
+        img1.classList.add("hide");
+        img2.classList.add("hide");
+        img3.classList.remove("hide");
+        img4.classList.add("hide");
+        thumb1.classList.remove("addborder");
+        thumb2.classList.remove("addborder");
+        thumb3.classList.add("addborder");
+        thumb4.classList.remove("addborder");
       });
-    });
 
-    gridimage4?.addEventListener("click", () => {
-      hideAllScreens();
-      image4?.classList.remove("hide");
-      gridimage4?.classList.add("addborder");
-      [gridimage1, gridimage2, gridimage3].forEach((gridimage) => {
-        gridimage?.classList.remove("addborder");
+      // Klik på thumb4
+      thumb4.addEventListener("click", function () {
+        img1.classList.add("hide");
+        img2.classList.add("hide");
+        img3.classList.add("hide");
+        img4.classList.remove("hide");
+        thumb1.classList.remove("addborder");
+        thumb2.classList.remove("addborder");
+        thumb3.classList.remove("addborder");
+        thumb4.classList.add("addborder");
       });
-    });
-  }
-
-  function hideAllScreens() {
-    image1?.classList.add("hide");
-    image2?.classList.add("hide");
-    image3?.classList.add("hide");
-    image4?.classList.add("hide");
-  }
+    }
+  });
 </script>

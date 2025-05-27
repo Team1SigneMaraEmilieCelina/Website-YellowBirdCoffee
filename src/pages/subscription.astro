@@ -135,93 +135,124 @@ import SquareCTA from "../components/SquareCTA.astro";
 
 <script>
   window.addEventListener("load", start);
-
   function start() {
     hideAllScreens();
     document.querySelector("#light")?.classList.remove("hide");
-    document.querySelector("#light")?.classList.add("front");
-    initializeProductPictures("light");
 
-    document
-      .querySelector("#medium-cta")
-      ?.addEventListener("click", () => switchScreen("medium"));
-    document
-      .querySelector("#dark-cta")
-      ?.addEventListener("click", () => switchScreen("dark"));
-    document
-      .querySelector("#mixed-cta")
-      ?.addEventListener("click", () => switchScreen("mixed"));
-    document
-      .querySelector("#light-cta")
-      ?.addEventListener("click", () => switchScreen("light"));
+    document.querySelector("#medium-cta")?.addEventListener("click", medium);
+    document.querySelector("#dark-cta")?.addEventListener("click", dark);
+    document.querySelector("#mixed-cta")?.addEventListener("click", mixed);
   }
 
   function hideAllScreens() {
-    ["light", "medium", "dark", "mixed"].forEach((id) => {
-      document.querySelector(`#${id}`)?.classList.add("hide");
-      document.querySelector(`#${id}`)?.classList.remove("front");
-      document.querySelector(`#${id}-cta`)?.classList.remove("selected");
-    });
+    document.querySelector("#light")?.classList.add("hide");
+    document.querySelector("#medium")?.classList.add("hide");
+    document.querySelector("#dark")?.classList.add("hide");
+    document.querySelector("#mixed")?.classList.add("hide");
   }
 
-  function switchScreen(id) {
+  function medium() {
     hideAllScreens();
-    document.querySelector(`#${id}`)?.classList.remove("hide");
-    document.querySelector(`#${id}`)?.classList.add("front");
-    document.querySelector(`#${id}-cta`)?.classList.add("selected");
-    initializeProductPictures(id);
+    document.querySelector("#medium")?.classList.remove("hide");
+
+    document.querySelector("#light-cta")?.addEventListener("click", start);
+    document.querySelector("#dark-cta")?.addEventListener("click", dark);
+    document.querySelector("#mixed-cta")?.addEventListener("click", mixed);
   }
 
-  function initializeProductPictures(id) {
-    const currentSection = document.querySelector(`#${id}`);
-    if (!currentSection) return;
+  function dark() {
+    hideAllScreens();
+    document.querySelector("#dark")?.classList.remove("hide");
 
-    const image1 = currentSection.querySelector(".img1");
-    const image2 = currentSection.querySelector(".img2");
-    const image3 = currentSection.querySelector(".img3");
-    const image4 = currentSection.querySelector(".img4");
-
-    const gridimage1 = currentSection.querySelector(".gridimg1");
-    const gridimage2 = currentSection.querySelector(".gridimg2");
-    const gridimage3 = currentSection.querySelector(".gridimg3");
-    const gridimage4 = currentSection.querySelector(".gridimg4");
-
-    // Hide all images first
-    [image1, image2, image3, image4].forEach((img) =>
-      img?.classList.add("hide")
-    );
-
-    // Show first image and add border to first thumbnail
-    image1?.classList.remove("hide");
-    gridimage1?.classList.add("addborder");
-
-    // Add click handlers for thumbnails
-    gridimage1?.addEventListener("click", () => switchImage(currentSection, 1));
-    gridimage2?.addEventListener("click", () => switchImage(currentSection, 2));
-    gridimage3?.addEventListener("click", () => switchImage(currentSection, 3));
-    gridimage4?.addEventListener("click", () => switchImage(currentSection, 4));
+    document.querySelector("#light-cta")?.addEventListener("click", start);
+    document.querySelector("#medium-cta")?.addEventListener("click", medium);
+    document.querySelector("#mixed-cta")?.addEventListener("click", mixed);
   }
 
-  function switchImage(section, imageNum) {
-    const images = [
-      section.querySelector(".img1"),
-      section.querySelector(".img2"),
-      section.querySelector(".img3"),
-      section.querySelector(".img4"),
-    ];
-    const thumbnails = [
-      section.querySelector(".gridimg1"),
-      section.querySelector(".gridimg2"),
-      section.querySelector(".gridimg3"),
-      section.querySelector(".gridimg4"),
-    ];
+  function mixed() {
+    hideAllScreens();
+    document.querySelector("#mixed")?.classList.remove("hide");
 
-    // Hide all images and remove borders
-    images.forEach((img) => img?.classList.add("hide"));
-    thumbnails.forEach((thumb) => thumb?.classList.remove("addborder"));
-
-    // Show selected image and add border
-    images[imageNum - 1]?.classList.remove("hide");
-    thumbnails[imageNum - 1]?.classList.add("addborder");
+    document.querySelector("#light-cta")?.addEventListener("click", start);
+    document.querySelector("#medium-cta")?.addEventListener("click", medium);
+    document.querySelector("#dark-cta")?.addEventListener("click", dark);
   }
+
+  // BRUGER SAMME KODE SOM I PRODUCTPICTURES TIL AT HÅNDTERE THUMBNAILS
+  // Således at koden virker for alle sektioner
+
+  // I productpictures.astro var der ikke advasler, fordi der kun var ét sæt billeder.
+  // I denne fil kører koden for hver enkelt .productpictures-sektion.
+  // Editoren kan derfor ikke garantere, at alle billeder/thumbs findes i hver sektion
+  // Derfor bruger vi "!" for at fortælle TypeScript, at vi er sikre på, at de findes, så advarslerne ikke vises.
+
+  // Produktbilleder thumbnail-funktionalitet til alle sektioner
+  document.querySelectorAll(".productpictures").forEach(function (section) {
+    var img1 = section.querySelector(".img1");
+    var img2 = section.querySelector(".img2");
+    var img3 = section.querySelector(".img3");
+    var img4 = section.querySelector(".img4");
+    var thumb1 = section.querySelector(".gridimg1");
+    var thumb2 = section.querySelector(".gridimg2");
+    var thumb3 = section.querySelector(".gridimg3");
+    var thumb4 = section.querySelector(".gridimg4");
+
+    // Vis kun første billede og marker første thumb
+    img1!.classList.remove("hide");
+    img2!.classList.add("hide");
+    img3!.classList.add("hide");
+    img4!.classList.add("hide");
+    thumb1!.classList.add("addborder");
+    thumb2!.classList.remove("addborder");
+    thumb3!.classList.remove("addborder");
+    thumb4!.classList.remove("addborder");
+
+    // Klik på thumb1
+    thumb1!.addEventListener("click", function () {
+      img1!.classList.remove("hide");
+      img2!.classList.add("hide");
+      img3!.classList.add("hide");
+      img4!.classList.add("hide");
+      thumb1!.classList.add("addborder");
+      thumb2!.classList.remove("addborder");
+      thumb3!.classList.remove("addborder");
+      thumb4!.classList.remove("addborder");
+    });
+
+    // Klik på thumb2
+    thumb2!.addEventListener("click", function () {
+      img1!.classList.add("hide");
+      img2!.classList.remove("hide");
+      img3!.classList.add("hide");
+      img4!.classList.add("hide");
+      thumb1!.classList.remove("addborder");
+      thumb2!.classList.add("addborder");
+      thumb3!.classList.remove("addborder");
+      thumb4!.classList.remove("addborder");
+    });
+
+    // Klik på thumb3
+    thumb3!.addEventListener("click", function () {
+      img1!.classList.add("hide");
+      img2!.classList.add("hide");
+      img3!.classList.remove("hide");
+      img4!.classList.add("hide");
+      thumb1!.classList.remove("addborder");
+      thumb2!.classList.remove("addborder");
+      thumb3!.classList.add("addborder");
+      thumb4!.classList.remove("addborder");
+    });
+
+    // Klik på thumb4
+    thumb4!.addEventListener("click", function () {
+      img1!.classList.add("hide");
+      img2!.classList.add("hide");
+      img3!.classList.add("hide");
+      img4!.classList.remove("hide");
+      thumb1!.classList.remove("addborder");
+      thumb2!.classList.remove("addborder");
+      thumb3!.classList.remove("addborder");
+      thumb4!.classList.add("addborder");
+    });
+  });
 </script>
