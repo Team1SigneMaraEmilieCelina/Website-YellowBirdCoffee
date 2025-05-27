@@ -50,30 +50,6 @@ const data = await fetch(url, options).then((res) => res.json());
 // Vi får et array, men der er kun ét produkt i – så vi tager det første (og eneste)
 const product = data[0];
 
-// apikey:
-// Forklaring: En slags adgangskode, der giver os lov til at hente data fra databasen.
-// Eksempel: Skal med i vores fetch-kald, ellers får vi ikke adgang.
-
-// array
-// En liste med flere ting i – fx en liste med produkter.
-// Eksempel: data = [produkt1, produkt2, produkt3].
-
-// async
-// Betyder at funktionen kan arbejde “asynkront” – altså vente på data uden at fryse alt andet.
-// Eksempel: Bruges sammen med await.
-
-// async
-// Betyder at funktionen kan arbejde “asynkront” – altså vente på data uden at fryse alt andet.
-// Eksempel: Bruges sammen med await.
-
-// Astro.params
-// Giver adgang til den værdi, der står i URL’en – fx produktets ID.
-// Eksempel: På /produkt/3 er Astro.params.id = 3.
-// Params Betyder “parametre” – altså værdier fra URL’en.
-
-// getStaticPaths()
-// En Astro-funktion, der bygger statiske sider for hver produkt-id.
-// Eksempel: Bruges til at lave sider som /produkt/1, /produkt/2 osv.
 ---
 
 <Layout>
