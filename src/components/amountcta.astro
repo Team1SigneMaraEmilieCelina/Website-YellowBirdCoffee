@@ -1,13 +1,8 @@
 <article>
-  <button
-    type="button"
-    class="roundcta-amount"
-    id="amount-btn"
-    aria-label="Vælg antal poser"
-  >
-    <span id="amount-minus">-</span>
-    <span id="amount-value">1</span>
-    <span id="amount-plus">+</span>
+  <button type="button" class="roundcta-amount" aria-label="Vælg antal poser">
+    <span class="amount-minus">-</span>
+    <span class="amount-value">1</span>
+    <span class="amount-plus">+</span>
   </button>
 </article>
 
@@ -36,28 +31,28 @@
 </style>
 
 <script>
-  // Når siden er klar, find minus, plus og tallet
+  // Find alle knapper med klassen roundcta-amount
   document.addEventListener("DOMContentLoaded", function () {
-    var minus = document.getElementById("amount-minus");
-    var plus = document.getElementById("amount-plus");
-    var value = document.getElementById("amount-value");
-    var amount = 1;
-    // Når man klikker minus, træk 1 fra (men ikke under 1)
-    if (minus) {
-      minus.onclick = function () {
-        if (amount > 1) {
-          amount = amount - 1;
+    document.querySelectorAll(".roundcta-amount").forEach(function (btn) {
+      var minus = btn.querySelector(".amount-minus") as HTMLSpanElement | null;
+      var plus = btn.querySelector(".amount-plus") as HTMLSpanElement | null;
+      var value = btn.querySelector(".amount-value") as HTMLSpanElement | null;
+      var amount = 1;
+      if (minus) {
+        minus.onclick = function () {
+          if (amount > 1) {
+            amount = amount - 1;
+            if (value) value.textContent = amount + "";
+          }
+        };
+      }
+      if (plus) {
+        plus.onclick = function () {
+          amount = amount + 1;
           if (value) value.textContent = amount + "";
-        }
-      };
-    }
-    // Når man klikker plus, læg 1 til
-    if (plus) {
-      plus.onclick = function () {
-        amount = amount + 1;
-        if (value) value.textContent = amount + "";
-      };
-    }
+        };
+      }
+    });
   });
 
   // GLOSER :
