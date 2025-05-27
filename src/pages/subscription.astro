@@ -57,14 +57,17 @@ import SquareCTA from "../components/SquareCTA.astro";
           img3="/img/blue.webp"
           img4="/img/closeupyrp.webp"
           navn="Bland selv kaffe"
-          beskrivelse="Til dig, der elsker god kaffe og gerne vil overraskes med skiftende udtryk og smagsoplevelser – uden at skulle vælge selv."
+          beskrivelse="Til dig, der elsker god kaffe og gerne vil sammensætte din egen smagsrejse – vælg selv dine favoritter og skab dit personlige abonnement."
         />
       </div>
     </article>
 
     <div>
       <h2 class="margin">Vores bønner</h2>
-      <p class="margin">Oplev vores udvalg af selvristede kaffebønner med forskellige smagsnuancer og ristegrader – tilpasset enhver kaffesmag.</p>
+      <p class="margin">
+        Oplev vores udvalg af selvristede kaffebønner med forskellige
+        smagsnuancer og ristegrader – tilpasset enhver kaffesmag.
+      </p>
       <Productslider />
     </div>
   </main>
@@ -139,10 +142,18 @@ import SquareCTA from "../components/SquareCTA.astro";
     document.querySelector("#light")?.classList.add("front");
     initializeProductPictures("light");
 
-    document.querySelector("#medium-cta")?.addEventListener("click", () => switchScreen("medium"));
-    document.querySelector("#dark-cta")?.addEventListener("click", () => switchScreen("dark"));
-    document.querySelector("#mixed-cta")?.addEventListener("click", () => switchScreen("mixed"));
-    document.querySelector("#light-cta")?.addEventListener("click", () => switchScreen("light"));
+    document
+      .querySelector("#medium-cta")
+      ?.addEventListener("click", () => switchScreen("medium"));
+    document
+      .querySelector("#dark-cta")
+      ?.addEventListener("click", () => switchScreen("dark"));
+    document
+      .querySelector("#mixed-cta")
+      ?.addEventListener("click", () => switchScreen("mixed"));
+    document
+      .querySelector("#light-cta")
+      ?.addEventListener("click", () => switchScreen("light"));
   }
 
   function hideAllScreens() {
@@ -176,7 +187,9 @@ import SquareCTA from "../components/SquareCTA.astro";
     const gridimage4 = currentSection.querySelector(".gridimg4");
 
     // Hide all images first
-    [image1, image2, image3, image4].forEach((img) => img?.classList.add("hide"));
+    [image1, image2, image3, image4].forEach((img) =>
+      img?.classList.add("hide")
+    );
 
     // Show first image and add border to first thumbnail
     image1?.classList.remove("hide");
@@ -190,8 +203,18 @@ import SquareCTA from "../components/SquareCTA.astro";
   }
 
   function switchImage(section, imageNum) {
-    const images = [section.querySelector(".img1"), section.querySelector(".img2"), section.querySelector(".img3"), section.querySelector(".img4")];
-    const thumbnails = [section.querySelector(".gridimg1"), section.querySelector(".gridimg2"), section.querySelector(".gridimg3"), section.querySelector(".gridimg4")];
+    const images = [
+      section.querySelector(".img1"),
+      section.querySelector(".img2"),
+      section.querySelector(".img3"),
+      section.querySelector(".img4"),
+    ];
+    const thumbnails = [
+      section.querySelector(".gridimg1"),
+      section.querySelector(".gridimg2"),
+      section.querySelector(".gridimg3"),
+      section.querySelector(".gridimg4"),
+    ];
 
     // Hide all images and remove borders
     images.forEach((img) => img?.classList.add("hide"));
