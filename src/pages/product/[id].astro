@@ -90,7 +90,7 @@ const product = data[0];
         <article class="margin grid_1-1">
           <h1 class="right">{product.display_name}</h1>
           <div class="left">
-            <ProductPictures img1={product.img1} img2={product.img2} img3={product.img3} img4={product.img4} />
+            <ProductPictures img1={product.img1} img2={product.img2} img3={product.img3} img4={product.img4} alt1={product.display_name || "Produktbillede"} alt2={product.display_name || "Produktbillede"} alt3={product.display_name || "Produktbillede"} alt4={product.display_name || "Produktbillede"} />
           </div>
           <div class="right">
             <p>
@@ -106,15 +106,15 @@ const product = data[0];
             <div >
               <div class="icons">
                 <div>
-                <img src={product.icon1} />
+                <img src={product.icon1} alt={product.icon1_text || ""} />
                 <p>{product.icon1_text}</p>
               </div>
               <div>
-                <img src={product.icon2} />
+                <img src={product.icon2} alt={product.icon2_text || ""} />
                 <p>{product.icon2_text}</p>
               </div>
               <div>
-                <img src={product.icon3} />
+                <img src={product.icon3} alt={product.icon3_text || ""} />
                 <p>{product.icon3_text}</p>
               </div>
             </div>
@@ -139,9 +139,7 @@ const product = data[0];
     </section>
     <Productslider />
   </main>
-  
-    <Footer />
- 
+  <Footer />
 </Layout>
 
 <style>
