@@ -50,6 +50,30 @@ const data = await fetch(url, options).then((res) => res.json());
 // Vi får et array, men der er kun ét produkt i – så vi tager det første (og eneste)
 const product = data[0];
 
+// apikey:
+// Forklaring: En slags adgangskode, der giver os lov til at hente data fra databasen.
+// Eksempel: Skal med i vores fetch-kald, ellers får vi ikke adgang.
+
+// array
+// En liste med flere ting i – fx en liste med produkter.
+// Eksempel: data = [produkt1, produkt2, produkt3].
+
+// async
+// Betyder at funktionen kan arbejde “asynkront” – altså vente på data uden at fryse alt andet.
+// Eksempel: Bruges sammen med await.
+
+// async
+// Betyder at funktionen kan arbejde “asynkront” – altså vente på data uden at fryse alt andet.
+// Eksempel: Bruges sammen med await.
+
+// Astro.params
+// Giver adgang til den værdi, der står i URL’en – fx produktets ID.
+// Eksempel: På /produkt/3 er Astro.params.id = 3.
+// Params Betyder “parametre” – altså værdier fra URL’en.
+
+// getStaticPaths()
+// En Astro-funktion, der bygger statiske sider for hver produkt-id.
+// Eksempel: Bruges til at lave sider som /produkt/1, /produkt/2 osv.
 ---
 
 <Layout>
@@ -66,7 +90,7 @@ const product = data[0];
         <article class="margin grid_1-1">
           <h1 class="right">{product.display_name}</h1>
           <div class="left">
-            <ProductPictures img1={product.img1} img2={product.img2} img3={product.img3} img4={product.img4} alt1={product.display_name || "Produktbillede"} alt2={product.display_name || "Produktbillede"} alt3={product.display_name || "Produktbillede"} alt4={product.display_name || "Produktbillede"} />
+            <ProductPictures img1={product.img1} img2={product.img2} img3={product.img3} img4={product.img4} />
           </div>
           <div class="right">
             <p>
@@ -82,15 +106,15 @@ const product = data[0];
             <div >
               <div class="icons">
                 <div>
-                <img src={product.icon1} alt={product.icon1_text || ""} />
+                <img src={product.icon1} />
                 <p>{product.icon1_text}</p>
               </div>
               <div>
-                <img src={product.icon2} alt={product.icon2_text || ""} />
+                <img src={product.icon2} />
                 <p>{product.icon2_text}</p>
               </div>
               <div>
-                <img src={product.icon3} alt={product.icon3_text || ""} />
+                <img src={product.icon3} />
                 <p>{product.icon3_text}</p>
               </div>
             </div>
@@ -115,7 +139,9 @@ const product = data[0];
     </section>
     <Productslider />
   </main>
-  <Footer />
+  
+    <Footer />
+ 
 </Layout>
 
 <style>
@@ -125,7 +151,7 @@ const product = data[0];
     background-color: var(--green-color);
     padding: 5px 7px;
     margin-bottom: 20px;
-   
+    font-size: 16px;
   }
 
   main {
@@ -145,7 +171,7 @@ const product = data[0];
     display: flex;
     flex-direction: column;
     margin-bottom: 25px;
-    align-items: start;
+    align-items: start
     margin-left: 0;
   }
   .icons div {
@@ -183,7 +209,7 @@ const product = data[0];
 
   @media (min-width: 768px) {
     a {
-      
+      font-size: 18px;
       padding: 10px 10px;
     }
 
