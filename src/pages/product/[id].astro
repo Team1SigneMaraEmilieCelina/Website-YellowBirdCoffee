@@ -13,8 +13,10 @@ import Dropdowndescription from "../../components/dropdowndescription.astro";
 // Vi henter alle ID’er til de produkter, vi gerne vil lave individuelle sider for:
 export async function getStaticPaths() {
   // Det her er nøglen til vores Supabase-database – den giver adgang til at hente data
-  const apikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
-  const url = "https://xjioilnvmmakyocqauwh.supabase.co/rest/v1/Products?select=id";
+  const apikey =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
+  const url =
+    "https://xjioilnvmmakyocqauwh.supabase.co/rest/v1/Products?select=id";
   // Her henter vi kun ID’erne fra databasen
 
   // fetch = "gå ud på nettet og hent noget"
@@ -30,15 +32,20 @@ export async function getStaticPaths() {
   // Her laver vi en liste over ID’er, som Astro bruger til at bygge en side til hvert produkt
   //  map = "for hver ting i arrayet, gør dette"
   // params = bruges af Astro til at lave sider med fx /produkt/1 and /produkt/2
-  return data.map((product) => ({
-    params: { id: product.id.toString() }, // id skal være tekst (string)
+
+  return data.map((product: { id: number }) => ({
+    // id = "parameter" – det er det, vi bruger i URL’en til at identificere hvert produkt
+    // toString() = "gør tallet til en tekststreng, så det kan bruges i URL’en"
+    // params = { id: product.id.toString() } – dette er det format, Astro forventer
+    params: { id: product.id.toString() },
   }));
 }
 
 // 2. Hent produktdata baseret på ID:
 const { id } = Astro.params; // Her får vi id’et fra URL’en – fx “3” hvis vi er på /produkt/3
 
-const apikey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
+const apikey =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhqaW9pbG52bW1ha3lvY3FhdXdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc4OTk5MzAsImV4cCI6MjA2MzQ3NTkzMH0.lJHBOdRj_eDmkVncIRtyW1Ty8UleaWHyYMXT0tNxPhs";
 const url = `https://xjioilnvmmakyocqauwh.supabase.co/rest/v1/Products?id=eq.${id}&select=*`;
 
 const options = {
@@ -83,186 +90,179 @@ const product = data[0];
   </header>
   <main>
     <div class="margin">
-     
-    <RoundCTA ctaText="Tilbage" ctaLink="/shopcoffee" />
+      <RoundCTA ctaText="Tilbage" ctaLink="/shopcoffee" />
     </div>
-    {
-      product ? (
-        
-          <article class="margin grid_1-1">
-            <h1 class="right">{product.display_name}</h1>
-            <div class="left">
-              <ProductPictures img1={product.img1} img2={product.img2} img3={product.img3} img4={product.img4} />
+
+    <article class="margin grid_1-1">
+      <h1 class="right">{product.display_name}</h1>
+      <div class="left">
+        <ProductPictures
+          img1={product.img1}
+          img2={product.img2}
+          img3={product.img3}
+          img4={product.img4}
+        />
+      </div>
+      <div class="right">
+        <p>
+          <strong>Bønne: {product.bean}</strong>
+        </p>
+        <p>
+          <strong>Pris: {product.price_250} kr. / 250g </strong>
+        </p>
+        <p>
+          <strong>Pris: {product.price_1000} kr. / 1000g</strong>
+        </p>
+        <p>{product.description}</p>
+        <div>
+          <div class="icons">
+            <div>
+              <img src={product.icon1} />
+              <p>{product.icon1_text}</p>
             </div>
-            <div class="right">
-              <p>
-                <strong>Bønne: {product.bean}</strong>
-              </p>
-              <p>
-                <strong>Pris: {product.price_250} kr. / 250g </strong>
-              </p>
-              <p>
-                <strong>Pris: {product.price_1000} kr. / 1000g</strong>
-              </p>
-              <p>{product.description}</p>
-              <div >
-                <div class="icons">
-                  <div>
-                  <img src={product.icon1} />
-                  <p>{product.icon1_text}</p>
-                </div>
-                <div>
-                  
-                <img src={product.icon1} alt={product.icon1_text} />
-                <p>{product.icon1_text}</p>
-              </div>
-              <div>
-                <img src={product.icon2} alt={product.icon2_text} />
-                <p>{product.icon2_text}</p>
-              </div>
-              <div>
-                <img src={product.icon3} alt={product.icon3_text} />
-                <p>{product.icon3_text}</p>
-                    
-              </div>
-                <Amount />
-              
-                <div class="cta-row">
-                  <AmountCTA />
+            <div>
+              <img src={product.icon1} alt={product.icon1_text} />
+              <p>{product.icon1_text}</p>
+            </div>
+            <div>
+              <img src={product.icon2} alt={product.icon2_text} />
+              <p>{product.icon2_text}</p>
+            </div>
+            <div>
+              <img src={product.icon3} alt={product.icon3_text} />
+              <p>{product.icon3_text}</p>
+            </div>
+            <Amount />
 
-                  <RoundCTA ctaText="Læg i kurv" />
-                </div>
-              </div>
-            </article>
-       
-          </>
-        ) : (
-        // Hvis produktet ikke findes, vis en fejlbesked
-        <p>Produktet blev ikke fundet.</p>
-      )
-    }
+            <div class="cta-row">
+              <AmountCTA />
 
-         <Dropdowndescription
-              displayname={product.display_name}
-              origin={product.origin}
-              bean={product.bean}
-              producer={product.producer}
-              process={product.process}
-              elevation={product.elevation}
-              detaileddescription={product.detailed_description}
-            />
+              <RoundCTA ctaText="Læg i kurv" />
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <Brewguide />
-    <section class="margin">
-      <h2>Se vores unikke kaffeudvalg</h2>
-      <p>Oplev vores udvalg af selvristede kaffebønner med forskellige smagsnuancer og ristegrader – tilpasset enhver kaffesmag.</p>
-    </section>
-    <Productslider />
-  </main>
-  
+      <Dropdowndescription
+        displayname={product.display_name}
+        origin={product.origin}
+        bean={product.bean}
+        producer={product.producer}
+        process={product.process}
+        elevation={product.elevation}
+        detaileddescription={product.detailed_description}
+      />
+      <Brewguide />
+      <section class="margin">
+        <h2>Se vores unikke kaffeudvalg</h2>
+        <p>
+          Oplev vores udvalg af selvristede kaffebønner med forskellige
+          smagsnuancer og ristegrader – tilpasset enhver kaffesmag.
+        </p>
+      </section>
+      <Productslider />
+    </article>
+
     <Footer />
- 
-</Layout>
+  </main>
 
-<style>
-  a {
-    text-decoration: none;
-    color: var(--background-color);
-    background-color: var(--green-color);
-    padding: 5px 7px;
-    margin-bottom: 20px;
-    font-size: 16px;
-  }
-
-  main {
-    margin-top: 150px;
-    max-width: 100%;
-  }
-
-  article {
-    overflow: hidden;
-  }
-
-  .hide {
-    display: none;
-  }
-
-  .icons {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 25px;
-    align-items: start;
-    margin-left: 0;
-  }
-  .icons div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-
-  .icons img {
-    width: 15%;
-    object-fit: cover;
-    aspect-ratio: 1 / 1;
-  }
-
-  .icons p {
-    display: flex;
-    align-items: center;
-  }
-
-  .cta-row {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    margin-bottom: 18px;
-  }
-  h1 {
-    text-align: center;
-  }
-  .left {
-    height: 50%;
-    max-width: 100%;
-  }
-
-   .right {
-  margin-left: 30px;
-    }
-  @media (min-width: 768px) {
+  <style>
     a {
-      font-size: 18px;
-      padding: 10px 10px;
+      text-decoration: none;
+      color: var(--background-color);
+      background-color: var(--green-color);
+      padding: 5px 7px;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    main {
+      margin-top: 150px;
+      max-width: 100%;
     }
 
     article {
       overflow: hidden;
     }
 
-   
-    .grid_1-1 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+    .hide {
+      display: none;
     }
-    h1 {
-      grid-column: 2 / span 1;
-      text-align: left;
-    }
+
     .icons {
       display: flex;
+      flex-direction: column;
+      margin-bottom: 25px;
+      align-items: start;
+      margin-left: 0;
+    }
+    .icons div {
+      display: flex;
       flex-direction: row;
-    justify-content: flex-start;
-  gap: 4vw;
-  margin-right: auto;
-}
-
-    .icons img{
-      width: 4vw;
-      object-fit: contain;
-      
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
     }
 
-  }
-</style>
+    .icons img {
+      width: 15%;
+      object-fit: cover;
+      aspect-ratio: 1 / 1;
+    }
+
+    .icons p {
+      display: flex;
+      align-items: center;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .left {
+      height: 50%;
+      max-width: 100%;
+    }
+
+    .right {
+      margin-left: 30px;
+    }
+    @media (min-width: 768px) {
+      a {
+        font-size: 18px;
+        padding: 10px 10px;
+      }
+
+      article {
+        overflow: hidden;
+      }
+
+      .grid_1-1 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      h1 {
+        grid-column: 2 / span 1;
+        text-align: left;
+      }
+      .icons {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 4vw;
+        margin-right: auto;
+      }
+
+      .icons img {
+        width: 4vw;
+        object-fit: contain;
+      }
+    }
+  </style>
+</Layout>
