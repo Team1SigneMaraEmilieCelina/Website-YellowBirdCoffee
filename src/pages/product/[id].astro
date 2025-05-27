@@ -107,15 +107,15 @@ const product = data[0];
             <div >
               <div class="icons">
                 <div>
-                <img src={product.icon1} />
+                <img src={product.icon1} alt={product.icon1_text} />
                 <p>{product.icon1_text}</p>
               </div>
               <div>
-                <img src={product.icon2} />
+                <img src={product.icon2} alt={product.icon2_text} />
                 <p>{product.icon2_text}</p>
               </div>
               <div>
-                <img src={product.icon3} />
+                <img src={product.icon3} alt={product.icon3_text} />
                 <p>{product.icon3_text}</p>
               </div>
             </div>
@@ -180,7 +180,7 @@ const product = data[0];
     display: flex;
     flex-direction: column;
     margin-bottom: 25px;
-    align-items: start
+    align-items: start;
     margin-left: 0;
   }
   .icons div {
