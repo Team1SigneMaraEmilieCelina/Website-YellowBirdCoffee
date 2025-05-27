@@ -34,6 +34,8 @@ const products = await response.json();
     gap: 50px 20px; /* First value is row gap, second is column gap */
     justify-content: left;
     margin-top: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 20vw));
+    gap: 35px 20px;
   }
 
   article {
@@ -50,6 +52,12 @@ const products = await response.json();
       grid-template-columns: repeat(auto-fill, minmax(250px, 350px));
       gap: 80px 50px; /* Increased row gap for desktop */
       justify-items: start;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .products-grid {
+      gap: 50px 0px;
     }
   }
 </style>

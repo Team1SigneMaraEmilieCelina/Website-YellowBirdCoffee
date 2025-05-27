@@ -29,6 +29,10 @@ const { Products } = Astro.props;
   .product-link {
     text-decoration: none;
     color: inherit;
+    /* width: 75%; */
+    padding: 0;
+    margin: 0 auto;
+    display: block;
   }
 
   .product-link article {
@@ -39,7 +43,7 @@ const { Products } = Astro.props;
     transition:
       transform 0.2s ease,
       box-shadow 0.2s ease;
-    padding: 10px;
+    padding: 4px 4px 8px 4px;
     gap: 2px; /* Reduces space between elements */
   }
 
@@ -51,18 +55,26 @@ const { Products } = Astro.props;
   p {
     line-height: inherit;
     margin: 0;
-    padding: 10px;
-    word-wrap: break-word;
+    /* padding: 2px; */
+    padding-inline: 1px;
+    /* word-wrap: break-word; */
     text-align: center;
   }
 
   article {
-    height: 100%;
-    width: 30vw;
+    /* width: 130px; */
+    min-width: 0;
+    max-width: 80vw;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background-color: var(--beige-color);
+    /* width: 200px; fjernet for at undgå dobbelt width */
+    width: 150px;
+    /* height: 230px; */
+    height: auto;
+    padding-bottom: 10px;
   }
 
   article h5,
@@ -70,20 +82,25 @@ const { Products } = Astro.props;
     margin: 0; /* Remove default margins */
   }
 
+  article h5 {
+    margin-top: 7px;
+  }
+
   article img {
-    max-width: 90px; /* Slightly smaller main image */
+    max-width: 55px; /* Slightly smaller main image */
+    max-width: 70px;
     width: 100%;
   }
 
   .grid_1-1-1 {
     display: flex;
-    gap: 5px;
+    gap: 10px;
     margin-top: 5px; /* Replace margin-top: auto with a fixed value */
     align-self: center; /* Center the icons container */
   }
 
   .grid_1-1-1 img {
-    max-width: 25px; /* Slightly smaller icons */
+    max-width: 20px; /* Slightly smaller icons */
   }
 
   @media (min-width: 768px) {
@@ -98,6 +115,52 @@ const { Products } = Astro.props;
 
     .grid_1-1-1 img {
       max-width: 35px; /* Adjust icon size for larger screens */
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .product-link article {
+      gap: 1px;
+    }
+
+    p {
+      line-height: inherit;
+      margin: 0;
+      padding: 0;
+      padding-inline: 1px;
+    }
+
+    article h5,
+    article p {
+      margin: 0; /* Remove default margins */
+    }
+
+    article img {
+      max-width: 70px;
+    }
+
+    .grid_1-1-1 {
+      display: flex;
+      gap: 10px;
+      margin-top: 5px; /* Replace margin-top: auto with a fixed value */
+      align-self: center; /* Center the icons container */
+    }
+
+    .grid_1-1-1 img {
+      max-width: 20px; /* Slightly smaller icons */
+    }
+    article {
+      width: 260px;
+      height: 340px;
+    }
+    article img {
+      max-width: 100px;
+    }
+    .grid_1-1-1 img {
+      max-width: 25px;
+    }
+    .product-link {
+      margin: 0;
     }
   }
 </style>
