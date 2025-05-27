@@ -88,59 +88,65 @@ const product = data[0];
     </div>
     {
       product ? (
-        <article class="margin grid_1-1">
-          <h1 class="right">{product.display_name}</h1>
-          <div class="left">
-            <ProductPictures img1={product.img1} img2={product.img2} img3={product.img3} img4={product.img4} />
-          </div>
-          <div class="right">
-            <p>
-              <strong>Bønne: {product.bean}</strong>
-            </p>
-            <p>
-              <strong>Pris: {product.price_250} kr. / 250g </strong>
-            </p>
-            <p>
-              <strong>Pris: {product.price_1000} kr. / 1000g</strong>
-            </p>
-            <p>{product.description}</p>
-            <div >
-              <div class="icons">
+        
+          <article class="margin grid_1-1">
+            <h1 class="right">{product.display_name}</h1>
+            <div class="left">
+              <ProductPictures img1={product.img1} img2={product.img2} img3={product.img3} img4={product.img4} />
+            </div>
+            <div class="right">
+              <p>
+                <strong>Bønne: {product.bean}</strong>
+              </p>
+              <p>
+                <strong>Pris: {product.price_250} kr. / 250g </strong>
+              </p>
+              <p>
+                <strong>Pris: {product.price_1000} kr. / 1000g</strong>
+              </p>
+              <p>{product.description}</p>
+              <div >
+                <div class="icons">
+                  <div>
+                  <img src={product.icon1} />
+                  <p>{product.icon1_text}</p>
+                </div>
                 <div>
-                <img src={product.icon1} />
-                <p>{product.icon1_text}</p>
+                  <img src={product.icon2} />
+                  <p>{product.icon2_text}</p>
+                </div>
+                <div>
+                  <img src={product.icon3} />
+                  <p>{product.icon3_text}</p>
+                </div>
               </div>
-              <div>
-                <img src={product.icon2} />
-                <p>{product.icon2_text}</p>
-              </div>
-              <div>
-                <img src={product.icon3} />
-                <p>{product.icon3_text}</p>
-              </div>
-            </div>
-              <Amount />
-            
-            <div class="cta-row">
-              <AmountCTA />
+                <Amount />
+              
+                <div class="cta-row">
+                  <AmountCTA />
 
-              <RoundCTA ctaText="Læg i kurv" />
-            </div>
-          </div>
-        </article>
-      ) : (
+                  <RoundCTA ctaText="Læg i kurv" />
+                </div>
+              </div>
+            </article>
+       
+          </>
+        ) : (
         // Hvis produktet ikke findes, vis en fejlbesked
         <p>Produktet blev ikke fundet.</p>
       )
     }
-      <Dropdowndescription displayname={product.display_name} 
-      origin={product.origin}
-      bean={product.bean}
-      producer={product.producer}
-      process={product.process}
-      elevation={product.elevation}
-        detaileddescription={product.detailed_description}
-      />
+
+         <Dropdowndescription
+              displayname={product.display_name}
+              origin={product.origin}
+              bean={product.bean}
+              producer={product.producer}
+              process={product.process}
+              elevation={product.elevation}
+              detaileddescription={product.detailed_description}
+            />
+
     <Brewguide />
     <section class="margin">
       <h2>Se vores unikke kaffeudvalg</h2>
@@ -216,6 +222,9 @@ const product = data[0];
     max-width: 100%;
   }
 
+   .right {
+  margin-left: 30px;
+    }
   @media (min-width: 768px) {
     a {
       font-size: 18px;
@@ -225,6 +234,8 @@ const product = data[0];
     article {
       overflow: hidden;
     }
+
+   
     .grid_1-1 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -247,5 +258,6 @@ const product = data[0];
       object-fit: contain;
       
     }
+
   }
 </style>
