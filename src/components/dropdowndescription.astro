@@ -1,0 +1,19 @@
+---
+const { displayname, information, description, detaileddescription } =
+  Astro.props;
+---
+
+<article>
+  <div id="description" class="grid_1-1">
+    <p>Beskrivelse</p>
+    <img src="/img/icons/downarrow.webp" alt="Pil ned" />
+  </div>
+
+  <div>
+    <h5>{displayname}</h5>
+    <p>{information}</p>
+
+    <h5>{description}</h5>
+    <p>{detaileddescription}</p>
+  </div>
+</article>
