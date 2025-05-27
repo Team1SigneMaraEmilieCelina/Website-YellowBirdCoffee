@@ -10,17 +10,14 @@ const { navn, beskrivelse, img1, img2, img3, img4 } = Astro.props;
 ---
 
 <article class="grid_1-1">
-  <Productpictures img1={img1} img2={img2} img3={img4} />
+  <Productpictures img1={img1} img2={img2} img3={img3} img4={img4} />
   <div>
     <h2>{navn}</h2>
     <p>{beskrivelse}</p>
     <Deliverydiscount />
     <Amount />
-    <Selectmenu
-      labelp="Hvor ofte vil du have leveret"
-      placeholder="Vælg en mulighed"
-      options={["Hver 2. uge", "Hver måned", "Hver 2. måned"]}
-    />
+    <Selectmenu labelp="Hvor ofte vil du have leveret" placeholder="Vælg en mulighed" options={["Hver 2. uge", "Hver måned", "Hver 2. måned"]} />
+    <p>Pris i alt xx Kr.</p>
     <p>Antal poser pr. levering</p>
     <div class="cta-row">
       <Amountcta />
