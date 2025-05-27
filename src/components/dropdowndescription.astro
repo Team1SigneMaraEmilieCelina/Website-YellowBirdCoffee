@@ -1,19 +1,145 @@
 ---
-const { displayname, information, description, detaileddescription } =
-  Astro.props;
+const {
+  displayname,
+  detaileddescription,
+  origin,
+  bean,
+  producer,
+  process,
+  elevation,
+} = Astro.props;
 ---
 
-<article>
+<article class="margin">
   <div id="description" class="grid_1-1">
-    <p>Beskrivelse</p>
-    <img src="/img/icons/downarrow.webp" alt="Pil ned" />
+    <div class="dropdown">
+      <p>Beskrivelse</p>
+      <img src="/img/icons/downarrow.webp" alt="Pil ned" />
+    </div>
   </div>
+  <div id="line" class="line"></div>
 
-  <div>
-    <h5>{displayname}</h5>
-    <p>{information}</p>
-
-    <h5>{description}</h5>
-    <p>{detaileddescription}</p>
+  <div class="grid_1-1_info">
+    <div>
+      <h5>{displayname}</h5>
+      <p><strong>Oprindelse: </strong>{origin}</p>
+      <p><strong>Sort: </strong>{bean}</p>
+      <p><strong>Producent: </strong>{producer}</p>
+      <p><strong>Forarbejdning: </strong>{process}</p>
+      <p><strong>Højde: </strong>{elevation}</p>
+    </div>
+    <div>
+      <h5>Beskrivelse</h5>
+      <p>{detaileddescription}</p>
+    </div>
   </div>
 </article>
+
+<style>
+  .grid_1-1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dropdown {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 1rem;
+    grid-column: 2;
+    cursor: pointer;
+  }
+
+  img {
+    width: 30px;
+    height: auto;
+    transition: transform 0.3s;
+  }
+
+  .line {
+    height: 1px;
+    background: #222;
+    width: 50%;
+    margin-bottom: 1rem;
+    /* Skjuler venstre halvdel, viser højre */
+    margin-left: 50%;
+    transition:
+      width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .line.open {
+    width: 100%;
+
+    /* Viser hele stregen fra venstre til højre */
+    margin-left: 0;
+  }
+
+  .grid_1-1_info {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition:
+      max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.4s;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 2rem;
+  }
+  .grid_1-1_info.open {
+    max-height: 800px;
+    opacity: 1;
+    margin-bottom: 1rem;
+  }
+
+  .grid_1-1_info p {
+    margin-top: -2rem;
+  }
+
+  @media (max-width: 767px) {
+    .grid_1-1_info,
+    .grid_1-1_info.open {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+</style>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const dropdown = document.querySelector(".dropdown");
+    const infoSection = document.querySelector(".grid_1-1_info");
+
+    // TypeScript tror, at arrow er af typen Element, som ikke har en style-property.
+    // Løsningen er at fortælle TypeScript, at arrow er et HTMLImageElement:
+    const arrow = document.querySelector(".dropdown img") as HTMLImageElement;
+    const line = document.getElementById("line");
+    let open = false;
+
+    // Stop hvis dropdown, infoSection, arrow eller line ikke findes
+    if (!dropdown || !infoSection || !arrow || !line) return;
+
+    // Starter lukket
+    infoSection.classList.remove("open");
+    line.classList.remove("open");
+
+    // Tilføjer klik-event til dropdown
+    dropdown.addEventListener("click", () => {
+      open = !open;
+
+      // Hvis open, tilføj 'open' klasse, så beskrivelsen åbner op
+      if (open) {
+        infoSection.classList.add("open");
+        line.classList.add("open");
+        arrow.style.transform = "rotate(180deg)";
+      }
+      // hvis lukket, fjern 'open' klasse så den lukker igen
+      else {
+        infoSection.classList.remove("open");
+        line.classList.remove("open");
+        arrow.style.transform = "rotate(0deg)";
+      }
+    });
+  });
+</script>

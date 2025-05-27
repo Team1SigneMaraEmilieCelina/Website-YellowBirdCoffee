@@ -8,6 +8,7 @@ import Productslider from "../../components/productslider.astro";
 import ProductPictures from "../../components/productpictures.astro";
 import AmountCTA from "../../components/amountcta.astro";
 import RoundCTA from "../../components/roundCTA.astro";
+import Dropdowndescription from "../../components/dropdowndescription.astro";
 
 // Vi henter alle ID’er til de produkter, vi gerne vil lave individuelle sider for:
 export async function getStaticPaths() {
@@ -132,6 +133,14 @@ const product = data[0];
         <p>Produktet blev ikke fundet.</p>
       )
     }
+      <Dropdowndescription displayname={product.display_name} 
+      origin={product.origin}
+      bean={product.bean}
+      producer={product.producer}
+      process={product.process}
+      elevation={product.elevation}
+        detaileddescription={product.detailed_description}
+      />
     <Brewguide />
     <section class="margin">
       <h2>Se vores unikke kaffeudvalg</h2>
