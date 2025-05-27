@@ -2,20 +2,15 @@
 import "../styles/generel.css";
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="/img/icons/logo.ico" type="image/x-icon" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Yellow Bird Coffee</title>
-    <meta name="robots" content="noindex, nofollow" />
-  </head>
-  <body>
-    <slot />
-  </body>
-</html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content={Astro.generator} />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="/img/icons/logo.ico" type="image/x-icon" />
+  <title>Yellow Bird Coffee</title>
+</head>
+<slot />
 
 <style>
   html,
