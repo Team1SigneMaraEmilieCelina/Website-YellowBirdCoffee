@@ -6,11 +6,7 @@ import RoundCTA from "./roundCTA.astro";
   <section class="kontaktform">
     <div>
       <h2>Kontakt os</h2>
-      <p>
-        Vi vil meget gerne samarbejde direkte med dig og din virksomhed. Udfyld
-        formularen nedenfor og fortæl os lidt mere om dig og din forretning –
-        eller kontakt os på:
-      </p>
+      <p>Vi vil meget gerne samarbejde direkte med dig og din virksomhed. Udfyld formularen nedenfor og fortæl os lidt mere om dig og din forretning – eller kontakt os på:</p>
       <p>Telefon: +45 31 33 84 33</p>
 
       <form action="/send" method="POST">
@@ -21,20 +17,10 @@ import RoundCTA from "./roundCTA.astro";
           <div class="form-group">
             <div class="grid_1-1">
               <p>
-                <input
-                  type="text"
-                  name="fornavn"
-                  placeholder="Fornavn"
-                  required
-                />
+                <input type="text" name="fornavn" placeholder="Fornavn" required />
               </p>
               <p>
-                <input
-                  type="text"
-                  name="efternavn"
-                  placeholder="Efternavn"
-                  required
-                />
+                <input type="text" name="efternavn" placeholder="Efternavn" required />
               </p>
             </div>
             <p class="emailfield">
@@ -44,8 +30,7 @@ import RoundCTA from "./roundCTA.astro";
               <p><input type="text" name="firma" placeholder="Firma" /></p>
               <p><input type="tel" name="telefon" placeholder="Telefon" /></p>
             </div>
-            <textarea name="besked" placeholder="Din besked" rows="5" required
-            ></textarea>
+            <textarea name="besked" placeholder="Din besked" rows="5" required></textarea>
             <!-- textarea er en felt hvor brugeren kan skrive flere linjer -->
           </div>
           <p class="knap_send">Send besked</p>
@@ -216,6 +201,9 @@ import RoundCTA from "./roundCTA.astro";
     console.log("DOM er indlæst");
 
     // Tilføj event listeners
+    // Dette er kaldet en arrowfunction, som er en kortere måde at skrive funktioner på
+    // Det betyder at når knap_sendbesked bliver klikket, så kaldes takkeside funktionen
+    // kontaktform og kontaktform2  bliver sendt som parametre ind i funktionen "takkeside"
     knap_sendbesked?.addEventListener("click", () => {
       takkeside(kontaktform, kontaktform2);
     });
