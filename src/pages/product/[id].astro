@@ -117,10 +117,6 @@ const product = data[0];
         <div>
           <div class="icons">
             <div>
-              <img src={product.icon1} />
-              <p>{product.icon1_text}</p>
-            </div>
-            <div>
               <img src={product.icon1} alt={product.icon1_text} />
               <p>{product.icon1_text}</p>
             </div>
@@ -132,36 +128,37 @@ const product = data[0];
               <img src={product.icon3} alt={product.icon3_text} />
               <p>{product.icon3_text}</p>
             </div>
-            <Amount />
+          </div>
+          <Amount />
 
-            <div class="cta-row">
-              <AmountCTA />
+          <div class="cta-row">
+            <AmountCTA />
 
-              <RoundCTA ctaText="Læg i kurv" />
-            </div>
+            <RoundCTA ctaText="Læg i kurv" />
           </div>
         </div>
       </div>
-
-      <Dropdowndescription
-        displayname={product.display_name}
-        origin={product.origin}
-        bean={product.bean}
-        producer={product.producer}
-        process={product.process}
-        elevation={product.elevation}
-        detaileddescription={product.detailed_description}
-      />
-      <Brewguide />
-      <section class="margin">
-        <h2>Se vores unikke kaffeudvalg</h2>
-        <p>
-          Oplev vores udvalg af selvristede kaffebønner med forskellige
-          smagsnuancer og ristegrader – tilpasset enhver kaffesmag.
-        </p>
-      </section>
-      <Productslider />
     </article>
+
+    <Dropdowndescription
+      displayname={product.display_name}
+      origin={product.origin}
+      bean={product.bean}
+      producer={product.producer}
+      process={product.process}
+      elevation={product.elevation}
+      detaileddescription={product.detailed_description}
+    />
+    <Brewguide />
+    <section class="margin">
+      <h2>Se vores unikke kaffeudvalg</h2>
+      <p>
+        Oplev vores udvalg af selvristede kaffebønner med forskellige
+        smagsnuancer og ristegrader – tilpasset enhver kaffesmag.
+      </p>
+
+      <Productslider />
+    </section>
 
     <Footer />
   </main>
