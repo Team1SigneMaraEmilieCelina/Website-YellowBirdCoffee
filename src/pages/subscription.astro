@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import SelectMenu from "../components/selectmenu.astro";
 import Footer from "../components/footer.astro";
 import Menublack from "../components/menublack.astro";
 import Productslider from "../components/productslider.astro";
@@ -139,6 +138,11 @@ import SquareCTA from "../components/SquareCTA.astro";
     hideAllScreens();
     document.querySelector("#light")?.classList.remove("hide");
 
+    document.querySelector("#light-cta")?.classList.add("selected");
+    document.querySelector("#medium-cta")?.classList.remove("selected");
+    document.querySelector("#dark-cta")?.classList.remove("selected");
+    document.querySelector("#mixed-cta")?.classList.remove("selected");
+
     document.querySelector("#medium-cta")?.addEventListener("click", medium);
     document.querySelector("#dark-cta")?.addEventListener("click", dark);
     document.querySelector("#mixed-cta")?.addEventListener("click", mixed);
@@ -155,6 +159,11 @@ import SquareCTA from "../components/SquareCTA.astro";
     hideAllScreens();
     document.querySelector("#medium")?.classList.remove("hide");
 
+    document.querySelector("#medium-cta")?.classList.add("selected");
+    document.querySelector("#light-cta")?.classList.remove("selected");
+    document.querySelector("#dark-cta")?.classList.remove("selected");
+    document.querySelector("#mixed-cta")?.classList.remove("selected");
+
     document.querySelector("#light-cta")?.addEventListener("click", start);
     document.querySelector("#dark-cta")?.addEventListener("click", dark);
     document.querySelector("#mixed-cta")?.addEventListener("click", mixed);
@@ -164,6 +173,11 @@ import SquareCTA from "../components/SquareCTA.astro";
     hideAllScreens();
     document.querySelector("#dark")?.classList.remove("hide");
 
+    document.querySelector("#dark-cta")?.classList.add("selected");
+    document.querySelector("#light-cta")?.classList.remove("selected");
+    document.querySelector("#medium-cta")?.classList.remove("selected");
+    document.querySelector("#mixed-cta")?.classList.remove("selected");
+
     document.querySelector("#light-cta")?.addEventListener("click", start);
     document.querySelector("#medium-cta")?.addEventListener("click", medium);
     document.querySelector("#mixed-cta")?.addEventListener("click", mixed);
@@ -172,6 +186,11 @@ import SquareCTA from "../components/SquareCTA.astro";
   function mixed() {
     hideAllScreens();
     document.querySelector("#mixed")?.classList.remove("hide");
+
+    document.querySelector("#mixed-cta")?.classList.add("selected");
+    document.querySelector("#light-cta")?.classList.remove("selected");
+    document.querySelector("#medium-cta")?.classList.remove("selected");
+    document.querySelector("#dark-cta")?.classList.remove("selected");
 
     document.querySelector("#light-cta")?.addEventListener("click", start);
     document.querySelector("#medium-cta")?.addEventListener("click", medium);
