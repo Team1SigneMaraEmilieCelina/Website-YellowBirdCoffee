@@ -15,7 +15,7 @@ import Coursescard from "../components/coursescard.astro";
       header="Kurser"
     />
   </header>
-  <main class="margin">
+  <section class="main margin">
     <section class="courses-intro">
       <h3>Løft din kaffe til næste niveau</h3>
       <p>
@@ -42,7 +42,7 @@ import Coursescard from "../components/coursescard.astro";
       *Bemærk venligst, at alle vores kurser afholdes i Spinchy på Gammel
       Kongevej 84, 1850 Frederiksberg.
     </p>
-  </main>
+  </section>
 
   <Footer />
 </Layout>
@@ -69,5 +69,8 @@ import Coursescard from "../components/coursescard.astro";
     .courses-intro {
       width: 80%;
     }
+  }
+  .main.margin {
+    margin-top: 70px;
   }
 </style>

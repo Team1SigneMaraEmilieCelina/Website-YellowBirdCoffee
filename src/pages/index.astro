@@ -21,7 +21,7 @@ import Dropdowndescription from "../components/dropdowndescription.astro";
       <div class=""><RoundCTA ctaText="Læs mere" ctaLink="/shopcoffee" /></div>
     </div>
   </header>
-  <main>
+  <section class="main">
     <section class="margin">
       <h2>Se vores unikke kaffeudvalg</h2>
       <p class="productslider-text">
@@ -65,13 +65,13 @@ import Dropdowndescription from "../components/dropdowndescription.astro";
         <img src="/img/plantage.webp" alt="Billede af kaffefarm" />
       </div>
     </section>
-  </main>
+  </section>
 
   <Footer />
 </Layout>
 
 <style>
-  main {
+  .main {
     margin-top: 40px;
   }
   .hero {
@@ -162,7 +162,7 @@ import Dropdowndescription from "../components/dropdowndescription.astro";
   }
 
   @media (min-width: 768px) {
-    main {
+    .main {
       margin-top: 80px;
     }
     .heroimg {
