@@ -198,7 +198,7 @@ import RoundCTA from "./roundCTA.astro";
     hideAllScreens();
     kontaktform?.classList.remove("hide");
 
-    console.log("DOM er indlæst");
+    console.log("Siden er indlæst");
 
     // Tilføj event listeners
     // Dette er kaldet en arrowfunction, som er en kortere måde at skrive funktioner på
@@ -208,6 +208,8 @@ import RoundCTA from "./roundCTA.astro";
       takkeside(kontaktform, kontaktform2);
     });
 
+    // Denne funktion gør at at når knap_tilbage bliver klikket, så kaldes start funktionen igen
+    // Det betyder at kontaktform2 bliver skjult og kontaktform bliver vist igen
     knap_tilbage?.addEventListener("click", () => {
       start();
     });
